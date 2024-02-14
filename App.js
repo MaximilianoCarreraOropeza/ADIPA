@@ -1,20 +1,12 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react'
+import NavigationAuth from './src/modules/navegacion/navegacionSesion/NavigationAuth';
+import NavigationWithOutAuth from './src/modules/navegacion/navegacionSinSesion/NavigationWithOutAuth';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    //le pregunte al profe y me gusto su idea, basicamente aqui debemos de poner una condicional para saber si hay sesion o nel y de aqui
+    //se renderizara dependiendo si esta iniciado o no, y ya esa es la idea ya que cada navegacion es distinta y uno tiene tab y el otro solo son pantallas 
+    <NavigationWithOutAuth/>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
