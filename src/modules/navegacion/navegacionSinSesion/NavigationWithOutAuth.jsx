@@ -9,7 +9,7 @@ import {Icon} from '@rneui/base';
 
 const Tab = createBottomTabNavigator();
 
-//esta navegacion aparte que tiene los iconos, es el navigation cuando este iniciado sesion 
+//esta navegacion aparte que tiene los iconos, es el navigation cuando este iniciado sesion  <Tab.Screen name= 'PerfilStack' component={PerfilStack} options={{title: 'Perfil'}}/>
 export default function NavigationWithOutAuth() {
   return (
     <NavigationContainer>
@@ -24,11 +24,10 @@ export default function NavigationWithOutAuth() {
             tabBarInactiveTintColor: 'gray',
             headerShown: false,
             tabBarStyle: { 
-              backgroundColor: '#002E60' 
+              backgroundColor: '#002E60'
             }
         })}
       >
-        <Tab.Screen name= 'PerfilStack' component={PerfilStack} options={{title: 'Perfil'}}/>
         <Tab.Screen name= 'EstacionamientosStack' component={EstacionamientosStack} options={{title: 'Mapa Principal'}}/>
         <Tab.Screen name= 'DiscapacitadosStack' component={DiscapacitadosStack} options={{title: 'Discapacitados'}}/>
         <Tab.Screen name= 'GlosarioStack' component={GlosarioStack} options={{title: 'Mapa Glosario'}}/>    
@@ -44,10 +43,6 @@ const getIconName = (routeName, focused) => {
   switch (routeName) {
     case 'EstacionamientosStack':
       iconName = focused ? 'home' : 'home-outline';
-      iconType = 'material-community'; 
-    break;
-    case 'PerfilStack':
-      iconName = focused ? 'account' : 'account-outline';
       iconType = 'material-community'; 
     break;
     case 'DiscapacitadosStack':
