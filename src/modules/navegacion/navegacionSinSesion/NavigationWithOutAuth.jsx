@@ -17,12 +17,15 @@ export default function NavigationWithOutAuth() {
         screenOptions={({route}) => ({
             tabBarIcon: ({focused, color, size}) => {
                 const { iconName, iconType } = getIconName(route.name, focused);
-                
+
                 return <Icon name={iconName} type={iconType} size={size} color={color} />
             }, 
             tabBarActiveTintColor: 'white',
             tabBarInactiveTintColor: 'gray',
-            headerShown: false
+            headerShown: false,
+            tabBarStyle: { 
+              backgroundColor: '#002E60' 
+            }
         })}
       >
         <Tab.Screen name= 'PerfilStack' component={PerfilStack} options={{title: 'Perfil'}}/>

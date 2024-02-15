@@ -1,4 +1,5 @@
 import React from 'react'
+import { Image } from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Glosario from '../../../glosario/screens/Glosario';
 
@@ -10,7 +11,18 @@ export default function GlosarioStack() {
         <stack.Screen
             name = 'Glosario'
             component = {Glosario}
-            options = {{title: 'Mapa UTEZ'}}
+            options = {{headerTitle: 'Mapa UTEZ',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+              <Image
+                source={require('../../../../../assets/logo.png')}
+                style={{ width: 30, height: 30, marginLeft: 10 }}
+              />
+          )}}
         />
     </stack.Navigator>
   )

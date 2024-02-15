@@ -1,4 +1,5 @@
 import React from 'react'
+import {Image } from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import CafeBalcon from '../../../estacionamientos/screens/CafeBalcon'
 import Principal from '../../../estacionamientos/screens/Principal'
@@ -13,70 +14,204 @@ import Docencia5 from '../../../estacionamientos/screens/Docencia5'
 import Jardineras from '../../../estacionamientos/screens/Jardineras'
 import TallerPesado2 from '../../../estacionamientos/screens/TallerPesado2'
 
+
 const stack = createStackNavigator();
 
 export default function EstacionamientosStack() {
   return (
     <stack.Navigator initialRouteName='Principal'>
         <stack.Screen
-            name = 'Principal'
+            name = 'Principall'
             component = {Principal}
-            options = {{title: 'Mapa Utez'}}
+            options = {{
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitle: 'Mapa UTEZ',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )
+        }}
         />
         <stack.Screen
-            name = 'Cafe Balcon'
+            name = 'CafeBalcon'
             component = {CafeBalcon}
-            options = {{title: 'Cafe Balcon'}}
+            options = {{headerTitle: 'Cafe Balcon',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}
         />
         <stack.Screen
             name = 'CDS'
             component = {CDS}
-            options = {{title: 'CDS'}}
+            options = {{headerTitle: 'CDS',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}
         />
         <stack.Screen
-            name = 'CDS Motos'
+            name = 'CDSMotos'
             component = {CDSMotos}
-            options = {{title: 'CDS Motos'}}
+            options = {{headerTitle: 'CDS Motos',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}
         />
         <stack.Screen
             name = 'Cedim'
             component = {Cedim}
-            options = {{title: 'Cedim'}}
+            options = {{headerTitle: 'Cedim',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}
         />
         <stack.Screen
-            name = 'Docencia 1'
+            name = 'Docencia1'
             component = {Docencia1}
-            options = {{title: 'Docencia 1'}}
+            options = {{headerTitle: 'Docencia 1',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}
         />
         <stack.Screen
-            name = 'Docencia 3'
+            name = 'Docencia3'
             component = {Docencia3}
-            options = {{title: 'Docencia 3'}}
+            options = {{headerTitle: 'Docencia 3',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}
         />
         <stack.Screen
-            name = 'Docencia 3 Motos'
+            name = 'Docencia3Motos'
             component = {Docencia3Motos}
-            options = {{title: 'Docencia 3 Motos'}}
+            options = {{headerTitle: 'Docencia 3 Motos',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}
         />
         <stack.Screen
-            name = 'Docencia 4'
+            name = 'Docencia4'
             component = {Docencia4}
-            options = {{title: 'Docencia 4'}}
+            options = {{headerTitle: 'Docencia 4',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}
         />
         <stack.Screen
-            name = 'Docencia 5'
+            name = 'Docencia5'
             component = {Docencia5}
-            options = {{title: 'Docencia 5'}}
+            options = {{headerTitle: 'Docencia 5',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center', headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}
         />
         <stack.Screen
             name = 'Jardineras'
             component = {Jardineras}
-            options = {{title: 'Jardineras'}}
+            options = {{headerTitle: 'Jardineras',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}       
         />
         <stack.Screen
-            name = 'Taller Pesado 2'
+            name = 'TallerPesado2'
             component = {TallerPesado2}
-            options = {{title: 'Taller Pesado 2'}}
+            options = {{headerTitle: 'Taller Pesado 2',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+            headerLeft: () => (
+                <Image
+                  source={require('../../../../../assets/logo.png')}
+                  style={{ width: 30, height: 30, marginLeft: 10 }}
+                />
+            )}}
         />
     </stack.Navigator>
   )

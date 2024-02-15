@@ -1,4 +1,5 @@
 import React from 'react'
+import { Image } from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Perfil from '../../../perfil/screens/Perfil';
 import CambiarContra from '../../../perfil/screens/CambiarContra'
@@ -11,12 +12,21 @@ export default function PerfilStack() {
         <stack.Screen
             name = 'Perfil'
             component = {Perfil}
-            options = {{title: 'Perfil'}}
+            options = {{headerTitle: 'Perfil',
+            headerStyle: {
+              backgroundColor: '#002E60',
+            },
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center', headerLeft: () => (
+              <Image
+                source={require('../../../../../assets/logo.png')}
+                style={{ width: 30, height: 30, marginLeft: 10 }}
+              />
+          )}}
         />
         <stack.Screen
             name = 'Cambiar Contra'
             component = {CambiarContra}
-            options = {{title: 'Perfil'}}
         />
     </stack.Navigator>
   )
