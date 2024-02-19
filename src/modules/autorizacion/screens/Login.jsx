@@ -35,7 +35,7 @@ export default function Login(props) {
         resizeMethod="contain"
       />
       <Input
-        placeholder="erick@utez.edu.mx"
+        placeholder=""
         label="Matricula: "
         keyboardType="email-address"
         // Esto es un callback function
