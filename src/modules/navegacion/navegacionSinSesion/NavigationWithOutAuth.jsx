@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator();
 export default function NavigationWithOutAuth() {
   return (
     <NavigationContainer>
-      <Tab.Navigator
+      <Tab.Navigator initialRouteName='GlosarioStack'
         screenOptions={({route}) => ({
             tabBarIcon: ({focused, color, size}) => {
                 const { iconName, iconType } = getIconName(route.name, focused);
