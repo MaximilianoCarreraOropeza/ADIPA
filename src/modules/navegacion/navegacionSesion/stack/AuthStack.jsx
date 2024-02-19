@@ -11,10 +11,12 @@ export default function AuthStack() {
         <stack.Screen
             name = 'Login'
             component = {Login}
+            options={{ headerShown: false }}
         />
         <stack.Screen
             name = 'Contra'
             component = {CambiarContra}
+            options={{ headerShown: false }}
         />
     </stack.Navigator>
   )

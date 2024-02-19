@@ -1,12 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
+import { StyleSheet, View } from "react-native";
+import React from "react";
 
 export default function RecuperaCuenta() {
-  return (
-    <View>
-      <Text>RecuperaCuenta</Text>
-    </View>
-  )
+  return <View></View>;
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({});

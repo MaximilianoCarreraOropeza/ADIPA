@@ -40,6 +40,7 @@ export default function PerfilStack() {
         <stack.Screen
             name = 'Cambiar Contra'
             component = {CambiarContra}
+            options={{ headerShown: false }}
         />
     </stack.Navigator>
   )
