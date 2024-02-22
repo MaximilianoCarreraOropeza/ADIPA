@@ -3,18 +3,16 @@ import React, {useState} from "react";
 import { Input, Icon, Button } from "@rneui/base";
 
 export default function RecuperaCuenta() {
-  const [showMessage, setShowMessage] = useState('');
+  const [showMessage, setShowMessage] = useState("");
   return (
     <View style={styles.container}>
       <Text style={styles.textoInicial}>Recupera tu cuenta:</Text>
       <Text style={styles.textInput}>
         Matricula:
       </Text>
-
       <Input
         placeholder="Ingresa tu matricula"
         keyboardType="email-address"
-        // Esto es un callback function
         labelStyle={styles.label}
         containerStyle={styles.inputMatricula}
         errorMessage={showMessage}

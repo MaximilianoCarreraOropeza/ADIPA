@@ -21,7 +21,7 @@ export default function EstacionamientosStack() {
   return (
     <stack.Navigator initialRouteName='Principal'>
         <stack.Screen
-            name = 'Principall'
+            name = 'Principal'
             component = {Principal}
             options = {{
             headerStyle: {
