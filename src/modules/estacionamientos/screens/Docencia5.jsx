@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import SlotEstacionamiento from './components/SlotEstacionamiento'
 
 export default function Docencia5() {
   return (
@@ -9,4 +10,6 @@ export default function Docencia5() {
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  
+})

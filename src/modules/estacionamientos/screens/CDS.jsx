@@ -1,6 +1,6 @@
-import { StyleSheet, View } from 'react-native';
-import React from 'react';
-import SlotEstacionamiento from './components/SlotEstacionamiento'
+import { StyleSheet, View } from "react-native";
+import React from "react";
+import SlotEstacionamiento from "./components/SlotEstacionamiento";
 
 export default function CDS() {
   return (
@@ -90,9 +90,9 @@ export default function CDS() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#554E56',
-    justifyContent: 'flex-start',
-    padding: 25
+    backgroundColor: "#554E56",
+    justifyContent: "flex-start",
+    padding: 25,
   },
   docencia: {
     width: 20,
@@ -101,6 +101,6 @@ const styles = StyleSheet.create({
   slot: {
     border: 10,
     borderColor: "#E5A800",
-    borderRadius: 80
-  }
-})
+    borderRadius: 80,
+  },
+});
