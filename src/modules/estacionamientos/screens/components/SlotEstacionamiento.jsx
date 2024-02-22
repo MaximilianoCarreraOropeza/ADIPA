@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, StyleSheet } from 'react-native';
 import { Image } from '@rneui/base';
-import Restringido from '../../../assets/restringido.png';
-import Exclusivo from '../../../assets/exclusivo.png';
-import Discapacitado from '../../../assets/discapacitado.png';
+import Restringido from '../../../../../assets/restri.png';
+import Exclusivo from '../../../../../assets/exclusivo.png';
+import Discapacitado from '../../../../../assets/discapacitado.png';
 
-export default function SlotEstacionamiento ({ estado, exclusividad, tipo, orientacion }) {
+const SlotEstacionamiento = ({ estado, exclusividad, tipo, orientacion }) =>{
     return (
         <View style={styles.container}>
             {estado == true && exclusividad == "SN" && tipo == "carro" && orientacion == "horizontal" ? (
@@ -318,4 +318,6 @@ const styles = StyleSheet.create({
         height: 24,
     }
 })
+
+export default SlotEstacionamiento
 

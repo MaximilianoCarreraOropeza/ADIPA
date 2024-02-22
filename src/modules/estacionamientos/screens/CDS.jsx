@@ -1,6 +1,6 @@
 import { StyleSheet, View } from 'react-native';
 import React from 'react';
-import SlotEstacionamiento from '../SlotEstacionamiento'
+import SlotEstacionamiento from './components/SlotEstacionamiento'
 
 export default function CDS() {
   return (
