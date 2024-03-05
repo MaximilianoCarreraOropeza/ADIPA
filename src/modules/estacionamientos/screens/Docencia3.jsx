@@ -9,6 +9,7 @@ export default function Docencia3(props) {
     <View style={styles.container}>
  
      <View style={styles.containerHorizontal2}>
+     <View style={styles.espacio} ></View>
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <View style={styles.espacio} ></View>
@@ -23,7 +24,12 @@ export default function Docencia3(props) {
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
         </View>
  
-      <View style={styles.containerHorizontal}>
+ <View style={styles.containerD3}>
+  
+ <View style={styles.containerHorizontal}>
+ <View style={styles.espacio} ></View>
+ <View style={styles.espacio} ></View>
+
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
@@ -35,6 +41,8 @@ export default function Docencia3(props) {
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
         </View>
         <View style={styles.containerHorizontal2}>
+        <Image source={require('../../../../assets/docencia.png')} style={styles.imagenDocencia} />
+        <Image source={require('../../../../assets/letra_e.png')} style={styles.imagenDocencia} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
@@ -45,6 +53,8 @@ export default function Docencia3(props) {
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
         </View>
         <View style={styles.containerHorizontal}>
+        <View style={styles.espacio} ></View>
+        <View style={styles.espacio} ></View>
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
@@ -55,6 +65,8 @@ export default function Docencia3(props) {
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
         </View>
         <View style={styles.containerHorizontal}>
+        <View style={styles.espacio} ></View>
+        <View style={styles.espacio} ></View>
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
@@ -64,6 +76,8 @@ export default function Docencia3(props) {
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
       <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
         </View>
+  </View>
+      
     </View> 
     
   )
@@ -71,6 +85,13 @@ export default function Docencia3(props) {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: '#554E56',
+    justifyContent: 'flex-start',
+    flexDirection: 'row', // Ajuste para alinear horizontalmente los contenedores
+    alignItems: 'flex-start' // Ajuste para alinear verticalmente los contenedores
+  },
+  containerD3: {
     flex: 1,
     backgroundColor: '#554E56',
     justifyContent: 'flex-start',
@@ -108,9 +129,10 @@ const styles = StyleSheet.create({
     marginRight: 5,
   },
   imagenDocencia: {
-    width: 100,
-    height: 100,
-    margin: 20, // Ajuste para agregar espacio entre las imágenes
+    width: 60,
+    height: 60,
+    marginBottom: 10,
+    marginTop: 10
   },
   imagenEstacionamiento: {
     width: 100,
@@ -121,7 +143,7 @@ const styles = StyleSheet.create({
     height: 24,
 },
 espacio:{
-  width: 40,
-  height: 60
+  width: 60,
+  height: 80
 }
 });

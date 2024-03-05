@@ -7,22 +7,23 @@ const stack = createStackNavigator();
 
 export default function GlosarioStack() {
   return (
-    <stack.Navigator>
+    <stack.Navigator screenOptions={{
+      headerTitle: "Mapa UTEZ",
+      headerStyle: {
+        backgroundColor: '#002E60',
+      },
+      headerTintColor: '#fff',
+      headerTitleAlign: 'center',
+      headerLeft: () => (
+        <Image
+          source={require('../../../../../assets/logo.png')}
+          style={{ width: 30, height: 30, marginLeft: 10 }}
+        />
+    )
+    }}>
         <stack.Screen
-            name = 'Glosario'
+            name = 'GlosarioScreen'
             component = {Glosario}
-            options = {{headerTitle: 'Mapa UTEZ',
-            headerStyle: {
-              backgroundColor: '#002E60',
-            },
-            headerTintColor: '#fff',
-            headerTitleAlign: 'center',
-            headerLeft: () => (
-              <Image
-                source={require('../../../../../assets/logo.png')}
-                style={{ width: 30, height: 30, marginLeft: 10 }}
-              />
-          )}}
         />
     </stack.Navigator>
   )

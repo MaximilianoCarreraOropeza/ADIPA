@@ -1,128 +1,120 @@
-import { StyleSheet, View } from 'react-native'
-import React ,{ useState } from 'react'
-import { Input, Image, Icon, Button } from '@rneui/base';
-import Logo from '../../../../assets/logo.png';
-import { isEmpty } from 'lodash';
+import { StyleSheet, Text, View } from "react-native";
+import React, { useState } from "react";
+import { Input, Image, Icon, Button } from "@rneui/base";
+import Logo from "../../../../assets/logo.png";
+import { isEmpty } from "lodash";
 
 export default function Login(props) {
   const { navigation } = props;
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
-  const [showMessage, setShowMessage] = useState('');
-  const [visible, setVisible] = useState(false);
+  const [showMessage, setShowMessage] = useState("");
   const login = async () => {
     if (!isEmpty(email) && !isEmpty(password)) {
-      setShowMessage('');
-      setVisible(true);
+      setShowMessage("");
       try {
-        const response = await signInWithEmailAndPassword(auth, email, password);
-        console.log(response.user);
       } catch (error) {
-        console.log("error", error);
       } finally {
-        setVisible(false);
       }
     } else {
-      setShowMessage('Campos obligatorios');
+      setShowMessage("Campos obligatorios");
     }
-  }
+  };
   return (
     <View style={styles.container}>
-      <Image
-        source={Logo}
-        style={styles.logo}
-        resizeMethod="contain"
-      />
+      <Image source={Logo} style={styles.logo} />
+      <Text style={styles.label}>Matricula:</Text>
       <Input
-        placeholder=""
-        label="Matricula: "
+        placeholder="Ingresa Tu Matricula"
         keyboardType="email-address"
-        // Esto es un callback function
+        placeholderTextColor={"#70BEAE"}
+        inputContainerStyle={styles.textInput}
         onChange={({ nativeEvent: { text } }) => setEmail(text)}
-        labelStyle={styles.label}
         containerStyle={styles.input}
         errorMessage={showMessage}
-        leftIcon={
-          <Icon
-            type='material-community'
-            name={showMessage ? 'account-outline' : 'account'}
-          />
-        }
+        leftIcon={<Icon type="material-community" name="account" />}
       />
-
+      <Text style={styles.label}>Contraseña: </Text>
       <Input
-        placeholder="*****"
-        label="Contraseña: "
-        // Esto es un callback function
+        placeholder="Ingresa Tu Contraseña"
+        placeholderTextColor={"#70BEAE"}
+        inputContainerStyle={styles.textInput}
         onChange={({ nativeEvent: { text } }) => setPassword(text)}
-        labelStyle={styles.label}
         containerStyle={styles.input}
         secureTextEntry={showPassword}
         rightIcon={
           <Icon
-            type='material-community'
-            name={showPassword ? 'eye-outline' : 'eye-off-outline'}
-            color='black'
+            type="material-community"
+            name={showPassword ? "eye-outline" : "eye-off-outline"}
+            color="black"
             onPress={() => setShowPassword(!showPassword)}
           />
         }
-        leftIcon={
-          <Icon
-            type='material-community'
-            name={showPassword ? 'lock-outline' : 'lock'}
-          />
-        }
+        leftIcon={<Icon type="material-community" name="lock" />}
         errorMessage={showMessage}
       />
       <Button
         title="¿Olvidaste tu contraseña?"
-        type='clear'
+        type="clear"
         containerStyle={styles.container2}
         buttonStyle={styles.btnStyle2}
-        onPress={() => navigation.navigate('Contra')}
+        onPress={() => navigation.navigate("Contra")}
       />
       <Button
-        title='Iniciar Sesión'
+        title="Iniciar Sesión"
         onPress={login}
         containerStyle={styles.btnContainer}
         buttonStyle={styles.btnStyle}
-        titleStyle={{ color: "white" }}
       />
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 16
+    backgroundColor: "white",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 16,
   },
   container2: {
+    width: "80%",
+    marginBottom: 16,
   },
   logo: {
     width: 120,
     height: 120,
-    marginBottom: 8
+    marginBottom: 8,
   },
   input: {
+    height: 60,
     paddingHorizontal: 16,
     marginVertical: 8,
-
+    borderWidth: 2,
+    borderRadius: 20,
+    borderColor: "#009475",
   },
   label: {
-    color: '#002E60',
+    fontSize: 20,
+    color: "#0655AA",
+    alignSelf: "baseline",
+    marginLeft: 15,
+    marginTop: 15,
   },
   btnStyle: {
-    backgroundColor: '#002E60',
-    color: '#000',
-    borderRadius: 50
+    backgroundColor: "#002E60",
+    color: "#000",
+    borderRadius: 50,
   },
   btnContainer: {
-    width: '80%',
-  }
-})
-
+    width: "80%",
+  },
+  btnStyle2: {
+    color: "#002E60",
+  },
+  textInput: {
+    borderBottomWidth: 0,
+  },
+});

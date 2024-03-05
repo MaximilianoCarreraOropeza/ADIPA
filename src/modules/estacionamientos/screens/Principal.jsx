@@ -17,6 +17,8 @@ export default function Principal(props) {
       <Button title="Docencia5" onPress={() => navigation.navigate('Docencia5')}></Button>
       <Button title="Jardineras" onPress={() => navigation.navigate('Jardineras')}></Button>
       <Button title="TallerPesado2" onPress={() => navigation.navigate('TallerPesado2')}></Button>
+      <Button title="Perfil" onPress={() => navigation.navigate('Perfil')}></Button>
+      <Button title="Cambiar contraseña" onPress={() => navigation.navigate('CambiarContra')}></Button>
     </View>
   );
 }

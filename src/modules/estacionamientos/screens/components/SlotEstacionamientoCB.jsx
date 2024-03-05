@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
     // Horizontal-Espacio-Rojo
     slotOcupado: {
         width: 80,
-        height: 40,
+        height: 30,
         borderTopWidth: 2,
         borderBottomWidth: 2,
         borderBottomColor: '#E5A800',
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
     // Horizontal-Espacio-Verde
     slotVacio: {
         width: 80,
-        height: 40,
+        height: 30,
         backgroundColor: 'rgba(0, 255, 0, 0.2)',
         borderTopWidth: 2,
         flexDirection: 'row',
@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     },
     // Vertical-Espacio-Rojo
     slotOcupado1: {
-        width: 40,
+        width: 30,
         height: 80,
         borderLeftWidth: 2,
         borderRightWidth: 2,
@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
     },
     // Vertical-Espacio-Verde
     slotVacio1: {
-        width: 40,
+        width: 30,
         height: 80,
         backgroundColor: 'rgba(0, 255, 0, 0.2)',
         borderLeftWidth: 2,
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
     // Horizontal-Espacio-Rojo-Discapacidad-Exclusivo
     slotOcupado2: {
         width: 80,
-        height: 40,
+        height: 30,
         borderTopWidth: 2,
         flexDirection: 'row',
         borderBottomWidth: 2,
@@ -289,7 +289,7 @@ const styles = StyleSheet.create({
     },
     // Vertical-Espacio-Rojo-Discapacidad-Exclusivo
     slotOcupado3: {
-        width: 40,
+        width: 30,
         height: 80,
         borderLeftWidth: 2,
         borderRightWidth: 2,
@@ -302,7 +302,7 @@ const styles = StyleSheet.create({
     },
     // Vertical-Espacio-Verde-Discapacidad-Exclusivo
     slotVacio3: {
-        width: 40,
+        width: 30,
         height: 80,
         backgroundColor: 'rgba(0, 255, 0, 0.2)',
         borderLeftWidth: 2,
@@ -316,7 +316,7 @@ const styles = StyleSheet.create({
     // Horizontal-Espacio-Verde-Bici
     slotVacioBici: {
         width: 80,
-        height: 40,
+        height: 30,
         backgroundColor: 'rgba(0, 255, 0, 0.2)',
         borderTopWidth: 2,
         flexDirection: 'row',
@@ -328,7 +328,7 @@ const styles = StyleSheet.create({
     },
     // Vertical-Espacio-Verde-Bici
     slotVacioBici1: {
-        width: 40,
+        width: 30,
         height: 80,
         backgroundColor: 'rgba(0, 255, 0, 0.2)',
         borderLeftWidth: 2,
@@ -341,7 +341,7 @@ const styles = StyleSheet.create({
     // Horizontal-Espacio-Rojo-Bici
     slotOcupadoBici: {
         width: 80,
-        height: 40,
+        height: 30,
         borderTopWidth: 2,
         borderBottomWidth: 2,
         flexDirection: 'row',
@@ -353,7 +353,7 @@ const styles = StyleSheet.create({
     },
     // Vertical-Espacio-Rojo-Bici
     slotOcupadoBici1: {
-        width: 40,
+        width: 30,
         height: 80,
         borderLeftWidth: 2,
         borderRightWidth: 2,
@@ -371,8 +371,8 @@ const styles = StyleSheet.create({
         borderTopWidth: 2,
         borderBottomWidth: 2,
         flexDirection: 'row',
-        borderBottomColor: '#b56509',
-        borderTopColor: '#b56509',
+        borderBottomColor: '#E57C00',
+        borderTopColor: '#E57C00',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -382,9 +382,9 @@ const styles = StyleSheet.create({
         height: 30,
         borderTopWidth: 2,
         borderBottomWidth: 2,
-        borderBottomColor: '#b56509',
+        borderBottomColor: '#E57C00',
         flexDirection: 'row',
-        borderTopColor: '#b56509',
+        borderTopColor: '#E57C00',
         backgroundColor: 'rgba(255, 0, 0, 0.2)',
         alignItems: 'center',
         justifyContent: 'center',
@@ -396,8 +396,8 @@ const styles = StyleSheet.create({
         backgroundColor: 'rgba(0, 255, 0, 0.2)',
         borderLeftWidth: 2,
         borderRightWidth: 2,
-        borderLeftColor: '#b56509',
-        borderRightColor: '#b56509',
+        borderLeftColor: '#E57C00',
+        borderRightColor: '#E57C00',
         alignItems: 'center',
         justifyContent: 'center',
     },
