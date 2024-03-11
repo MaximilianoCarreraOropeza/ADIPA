@@ -13,8 +13,8 @@ export default function (props) {
         screenOptions={() => ({
           headerShown: false,
           tabBarStyle: {
-            display: "none",
-          },
+            display: "none"
+          }
         })}
       >
         <Tab.Screen name="Auth" component={AuthStack} />

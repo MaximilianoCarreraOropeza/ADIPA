@@ -16,7 +16,9 @@ export default function AuthStack() {
         <stack.Screen
             name = 'Contra'
             component = {CambiarContra}
-            options={{ headerTitle: '', headerShown: true}}
+            options={{ headerTitle: '', headerShown: true, tabBarStyle: {
+              display: "none"
+            }}}
         />
     </stack.Navigator>
   )

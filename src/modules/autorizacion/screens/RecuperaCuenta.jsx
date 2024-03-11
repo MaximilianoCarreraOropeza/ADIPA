@@ -2,7 +2,8 @@ import { StyleSheet, View, Text } from "react-native";
 import React, { useState } from "react";
 import { Input, Icon, Button } from "@rneui/base";
 
-export default function RecuperaCuenta() {
+export default function RecuperaCuenta(props) {
+  const {navigation} = props;
   const [showMessage, setShowMessage] = useState("");
   const [matricula, setMatricula] = useState("");
   return (
@@ -13,7 +14,7 @@ export default function RecuperaCuenta() {
         placeholder="Ingresa tu matricula"
         keyboardType="email-address"
         containerStyle={styles.inputMatricula}
-        inputContainerStyle ={styles.textInput}
+        inputContainerStyle={styles.textInput}
         placeholderTextColor={"#70BEAE"}
         errorMessage={showMessage}
         onChange={({ nativeEvent: { text } }) => setMatricula(text)}
@@ -31,9 +32,11 @@ export default function RecuperaCuenta() {
       />
       <Button
         title="Cancelar"
+        type="clear"
         containerStyle={styles.btnContainer2}
         buttonStyle={styles.btnStyle2}
         titleStyle={styles.titleStyle2}
+        onPress={()=>navigation.goBack()}
       />
     </View>
   );
@@ -51,7 +54,7 @@ const styles = StyleSheet.create({
     color: "#0655AA",
     alignSelf: "baseline",
     marginLeft: 15,
-    marginTop: 15
+    marginTop: 15,
   },
   textoInicial: {
     fontWeight: "bold",
@@ -68,10 +71,10 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     borderWidth: 2,
     borderRadius: 20,
-    borderColor: "#009475", 
+    borderColor: "#009475",
   },
   textInput: {
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
   },
   txtAviso: {
     fontSize: 12,
@@ -103,5 +106,5 @@ const styles = StyleSheet.create({
   },
   titleStyle2: {
     color: "#002E60",
-  }
+  },
 });

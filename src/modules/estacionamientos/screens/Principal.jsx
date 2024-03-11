@@ -1,9 +1,15 @@
 import { StyleSheet, View } from "react-native";
 import React from "react";
 import { Button } from "@rneui/themed";
+import PingPoint from "./components/PingPoint";
 
 export default function Principal(props) {
   const {navigation} = props
+  
+  const handlerPress = (screen) => {
+    navigation.navigate(screen)
+  }
+
   return (
     <View>
       <Button title="CafeBalcon" onPress={() => navigation.navigate('CafeBalcon')}></Button>
@@ -19,6 +25,7 @@ export default function Principal(props) {
       <Button title="TallerPesado2" onPress={() => navigation.navigate('TallerPesado2')}></Button>
       <Button title="Perfil" onPress={() => navigation.navigate('Perfil')}></Button>
       <Button title="Cambiar contraseña" onPress={() => navigation.navigate('CambiarContra')}></Button>
+      <PingPoint onPress={handlerPress} direccion={'CafeBalcon'} tipo={'carro'} exclusividad={'libre'}/>
     </View>
   );
 }

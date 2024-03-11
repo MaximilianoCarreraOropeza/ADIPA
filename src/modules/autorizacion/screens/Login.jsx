@@ -59,6 +59,7 @@ export default function Login(props) {
         type="clear"
         containerStyle={styles.container2}
         buttonStyle={styles.btnStyle2}
+        titleStyle={styles.titleBtnStyle2}
         onPress={() => navigation.navigate("Contra")}
       />
       <Button
@@ -80,13 +81,17 @@ const styles = StyleSheet.create({
     padding: 16,
   },
   container2: {
-    width: "80%",
+    width: "50%", 
     marginBottom: 16,
+    alignSelf: "flex-end",
   },
   logo: {
     width: 120,
     height: 120,
     marginBottom: 8,
+  },
+  titleBtnStyle2: {
+    fontSize: 10,
   },
   input: {
     height: 60,

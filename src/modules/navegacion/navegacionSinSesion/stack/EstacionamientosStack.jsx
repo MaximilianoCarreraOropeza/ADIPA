@@ -34,7 +34,7 @@ export default function EstacionamientosStack() {
             source={require("../../../../../assets/logo.png")}
             style={{ width: 30, height: 30, marginLeft: 10 }}
           />
-        ),
+        )
       }}
     >
       <stack.Screen name="Mapa UTEZ" component={MapaUtez} />
@@ -101,7 +101,9 @@ export default function EstacionamientosStack() {
       <stack.Screen
         name="CambiarContra"
         component={CambiarContra}
-        options={{headerShown: false}}
+        options={{
+          headerTitle: ""
+        }}
       />
     </stack.Navigator>
   );
