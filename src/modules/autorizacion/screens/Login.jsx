@@ -91,10 +91,10 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   titleBtnStyle2: {
-    fontSize: 10,
+    fontSize: 16,
   },
   input: {
-    height: 60,
+    height: 50,
     paddingHorizontal: 16,
     marginVertical: 8,
     borderWidth: 2,

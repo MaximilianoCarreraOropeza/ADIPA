@@ -2,6 +2,8 @@ import React from 'react'
 import { Image } from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Glosario from '../../../glosario/screens/Glosario';
+import Perfil from '../../../perfil/screens/Perfil';
+import CambiarContra from '../../../perfil/screens/CambiarContra';
 
 const stack = createStackNavigator();
 
@@ -24,6 +26,18 @@ export default function GlosarioStack() {
         <stack.Screen
             name = 'GlosarioScreen'
             component = {Glosario}
+        />
+        <stack.Screen
+          name="PerfilGlo"
+          component={Perfil}
+          options={{ headerTitle: "Perfil" }}
+        />
+        <stack.Screen
+          name="CambiarContraGlo"
+          component={CambiarContra}
+          options={{
+            headerTitle: ""
+          }}
         />
     </stack.Navigator>
   )
