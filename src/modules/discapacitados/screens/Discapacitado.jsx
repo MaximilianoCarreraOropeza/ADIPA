@@ -48,9 +48,9 @@ export default function Discapacitado(props) {
     <View style={styles.pin}>
     </View>
     <View style={styles.container3}>
-      <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.conoce}>
-        <Image source={image1}/>
-      </TouchableOpacity>
+    <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.conoces}>
+          <Image source={image1} style={styles.TouchableOpacity}/>
+        </TouchableOpacity>
 
       <Modal visible={isModalVisible}>
         <View style={{flex: 3, justifyContent: 'center', alignItems:'center'}}>
@@ -75,12 +75,16 @@ const styles = StyleSheet.create({
   },
   container3: {
     flex: 1,
-    right: 80,
+    justifyContent: "center",
+  },
+  TouchableOpacity: {
+    height: "50%",
+    width: "90%",
+    resizeMode: "contain"
   },
   conoces: {
-    height: 72,
-    width: "120%",
-    right: 20,
+    flex: 1,
+    justifyContent: "center"
   },
   mapa: {
     flex: 1,

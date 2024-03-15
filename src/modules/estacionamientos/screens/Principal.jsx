@@ -58,16 +58,15 @@ export default function Principal(props) {
         </BackgroundImage>
         
       </View>
-      <View style={styles.pin}>
-      </View>
+
       <View style={styles.container3}>
-        <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.conoce}>
-          <Image source={image1}/>
+        <TouchableOpacity onPress={() => setModalVisible(true)} style={styles.conoces}>
+          <Image source={image1} style={styles.TouchableOpacity}/>
         </TouchableOpacity>
 
         <Modal visible={isModalVisible}>
           <View style={{flex: 3, justifyContent: 'center', alignItems:'center'}}>
-          <Image source={image3} style={styles.mapaModal}/>
+            <Image source={image3} style={styles.mapaModal}/>
           </View>
           <View style={{flex: 1, justifyContent: 'center', alignItems:'center'}}>
             <Button title="Cerrar" backgroundColor= "#002E60" color="#000000" onPress={() => setModalVisible(false)} style={styles.btnCerrar}/>
@@ -88,12 +87,16 @@ const styles = StyleSheet.create({
   },
   container3: {
     flex: 1,
-    right: 80,
+    justifyContent: "center",
+  },
+  TouchableOpacity: {
+    height: "50%",
+    width: "90%",
+    resizeMode: "contain"
   },
   conoces: {
-    height: 72,
-    width: "120%",
-    right: 20,
+    flex: 1,
+    justifyContent: "center"
   },
   mapa: {
     flex: 1,
