@@ -1,25 +1,25 @@
 import React from 'react'
-import { Image } from 'react-native';
+import { Image, StyleSheet } from 'react-native';
 import {createStackNavigator} from '@react-navigation/stack';
 import Glosario from '../../../glosario/screens/Glosario';
-import Perfil from '../../../perfil/screens/Perfil';
-import CambiarContra from '../../../perfil/screens/CambiarContra';
+import logo from "../../../../../assets/logo.png";
 
 const stack = createStackNavigator();
 
 export default function GlosarioStack() {
+  const logoapp = logo;
   return (
     <stack.Navigator screenOptions={{
-      headerTitle: "Mapa UTEZ",
+      headerTitle: "Glosario",
       headerStyle: {
         backgroundColor: '#002E60',
       },
       headerTintColor: '#fff',
       headerTitleAlign: 'center',
-      headerLeft: () => (
+      headerRight: () => (
         <Image
-          source={require('../../../../../assets/logo.png')}
-          style={{ width: 30, height: 30, marginLeft: 10 }}
+          source={logoapp}
+          style={styles.img}
         />
     )
     }}>
@@ -27,18 +27,15 @@ export default function GlosarioStack() {
             name = 'GlosarioScreen'
             component = {Glosario}
         />
-        <stack.Screen
-          name="PerfilGlo"
-          component={Perfil}
-          options={{ headerTitle: "Perfil" }}
-        />
-        <stack.Screen
-          name="CambiarContraGlo"
-          component={CambiarContra}
-          options={{
-            headerTitle: ""
-          }}
-        />
     </stack.Navigator>
   )
 }
+
+const styles = StyleSheet.create({
+  img: {
+    width: 25,
+    height: 30,
+    marginRight: 15,
+  }
+})
+

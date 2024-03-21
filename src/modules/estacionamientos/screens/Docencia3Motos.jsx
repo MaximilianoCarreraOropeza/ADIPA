@@ -1,8 +1,12 @@
 import { StyleSheet, Image, View, ScrollView } from "react-native";
 import React from "react";
 import SlotEstacionamiento from "./components/SlotEstacionamiento";
+import letraEimportado from "../../../../assets/letra_e.png";
+import calleImportado from "../../../../assets/Calle_DMotos.png";
 
 export default function Docencia3Motos() {
+  const letraE = letraEimportado;
+  const calle = calleImportado;
   return (
     <ScrollView horizontal={true} style={styles.scrollView}>
       <View style={styles.container}>
@@ -484,11 +488,11 @@ export default function Docencia3Motos() {
         </View>
         <Image
           style={styles.imagenEstacionamiento}
-          source={require("../../../../assets/letra_e.png")}
+          source={letraE}
         />
         <Image
           style={styles.imagenCalle}
-          source={require("../../../../assets/Calle_DMotos.png")}
+          source={calle}
         />
       </View>
     </ScrollView>
@@ -598,9 +602,6 @@ const styles = StyleSheet.create({
   },
 
   scrollView: {
-    // Ajusta el ancho y la altura según tus necesidades
-    width: "100%",
-    height: 200, // ajusta según sea necesario
     backgroundColor: "#554E56",
   },
 });

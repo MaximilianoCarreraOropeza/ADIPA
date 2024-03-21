@@ -264,7 +264,7 @@ const styles = StyleSheet.create({
   // Horizontal-Espacio-Rojo
   slotOcupado: {
     width: 80,
-    height: 40,
+    height: 35,
     borderTopWidth: 2,
     borderBottomWidth: 2,
     borderBottomColor: "#E5A800",
@@ -277,7 +277,7 @@ const styles = StyleSheet.create({
   // Horizontal-Espacio-Verde
   slotVacio: {
     width: 80,
-    height: 40,
+    height: 35,
     backgroundColor: "rgba(0, 255, 0, 0.2)",
     borderTopWidth: 2,
     flexDirection: "row",
@@ -314,7 +314,7 @@ const styles = StyleSheet.create({
   // Horizontal-Espacio-Verde-Moto
   slotVacioMoto: {
     width: 80,
-    height: 60,
+    height: 40,
     backgroundColor: "rgba(0, 255, 0, 0.2)",
     borderTopWidth: 2,
     borderBottomWidth: 2,
@@ -326,7 +326,7 @@ const styles = StyleSheet.create({
   },
   // Vertical-Espacio-Verde
   slotVacioMoto1: {
-    width: 60,
+    width: 40,
     height: 80,
     backgroundColor: "rgba(0, 255, 0, 0.2)",
     borderLeftWidth: 2,
@@ -452,8 +452,8 @@ const styles = StyleSheet.create({
   },
   // Horizontal-Espacio-Verde-Motocicletas
   slotVacioMotocicleta: {
-    width: 80,
-    height: 30,
+    width: 70,
+    height: 26,
     backgroundColor: "rgba(0, 255, 0, 0.2)",
     borderTopWidth: 2,
     borderBottomWidth: 2,
@@ -502,8 +502,8 @@ const styles = StyleSheet.create({
   },
   // Logo restringido
   restringido: {
-    width: 25,
-    height: 24,
+    width: 20,
+    height: 20,
   },
   // Logo Exclusivo
   exclusivo: {

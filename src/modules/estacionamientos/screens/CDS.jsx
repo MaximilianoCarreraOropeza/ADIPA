@@ -6,7 +6,6 @@ export default function CDS() {
   return (
     <ScrollView horizontal={true} style={styles.scrollView}>
       <View style={styles.container}>
-      
         <View style={styles.containerLeft}>
           <SlotEstacionamiento estado={true} exclusividad={"discapacidad"} tipo={"carro"} orientacion={"horizontal"} />
           <SlotEstacionamiento estado={true} exclusividad={"discapacidad"} tipo={"carro"} orientacion={"horizontal"} />
@@ -139,9 +138,6 @@ const styles = StyleSheet.create({
   },
 
   scrollView: {
-    // Ajusta el ancho y la altura según tus necesidades
-    width: '100%',
-    height: 250, // ajusta según sea necesario
     backgroundColor: "#554E56",
   },
 });

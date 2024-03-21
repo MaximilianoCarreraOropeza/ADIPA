@@ -1,16 +1,14 @@
 import { React } from "react";
-import { View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import EstacionamientosStack from "./stack/EstacionamientosStack";
 import DiscapacitadosStack from "./stack/DiscapacitadosStack";
 import GlosarioStack from "./stack/GlosarioStack";
-import { Icon, Button } from "@rneui/base";
+import PerfilStack from "./stack/PerfilStack";
+import { Icon} from "@rneui/base";
 
 const Tab = createBottomTabNavigator();
 
-//esta navegacion aparte que tiene los iconos, es el navigation cuando este
-//iniciado sesion  <Tab.Screen name= 'PerfilStack' component={PerfilStack} options={{title: 'Perfil'}}/>
 export default function NavigationWithOutAuth() {
   return (
     <NavigationContainer>
@@ -34,6 +32,7 @@ export default function NavigationWithOutAuth() {
         <Tab.Screen name="Principal" component={EstacionamientosStack} />
         <Tab.Screen name="Discapacitados" component={DiscapacitadosStack} />
         <Tab.Screen name="Glosario" component={GlosarioStack} />
+        <Tab.Screen name="PerfilStack" component={PerfilStack}/>
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -42,7 +41,6 @@ export default function NavigationWithOutAuth() {
 const getIconName = (routeName, focused) => {
   let iconName = "";
   let iconType = "";
-
   switch (routeName) {
     case "Principal":
       iconName = focused ? "home" : "home-outline";
@@ -53,9 +51,11 @@ const getIconName = (routeName, focused) => {
       iconType = "material-community";
       break;
     case "Glosario":
-      iconName = focused
-        ? "book-open-page-variant"
-        : "book-open-page-variant-outline";
+      iconName = focused ? "book-open-page-variant" : "book-open-page-variant-outline";
+      iconType = "material-community";
+      break;
+    case "PerfilStack":
+      iconName = focused ? "account" : "account-outline";
       iconType = "material-community";
       break;
   }

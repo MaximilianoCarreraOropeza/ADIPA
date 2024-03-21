@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  Image,
-  TouchableOpacity,
-  ImageBackground,
-  StyleSheet,
-} from "react-native";
+import { Image,StyleSheet} from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import CafeBalcon from "../../../estacionamientos/screens/CafeBalcon";
 import MapaUtez from "../../../estacionamientos/screens/Principal";
@@ -18,18 +13,11 @@ import Docencia4 from "../../../estacionamientos/screens/Docencia4";
 import Docencia5 from "../../../estacionamientos/screens/Docencia5";
 import Jardineras from "../../../estacionamientos/screens/Jardineras";
 import TallerPesado2 from "../../../estacionamientos/screens/TallerPesado2";
-import Perfil from "../../../perfil/screens/Perfil";
-import CambiarContra from "../../../perfil/screens/CambiarContra";
-import perfilFoto from "../../../../../assets/perfil.png";
-import perfilFotoTap from "../../../../../assets/perfilSeleccionado.png";
 import logo from "../../../../../assets/logo.png";
 
 const stack = createStackNavigator();
 
-export default function EstacionamientosStack(props) {
-  const { navigation } = props;
-  const perfil = perfilFoto;
-  const perfil2 = perfilFotoTap;
+export default function EstacionamientosStack() {
   const logoapp = logo;
   return (
     <stack.Navigator
@@ -40,70 +28,58 @@ export default function EstacionamientosStack(props) {
         },
         headerTintColor: "#fff",
         headerTitleAlign: "center",
-        headerLeft: () => (
-          <Image
-            source={logoapp}
-            style={styles.logo}
-          />
-        ),
         headerRight: () => (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("PerfilEsta");
-            }}
-          >
-            <ImageBackground
-              style={styles.img2}
-              source={perfil2}
-            ></ImageBackground>
-          </TouchableOpacity>
-        ),
+          <Image
+            style={styles.img}
+            source={logoapp}
+          ></Image>
+      )
       }}
     >
       <stack.Screen
        name="Mapa UTEZ" 
        component={MapaUtez} 
-       options={{ headerTitle: "Mapa UTEZ" }}
+       options={{headerTitle: "Mapa UTEZ"}}
       />
       <stack.Screen
         name="CafeBalcon"
         component={CafeBalcon}
-        options={{ headerTitle: "Cafe Balcon" }}
+        options={{headerTitle: "Cafe Balcon"}}
       />
       <stack.Screen
         name="CDS"
         component={CDS}
-        options={{ headerTitle: "CDS" }}
+        options={{ headerTitle: "CDS"}}
       />
       <stack.Screen
         name="CDSMotos"
         component={CDSMotos}
-        options={{ headerTitle: "CDS Motos" }}
+        options={{ headerTitle: "CDS Motos"}}
       />
       <stack.Screen
         name="Cedim"
         component={Cedim}
-        options={{ headerTitle: "Cedim" }}
+        options={{ headerTitle: "Cedim"}}
       />
       <stack.Screen
         name="Docencia1"
         component={Docencia1}
-        options={{ headerTitle: "Docencia 1" }}
+        options={{ headerTitle: "Docencia 1"}}
       />
       <stack.Screen
         name="Docencia3"
         component={Docencia3}
-        options={{ headerTitle: "Docencia 3" }}
+        options={{ headerTitle: "Docencia 3"}}
       />
       <stack.Screen
         name="Docencia3Motos"
         component={Docencia3Motos}
-        options={{ headerTitle: "Docencia 3 Motos" }}
+        options={{ headerTitle: "Docencia 3 Motos"}}
       />
       <stack.Screen
         name="Docencia4"
         component={Docencia4}
-        options={{ headerTitle: "Docencia 4" }}
+        options={{ headerTitle: "Docencia 4"}}
       />
       <stack.Screen
         name="Docencia5"
@@ -120,52 +96,14 @@ export default function EstacionamientosStack(props) {
         component={TallerPesado2}
         options={{ headerTitle: "Taller Pesado 2" }}
       />
-      <stack.Screen
-        name="PerfilEsta"
-        component={Perfil}
-        options={{
-          headerTitle: "Perfil",
-          headerRight: () => (
-            <ImageBackground
-              style={styles.img}
-              source={perfil}
-            ></ImageBackground>
-          ),
-        }}
-      />
-      <stack.Screen
-        name="CambiarContraEsta"
-        component={CambiarContra}
-        options={{
-          headerTitle: "",
-          headerRight: () => (
-            <ImageBackground
-              style={styles.img}
-              source={perfil}
-            ></ImageBackground>
-          ),
-        }}
-      />
     </stack.Navigator>
   );
 }
 
 const styles = StyleSheet.create({
   img: {
-    backgroundColor: "transparent",
     width: 25,
     height: 30,
     marginRight: 15,
-  },
-  img2: {
-    backgroundColor: "transparent",
-    width: 30,
-    height: 30,
-    marginRight: 15,
-  },
-  logo: {
-    width: 30,
-    height: 30,
-    marginLeft: 10,
-  },
+  }
 });

@@ -1,149 +1,378 @@
-import { StyleSheet, View, Image} from 'react-native'
-import React from 'react'
-import SlotEstacionamiento from './components/SlotEstacionamientoD3'
+import { StyleSheet, View, Image } from "react-native";
+import React from "react";
+import SlotEstacionamiento from "./components/SlotEstacionamientoD3";
+import letraEimportado from "../../../../assets/letra_e.png";
+import docenciaimportado from "../../../../assets/docencia.png";
 
-export default function Docencia3(props) {
-  const { estado, exclusividad, tipo, orientacion} = props;
+export default function Docencia3() {
+  const letraE = letraEimportado;
+  const docencia = docenciaimportado;
   return (
-    //Para que en la orientación vertical se vean uno al lado del otro y no uno sobre otro, se debe cambiar el flex direction a row
     <View style={styles.container}>
- 
-     <View style={styles.containerHorizontal2}>
-     <View style={styles.espacio} ></View>
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <View style={styles.espacio} ></View>
-      <SlotEstacionamiento estado={true} exclusividad={"discapacidad"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
+      <View style={styles.container2}>
+        <View style={styles.containerMiniSlots}>
+          <SlotEstacionamiento
+            estado={true}
+            exclusividad={"SN"}
+            tipo={"carro"}
+            orientacion={"horizontal"}
+          />
+          <SlotEstacionamiento
+            estado={true}
+            exclusividad={"SN"}
+            tipo={"carro"}
+            orientacion={"horizontal"}
+          />
         </View>
- 
- <View style={styles.containerD3}>
-  
- <View style={styles.containerHorizontal}>
- <View style={styles.espacio} ></View>
- <View style={styles.espacio} ></View>
-
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
+        <View style={styles.containerImages}>
+          <Image source={docencia} style={styles.imagenDocencia} />
+          <Image source={letraE} style={styles.imagenDocencia} />
         </View>
-        <View style={styles.containerHorizontal2}>
-        <Image source={require('../../../../assets/docencia.png')} style={styles.imagenDocencia} />
-        <Image source={require('../../../../assets/letra_e.png')} style={styles.imagenDocencia} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
+      </View>
+      <View style={styles.container3}>
+        <View style={styles.containerSlots}>
+          <View style={styles.containerVertical1}>
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"discapacidad"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+          </View>
         </View>
-        <View style={styles.containerHorizontal}>
-        <View style={styles.espacio} ></View>
-        <View style={styles.espacio} ></View>
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
+        <View style={styles.containerSlots2}>
+          <View style={styles.containerVertical2}>
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+          </View>
+          <View style={styles.containerVertical3}>
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+          </View>
         </View>
-        <View style={styles.containerHorizontal}>
-        <View style={styles.espacio} ></View>
-        <View style={styles.espacio} ></View>
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
-      <SlotEstacionamiento estado={true} exclusividad={"SN"} tipo={"carro"} orientacion={"horizontal"} />
+        <View style={styles.containerSlots3}>
+          <View style={styles.containerVertical4}>
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+          </View>
+          <View style={styles.containerVertical5}>
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+            <SlotEstacionamiento
+              estado={true}
+              exclusividad={"SN"}
+              tipo={"carro"}
+              orientacion={"horizontal"}
+            />
+          </View>
         </View>
-  </View>
-      
-    </View> 
-    
-  )
+      </View>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#554E56',
-    justifyContent: 'flex-start',
-    flexDirection: 'row', // Ajuste para alinear horizontalmente los contenedores
-    alignItems: 'flex-start' // Ajuste para alinear verticalmente los contenedores
+    backgroundColor: "#696969",
   },
-  containerD3: {
+  container2: {
     flex: 1,
-    backgroundColor: '#554E56',
-    justifyContent: 'flex-start',
-    flexDirection: 'row', // Ajuste para alinear horizontalmente los contenedores
-    alignItems: 'flex-start' // Ajuste para alinear verticalmente los contenedores
+    flexDirection: "row",
   },
-  docencia: {
-    width: 20,
-    height: 20,
+  container3: {
+    flex: 4,
+    flexDirection: "row",
   },
-  slot: {
-    borderWidth: 5, // Ajuste: cambia 'border' a 'borderWidth'
-    borderColor: "#E5A800",
-    borderRadius: 80
+  containerMiniSlots: {
+    flex: 1,
+    height: "150%",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
-  containerVertical: {
-    backgroundColor: '#554E56',
-    flexDirection: 'column', // Ajuste: cambia 'row' a 'column'
-    justifyContent: 'flex-start',
-    padding: 25
+  containerImages: {
+    flex: 4,
+    height: "150%",
+    flexDirection: "column",
+    justifyContent: "center",
+    alignItems: "center",
   },
-  containerHorizontal: {
-    backgroundColor: '#554E56',
-    flexDirection: 'column', // Ajuste: cambia 'row' a 'column'
-    justifyContent: 'flex-start',
-    padding: 5,
-    marginRight: 1,
+  containerVertical1: {
+    flex: 1,
+    height: "90%",
+    justifyContent: "flex-end",
+    alignItems: "center",
   },
-  containerHorizontal2: {
-    backgroundColor: '#554E56',
-    flexDirection: 'column', // Ajuste: cambia 'row' a 'column'
-    justifyContent: 'flex-start',
-    padding: 5,
-    paddingRight: 20,
-    marginRight: 5,
+  containerVertical2: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  containerVertical3: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  containerVertical4: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  containerVertical5: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  containerSlots: {
+    flex: 1,
+    flexDirection: "row",
+  },
+  containerSlots2: {
+    flex: 2,
+    flexDirection: "row",
+  },
+  containerSlots3: {
+    flex: 2,
+    flexDirection: "row",
   },
   imagenDocencia: {
-    width: 60,
-    height: 60,
-    marginBottom: 10,
-    marginTop: 10
+    width: 90,
+    height: 90,
   },
   imagenEstacionamiento: {
-    width: 100,
-    height: 100
+    width: 90,
+    height: 90,
   },
-  discapacitado: {
-    width: 25,
-    height: 24,
-},
-espacio:{
-  width: 60,
-  height: 80
-}
 });

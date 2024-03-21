@@ -34,7 +34,7 @@ export default function Perfil(props) {
               style={styles.cambiarFoto}
             />
           </View>
-          <TouchableOpacity style={styles.btn2Container} onPress={()=>{navigation.navigate("CambiarContraEsta")}}>
+          <TouchableOpacity style={styles.btn2Container} onPress={()=>{navigation.navigate("CambiarContra")}}>
               <Text style={styles.texto}>Cambiar Contraseña</Text>
           </TouchableOpacity>
         </View>

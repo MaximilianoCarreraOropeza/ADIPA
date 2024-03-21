@@ -1,5 +1,5 @@
 import React from "react";
-import { Image, TouchableOpacity, ImageBackground, StyleSheet } from "react-native";
+import { Image, StyleSheet } from "react-native";
 import { createStackNavigator } from "@react-navigation/stack";
 import Discapcitados from "../../../discapacitados/screens/Discapacitado";
 import CDS from "../../../estacionamientos/screens/CDS";
@@ -9,18 +9,11 @@ import Docencia3 from "../../../estacionamientos/screens/Docencia3";
 import Docencia4 from "../../../estacionamientos/screens/Docencia1";
 import Docencia5 from "../../../estacionamientos/screens/Docencia5";
 import Cedim from "../../../estacionamientos/screens/Cedim";
-import Perfil from "../../../perfil/screens/Perfil";
-import CambiarContra from "../../../perfil/screens/CambiarContra";
-import perfilFoto from "../../../../../assets/perfil.png";
-import perfilFotoTap from "../../../../../assets/perfilSeleccionado.png";
 import logo from "../../../../../assets/logo.png";
 
 const stack = createStackNavigator();
 
-export default function DiscapacitadosStack(props) {
-  const { navigation } = props;
-  const perfil = perfilFoto;
-  const perfil2 = perfilFotoTap;
+export default function DiscapacitadosStack() {
   const logoapp = logo;
   return (
     <stack.Navigator
@@ -31,27 +24,18 @@ export default function DiscapacitadosStack(props) {
         },
         headerTintColor: "#fff",
         headerTitleAlign: "center",
-        headerLeft: () => (
-          <Image
-            source={require("../../../../../assets/logo.png")}
-            style={{ width: 30, height: 30, marginLeft: 10 }}
-          />
-        ),
         headerRight: () => (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate("PerfilDis");
-            }}
-          >
-            <ImageBackground
-              style={styles.img2}
-              source={perfil2}
-            ></ImageBackground>
-          </TouchableOpacity>
-        ),
+          <Image
+            style={styles.img}
+            source={logoapp}
+          ></Image>
+        )
       }}
     >
-      <stack.Screen name="DiscapacitadosScreen" component={Discapcitados} />
+      <stack.Screen 
+        name="DiscapacitadosScreen" 
+        component={Discapcitados}
+      />
       <stack.Screen
         name="CDSDis"
         component={CDS}
@@ -87,30 +71,6 @@ export default function DiscapacitadosStack(props) {
         component={Cedim}
         options={{ headerTitle: "Cedim" }}
       />
-      <stack.Screen
-        name="PerfilDis"
-        component={Perfil}
-        options={{ headerTitle: "Perfil",
-        headerRight: () => (
-            <ImageBackground
-              style={styles.img}
-              source={perfil}
-            ></ImageBackground>
-        ), }}
-      />
-      <stack.Screen
-        name="CambiarContraDis"
-        component={CambiarContra}
-        options={{
-          headerTitle: "",
-          headerRight: () => (
-              <ImageBackground
-                style={styles.img}
-                source={perfil}
-              ></ImageBackground>
-          ),
-        }}
-      />
     </stack.Navigator>
   );
 }
@@ -118,20 +78,8 @@ export default function DiscapacitadosStack(props) {
 
 const styles = StyleSheet.create({
   img: {
-    backgroundColor: "transparent",
     width: 25,
     height: 30,
     marginRight: 15,
-  },
-  img2: {
-    backgroundColor: "transparent",
-    width: 30,
-    height: 30,
-    marginRight: 15,
-  },
-  logo: {
-    width: 30,
-    height: 30,
-    marginLeft: 10,
-  },
+  }
 });
