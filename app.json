@@ -21,7 +21,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/logo.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.MODIFY_AUDIO_SETTINGS"
+      ],
+      "package": "com.maximilianoutez.ADIPA"
     },
     "web": {
       "favicon": "./assets/logo.png"
@@ -33,6 +38,17 @@
           "microphonePermission": "Allow $(PRODUCT_NAME) to access your microphone."
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "a32bca98-4723-48b9-a25e-f7ac27a3544d"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/a32bca98-4723-48b9-a25e-f7ac27a3544d"
+    }
   }
 }
