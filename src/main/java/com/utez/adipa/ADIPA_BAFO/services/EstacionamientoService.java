@@ -30,4 +30,10 @@ public class EstacionamientoService {
             return new ResponseEntity<>(new ApiResponse(HttpStatus.INTERNAL_SERVER_ERROR, false, "Error al guardar el estacionamiento" + e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @Transactional(readOnly = true)
+    public ResponseEntity<ApiResponse> findAll(){
+        return new ResponseEntity<>(new ApiResponse(repository.findAll(), HttpStatus.OK), HttpStatus.OK);
+    }
+
 }

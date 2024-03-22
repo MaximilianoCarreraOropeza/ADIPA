@@ -22,4 +22,9 @@ public class EstacionamientoController {
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody EstacionamientoDto dto){
         return service.save(dto.toEntity());
     }
+
+    @GetMapping("/")
+    public ResponseEntity<ApiResponse> getAll() {
+        return service.findAll();
+    }
 }
