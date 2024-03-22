@@ -7,7 +7,7 @@
     "icon": "./assets/logo.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/adipa_carga.png",
+      "image": "./assets/adipacarga.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

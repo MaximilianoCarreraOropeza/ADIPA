@@ -4,7 +4,7 @@ import { Input, Image, Icon, Button } from "@rneui/base";
 import Logo from "../../../../assets/logo.png";
 import { isEmpty } from "lodash";
 import Loading from "../../../kernel/components/Loading";
-import Error from "../../../kernel/components/Error";
+import Message from "../../../kernel/components/Message";
 
 export default function Login(props) {
   const { navigation } = props;
@@ -14,10 +14,13 @@ export default function Login(props) {
   const [showMessage, setShowMessage] = useState({ email: "", password: "" });
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
+  const [warning, setWarning] = useState(false);
+  const [success, setSuccess] = useState(false);
 
   const login = async () => {
     if (!isEmpty(email) && !isEmpty(password)) {
       setShowMessage({ email: "", password: "" });
+      setSuccess(true);
       try {
       } catch (error) {
         setShowMessage({
@@ -33,6 +36,7 @@ export default function Login(props) {
       });
     }
   };
+
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
@@ -91,7 +95,9 @@ export default function Login(props) {
         />
       </View>
       <Loading visible={visible} title="Iniciando Sesión" />
-      <Error visible={error} setVisible={setError} title="Error al iniciar sesion" />
+      <Message type={"error"} visible={error} setVisible={setError} title="Error al iniciar sesion" />
+      <Message type={"warning"} visible={warning} setVisible={setWarning} title="Usuario o contraseña no valida" />
+      <Message type={"success"} visible={success} setVisible={setSuccess} title="Se inicio sesion correctamente" />
     </View>
   );
 }

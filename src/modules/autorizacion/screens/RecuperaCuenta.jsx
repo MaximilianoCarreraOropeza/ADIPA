@@ -2,15 +2,26 @@ import { StyleSheet, View, Text } from "react-native";
 import React, { useState } from "react";
 import { Input, Icon, Button } from "@rneui/base";
 import Loading from "../../../kernel/components/Loading";
-import Error from "../../../kernel/components/Error";
+import Message from "../../../kernel/components/Message";
+import { isEmpty } from "lodash";
 
 export default function RecuperaCuenta(props) {
   const {navigation} = props;
-  const [showMessage, setShowMessage] = useState("");
+  const [showMessage, setShowMessage] = useState({matricula: ""});
   const [matricula, setMatricula] = useState("");
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
 
+  const enviarCorreo = async () => {
+    if (!isEmpty(matricula)) {
+      setShowMessage({matricula: ""});
+      setSuccess(true);
+    } else {
+      setShowMessage({matricula: "Campo obligatorio"});
+    }
+  }
+  
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
@@ -22,7 +33,7 @@ export default function RecuperaCuenta(props) {
           containerStyle={styles.inputMatricula}
           inputContainerStyle={styles.textInput}
           placeholderTextColor={"#70BEAE"}
-          errorMessage={showMessage}
+          errorMessage={showMessage.matricula}
           onChange={({ nativeEvent: { text } }) => setMatricula(text)}
           leftIcon={<Icon type="material-community" name="account" />}
         />
@@ -35,6 +46,7 @@ export default function RecuperaCuenta(props) {
           containerStyle={styles.btnContainer}
           buttonStyle={styles.btnStyle}
           titleStyle={styles.titleStyle}
+          onPress={enviarCorreo}
         />
         <Button
           title="Cancelar"
@@ -46,7 +58,8 @@ export default function RecuperaCuenta(props) {
         />
         </View>
         <Loading visible={visible} title="Realizando Proceso" />
-        <Error visible={error} setVisible={setError} title="Error realizando proceso" />
+        <Message type={"error"} visible={error} setVisible={setError} title="Error enviando matricula" />
+        <Message type={"success"} visible={success} setVisible={setSuccess} title="Se envio matricula correctamente" />
     </View>
   );
 }

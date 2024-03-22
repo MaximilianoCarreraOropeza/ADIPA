@@ -2,11 +2,12 @@ import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { Input, Icon, Button } from "@rneui/base";
 import Loading from "../../../kernel/components/Loading";
-import Error from "../../../kernel/components/Error";
+import Message from "../../../kernel/components/Message";
+import { isEmpty } from "lodash";
 
 export default function CambiarContra(props) {
   const {navigation} = props;
-  const [showMessage, setShowMessage] = useState("");
+  const [showMessage, setShowMessage] = useState({password: "", newPassword: "", confirmPassword: ""});
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -15,6 +16,20 @@ export default function CambiarContra(props) {
   const [showPassword3, setShowPassword3] = useState(true);
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
+  const [success, setSuccess] = useState(false);
+
+  const CambiarContraseña = async () => {
+    if (!isEmpty(password) && !isEmpty(newPassword) && !isEmpty(confirmPassword)) {
+      setShowMessage({password: "", newPassword: "", confirmPassword: ""});
+      setSuccess(true)
+    }else{
+      setShowMessage({
+        password: "Campo obligatorio",
+        newPassword: "Campo obligatorio",
+        confirmPassword: "Campo obligatorio"
+      });
+    }
+  }
 
   return (
     <View style={styles.container}>
@@ -27,7 +42,7 @@ export default function CambiarContra(props) {
           inputContainerStyle={styles.textInput}
           containerStyle={styles.input}
           onChange={({ nativeEvent: { text } }) => setPassword(text)}
-          errorMessage={showMessage}
+          errorMessage={showMessage.password}
           secureTextEntry={showPassword1}
           rightIcon={
             <Icon
@@ -46,7 +61,7 @@ export default function CambiarContra(props) {
           inputContainerStyle={styles.textInput}
           onChange={({ nativeEvent: { text } }) => setNewPassword(text)}
           containerStyle={styles.input}
-          errorMessage={showMessage}
+          errorMessage={showMessage.newPassword}
           secureTextEntry={showPassword2}
           rightIcon={
             <Icon
@@ -65,7 +80,7 @@ export default function CambiarContra(props) {
         inputContainerStyle={styles.textInput}
         onChange={({ nativeEvent: { text } }) => setConfirmPassword(text)}
         containerStyle={styles.input}
-        errorMessage={showMessage}
+        errorMessage={showMessage.confirmPassword}
         secureTextEntry={showPassword3}
         rightIcon={
           <Icon
@@ -82,6 +97,7 @@ export default function CambiarContra(props) {
         containerStyle={styles.btnContainer}
           buttonStyle={styles.btnStyle}
           titleStyle={styles.titleStyle}
+          onPress={CambiarContraseña}
       />
       <Button
         title="Cancelar"
@@ -93,7 +109,8 @@ export default function CambiarContra(props) {
       />
       </View>
       <Loading visible={visible} title="Cambiando Contraseña" />
-      <Error visible={error} setVisible={setError} title="Error cambiando contraseña" />
+      <Message type={"error"} visible={error} setVisible={setError} title="Error cambiando contraseña" />
+        <Message type={"success"} visible={success} setVisible={setSuccess} title="Se cambio contraseña correctamente" />
     </View>
   )
 }
