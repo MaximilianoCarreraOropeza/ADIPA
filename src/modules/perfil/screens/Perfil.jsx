@@ -27,28 +27,20 @@ export default function Perfil(props) {
         </View>
       </View>
       <View style={styles.btns}>
-        <View style={styles.btn}>
-          <View style={styles.btn1Container}>
-            <Image
-              source={contra}
-              style={styles.cambiarFoto}
-            />
-          </View>
-          <TouchableOpacity style={styles.btn2Container} onPress={()=>{navigation.navigate("CambiarContra")}}>
-              <Text style={styles.texto}>Cambiar Contraseña</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.btn}>
-          <View style={styles.btn3Container}>
-            <Image
-              source={salida}
-              style={styles.cambiarFoto}
-            />
-          </View>
-          <TouchableOpacity style={styles.btn4Container}>
-              <Text style={styles.texto}>Cerrar Sesión</Text>
-          </TouchableOpacity>
-        </View>
+        <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate("CambiarContra")}}>
+          <Image
+            source={contra}
+            style={styles.icono}
+          />
+          <Text style={styles.texto}>Cambiar Contraseña</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.btn} onPress={() => {}}>
+          <Image
+            source={salida}
+            style={styles.icono}
+          />
+          <Text style={[styles.texto, { color: "black" }]}>Cerrar Sesión</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -57,83 +49,64 @@ export default function Perfil(props) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-  },
-  img: {
-    width: 150,
-    height: 150,
-  },
-  foto: {
-    flex: 2,
-    justifyContent: "center",
+    justifyContent: "flex-start",
+    marginTop: "10%",
     alignItems: "center",
-  },
-  column: {
-    flex: 2,
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center",
+    backgroundColor: "#F0F0F0"
   },
   card: {
-    flex: 1,
     flexDirection: "row",
     backgroundColor: "white",
-    width: "100%",
-    height: "100%",
-  },
-  btns: {
-    flex: 2,
-    width: "100%",
-    height: "100%",
-  },
-  btn: {
-    flex: 1,
-    justifyContent: "center",
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 20,
+    width: "90%",
     alignItems: "center",
-    flexDirection: "row",
   },
-  btn1Container: {
-    flex: 1,
-    backgroundColor: "#ffff",
-    height: "40%",
-    justifyContent: "center",
+  foto: {
+    marginRight: 20,
     alignItems: "center"
   },
-  btn2Container: {
-    flex: 3,
-    backgroundColor: "#002E60",
-    height: "40%",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  btn3Container: {
-    flex: 1,
-    backgroundColor: "#ffff",
-    height: "40%",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  btn4Container: {
-    flex: 3,
-    backgroundColor: "#DB3328",
-    height: "40%",
-    justifyContent: "center",
-    alignItems: "center"
+  img: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
   },
   estudiante: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
+    marginTop: 10,
+  },
+  column: {
+    flex: 1,
+    alignItems: "center"
   },
   nombre: {
     fontSize: 16,
     fontWeight: "bold",
+    marginBottom: 5,
   },
-  cambiarFoto: {
-    width: 60,
-    height: 60
+  btns: {
+    width: "90%",
+  },
+  btn: {
+    flexDirection: "row",
+    alignItems: "center",
+    borderColor: "#002E60", // Color del borde
+    borderWidth: 2, // Ancho del borde
+    borderRadius: 20, // Más redondeado
+    paddingVertical: 15,
+    paddingHorizontal: 20,
+    backgroundColor: "white",
+    marginBottom: 10,
+  },
+  icono: {
+    width: 30,
+    height: 30,
+    marginRight: 15,
   },
   texto: {
-    fontSize: 21,
-    color: "white",
-  }
+    fontSize: 18,
+    color: "black",
+  },
 });

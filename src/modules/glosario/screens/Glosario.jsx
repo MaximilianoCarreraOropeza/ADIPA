@@ -1,45 +1,59 @@
-import { StyleSheet, Text, View, Image, Dimensions } from 'react-native'
+import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
-const windowWidth = Dimensions.get('window').width;
+import libre from "../../../../assets/libre.png";
+import ocupado from "../../../../assets/ocupado.png";
+import restri from "../../../../assets/restri.png";
+import exclusivo from "../../../../assets/exclusivo.png";
+import discapacitado from "../../../../assets/discapacitado.png";
+import docencia from "../../../../assets/docencia.png";
+import areaMotos from "../../../../assets/motos.png";
+import bici from "../../../../assets/bici.png";
 
 export default function Glosario() {
+  const libreIma = libre;
+  const ocupadoIma = ocupado;
+  const restriIma = restri;
+  const exclusivoIma = exclusivo;
+  const discapacitadoIma = discapacitado;
+  const docenciaIma = docencia;
+  const areaMotosIma = areaMotos;
+  const biciIma = bici;
+
   return (
     <View style={styles.container}>
-      <View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={styles.imagenes} source={require('../../../../assets/libre.png')} resizeMode='contain' />
-          <Text style={styles.textoImagen}>Libre</Text>
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={styles.imagenes} source={require('../../../../assets/ocupado.png')} resizeMode='contain' />
-          <Text style={styles.textoImagen}>Ocupado</Text>
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={styles.imagenes} source={require('../../../../assets/restri.png')} resizeMode='contain' />
-          <Text style={styles.textoImagen}>Restringido</Text>
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={styles.imagenes} source={require('../../../../assets/exclusivo.png')} resizeMode='contain' />
-          <Text style={styles.textoImagen}>Exclusivo</Text>
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={styles.imagenes} source={require('../../../../assets/discapacitado.png')} resizeMode='contain' />
-          <Text style={styles.textoImagen}>Discapacidad</Text>
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={styles.imagenes} source={require('../../../../assets/docencia.png')} resizeMode='contain' />
-          <Text style={styles.textoImagen}>Entrada a Docencia</Text>
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={styles.imagenes} source={require('../../../../assets/motos.png')} resizeMode='contain' />
-          <Text style={styles.textoImagen}>Área de Motos</Text>
-        </View>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <Image style={styles.imagenes} source={require('../../../../assets/bici.png')} resizeMode='contain' />
-          <Text style={styles.textoImagen}>Área de Bicicletas</Text>
-        </View>
+      <View style={styles.itemContainer}>
+        <Image source={libreIma} style={styles.imagen}/>
+        <Text style={styles.texto}>Libre</Text>
       </View>
+      <View style={styles.itemContainer}>
+        <Image source={ocupadoIma} style={styles.imagen}/>
+        <Text style={styles.texto}>Ocupado</Text>
       </View>
+      <View style={styles.itemContainer}>
+        <Image source={restriIma} style={styles.imagen}/>
+        <Text style={styles.texto}>Restringido</Text>
+      </View>
+      <View style={styles.itemContainer}>
+        <Image source={exclusivoIma} style={styles.imagen}/>
+        <Text style={styles.texto}>Exclusivo</Text>
+      </View>
+      <View style={styles.itemContainer}>
+        <Image source={discapacitadoIma} style={styles.imagen}/>
+        <Text style={styles.texto}>Discapacidad</Text>
+      </View>
+      <View style={styles.itemContainer}>
+        <Image source={docenciaIma} style={styles.imagen}/>
+        <Text style={styles.texto}>Entrada a Docencia</Text>
+      </View>
+      <View style={styles.itemContainer}>
+        <Image source={areaMotosIma} style={styles.imagen}/>
+        <Text style={styles.texto}>Área de Motos</Text>
+      </View>
+      <View style={styles.itemContainer}>
+        <Image source={biciIma} style={styles.imagen}/>
+        <Text style={styles.texto}>Área de Bicicletas</Text>
+      </View>
+    </View>
   )
 }
 
@@ -47,20 +61,29 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignContent: 'center',
-    right: '16%'
   },
-  imagenes:{
-    flex: 1,
-    height: windowWidth * 0.15, // Ajusta el tamaño de la imagen de acuerdo al ancho de la pantalla
-    width: windowWidth * 0.15,
+  imagen: {
+    width: 50,
+    height: 50,
     margin: 10,
   },
-  textoImagen:{
-    flex: 1,
+  texto: {
     fontSize: 20,
+    color: 'black',
     fontWeight: 'bold',
-    textAlign: 'justify',
-    left: '15%'
-  }
+    marginLeft: 10,
+  },
+  itemContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    elevation: 2,
+    borderRadius: 10,
+    marginVertical: 5,
+    marginHorizontal: 10
+  },
+  lastItemContainer: {
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+  },
 })

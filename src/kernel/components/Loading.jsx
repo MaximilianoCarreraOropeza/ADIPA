@@ -21,8 +21,8 @@ const { visible, title } = props
 
 const styles = StyleSheet.create({
     overlay:{
-        height: 160,
-        width: 250,
+        height: 200,
+        width: 350,
         backgroundColor: 'white',
         borderColor: '#009475',
         borderWidth: 4,
@@ -31,8 +31,7 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     },
     title: {
-        color: '#0655AA',
-        textTransform: 'uppercase',
+        color: '#009475',
         marginTop: 16,
         fontSize: 18
     }, 

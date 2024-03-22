@@ -151,11 +151,6 @@ const styles = StyleSheet.create({
     width: "100%",
     height: "100%",
   },
-  mapaModal: {
-    height: "100%",
-    width: "100%",
-    resizeMode: "contain",
-  },
   btnCerrar: {
     position: "absolute",
   },

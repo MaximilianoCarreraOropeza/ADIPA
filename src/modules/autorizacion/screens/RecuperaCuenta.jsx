@@ -32,6 +32,7 @@ export default function RecuperaCuenta(props) {
           keyboardType="email-address"
           containerStyle={styles.inputMatricula}
           inputContainerStyle={styles.textInput}
+          inputStyle={styles.fontSize}
           placeholderTextColor={"#70BEAE"}
           errorMessage={showMessage.matricula}
           onChange={({ nativeEvent: { text } }) => setMatricula(text)}
@@ -128,4 +129,7 @@ const styles = StyleSheet.create({
   titleStyle2: {
     color: "#002E60",
   },
+  fontSize: {
+    fontSize: 16
+  }
 });

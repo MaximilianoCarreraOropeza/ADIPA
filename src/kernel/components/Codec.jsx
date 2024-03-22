@@ -17,17 +17,15 @@ export default function Codec(props) {
       onBackdropPress={toggleOverlay}
       overlayStyle={styles.overlay}
     >
-      <View style={styles.container}>
         <Image source={image} style={styles.image}/>
-      </View>
     </Overlay>
   );
 }
 
 const styles = StyleSheet.create({
   overlay: {
-    height: 400,
-    width: 300,
+    height: "50%",
+    width: "100%",
     backgroundColor: "white",
     borderColor: "#009475",
     borderWidth: 4,
@@ -41,8 +39,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   image: {
-    width: 250,
-    height: 300,
+    width: "100%",
+    height: "100%",
     resizeMode: "contain",
   },
 });

@@ -4,7 +4,7 @@ import { Overlay, Button, Icon } from "@rneui/base";
 
 export default function Error(props) {
   const { type, visible, setVisible, title } = props;
-  
+
   const toggleOverlay = () => {
     setVisible(!visible);
   };
@@ -54,7 +54,7 @@ export default function Error(props) {
               <Icon
                 name="alert-outline"
                 size={50}
-                color="yellow"
+                color="#F8EF22"
                 iconStyle={styles.Warning}
                 type="material-community"
               />
@@ -65,7 +65,7 @@ export default function Error(props) {
                   onPress={toggleOverlay}
                   buttonStyle={styles.buttonWarning}
                   titleStyle={styles.containerBtnWarning}
-                  color="warning"
+                  color="#F8EF22"
                 />
               </View>
             </View>
@@ -84,7 +84,7 @@ export default function Error(props) {
               <Icon
                 name="check-circle-outline"
                 size={50}
-                color="blue"
+                color="#009475"
                 iconStyle={styles.Success}
                 type="material-community"
               />
@@ -95,6 +95,7 @@ export default function Error(props) {
                   onPress={toggleOverlay}
                   buttonStyle={styles.buttonSuccess}
                   titleStyle={styles.containerBtnSuccess}
+                  color={"#009475"}
                 />
               </View>
             </View>
@@ -110,7 +111,7 @@ export default function Error(props) {
 const styles = StyleSheet.create({
   overlayError: {
     height: 200,
-    width: 300,
+    width: 350,
     backgroundColor: "white",
     borderColor: "red",
     borderWidth: 4,
@@ -119,11 +120,9 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   titleError: {
-    color: "red",
-    textTransform: "uppercase",
+    color: "#000000",
     marginTop: 16,
     fontSize: 18,
-    justifyContent: "center",
   },
   containerError: {
     flex: 1,
@@ -137,25 +136,25 @@ const styles = StyleSheet.create({
   },
   containerBtnError: {
     fontSize: 18,
+    color: "black"
   },
   Error: {
     marginTop: 15,
   },
   overlayWarning: {
     height: 200,
-    width: 300,
+    width: 350,
     backgroundColor: "white",
-    borderColor: "yellow",
+    borderColor: "#F8EF22",
     borderWidth: 4,
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
   },
   titleWarning: {
-    color: "yellow",
-    textTransform: "uppercase",
+    color: "#000000",
     marginTop: 16,
-    fontSize: 16,
+    fontSize: 18,
   },
   containerWarning: {
     flex: 1,
@@ -169,26 +168,25 @@ const styles = StyleSheet.create({
   },
   containerBtnWarning: {
     fontSize: 18,
+    color: "black"
   },
   Warning: {
     marginTop: 15,
   },
   overlaySuccess: {
     height: 200,
-    width: 300,
+    width: 350,
     backgroundColor: "white",
-    borderColor: "blue",
+    borderColor: "#009475",
     borderWidth: 4,
     borderRadius: 12,
     justifyContent: "center",
     alignItems: "center",
   },
   titleSuccess: {
-    color: "blue",
-    textTransform: "uppercase",
+    color: "#000000",
     marginTop: 16,
     fontSize: 18,
-    justifyContent: "center",
   },
   containerSuccess: {
     flex: 1,
@@ -202,6 +200,7 @@ const styles = StyleSheet.create({
   },
   containerBtnSuccess: {
     fontSize: 18,
+    color: "black"
   },
   Success: {
     marginTop: 15

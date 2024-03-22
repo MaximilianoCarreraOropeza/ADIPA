@@ -49,6 +49,7 @@ export default function Login(props) {
           keyboardType="email-address"
           placeholderTextColor={"#70BEAE"}
           inputContainerStyle={styles.textInput}
+          inputStyle={styles.fontSize}
           containerStyle={styles.input}
           onChange={({ nativeEvent: { text } }) => setEmail(text)}
           leftIcon={<Icon type="material-community" name="account" />}
@@ -60,6 +61,7 @@ export default function Login(props) {
           placeholderTextColor={"#70BEAE"}
           inputContainerStyle={styles.textInput}
           containerStyle={styles.input}
+          inputStyle={styles.fontSize}
           onChange={({ nativeEvent: { text } }) => setPassword(text)}
           rightIcon={
             <Icon
@@ -174,4 +176,7 @@ const styles = StyleSheet.create({
   textInput: {
     borderBottomWidth: 0,
   },
+  fontSize: {
+    fontSize: 16
+  }
 });
