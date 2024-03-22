@@ -19,7 +19,7 @@ export default function App() {
   };
   //AsyncStorage.getItem('token');
   return (
-    isAuthenticated ? <NavigationAuth/> : <NavigationNotAuth setIsAuthenticated={setIsAuthenticated}/>
+    isAuthenticated ? <NavigationAuth setIsAuthenticated={setIsAuthenticated}/> : <NavigationNotAuth setIsAuthenticated={setIsAuthenticated}/>
   );
 }
 

@@ -3,11 +3,15 @@ import React from "react";
 import { Overlay, Button, Icon } from "@rneui/base";
 
 export default function Error(props) {
-  const { type, visible, setVisible, title } = props;
+  const { type, visible, setVisible, title, confirm, setConfirm} = props;
 
   const toggleOverlay = () => {
     setVisible(!visible);
   };
+
+  const confirmAction = () => {
+    setConfirm(!confirm);
+  }
 
   return (
     <View>
@@ -29,7 +33,10 @@ export default function Error(props) {
                 type="material-community"
               />
               <Text style={styles.titleError}>{title}</Text>
-              <View>
+              {
+                /*
+                <View>
+
                 <Button
                   title="Aceptar"
                   onPress={toggleOverlay}
@@ -38,6 +45,8 @@ export default function Error(props) {
                   color="error"
                 />
               </View>
+                */
+              }
             </View>
           </Overlay>
         </View>
@@ -59,7 +68,8 @@ export default function Error(props) {
                 type="material-community"
               />
               <Text style={styles.titleWarning}>{title}</Text>
-              <View>
+              {/*
+              <View>  
                 <Button
                   title="Aceptar"
                   onPress={toggleOverlay}
@@ -68,6 +78,7 @@ export default function Error(props) {
                   color="#F8EF22"
                 />
               </View>
+                */}
             </View>
           </Overlay>
         </View>
@@ -89,7 +100,9 @@ export default function Error(props) {
                 type="material-community"
               />
               <Text style={styles.titleSuccess}>{title}</Text>
-              <View>
+              {
+                /*
+                  <View>
                 <Button
                   title="Aceptar"
                   onPress={toggleOverlay}
@@ -97,13 +110,65 @@ export default function Error(props) {
                   titleStyle={styles.containerBtnSuccess}
                   color={"#009475"}
                 />
-              </View>
+                </View>
+                */
+              }
+            </View>
+          </Overlay>
+        </View>
+      ) :type == "ask" ? (
+        <View>
+          <Overlay
+            isVisible={visible}
+            windowsBackgroundColor="rgb(0,0,0,0,5)"
+            overlayBackgroundColor="transparent"
+            onBackdropPress={toggleOverlay}
+            overlayStyle={styles.overlayAsk}
+          >
+            <View style={styles.containerSuccess}>
+              <Icon
+                name="account-question-outline"
+                size={50}
+                color="#009475"
+                iconStyle={styles.Success}
+                type="material-community"
+              />
+              <Text style={styles.titleSuccess}>{title}</Text>
+              {
+                /*
+                  <View>
+                <Button
+                  title="Aceptar"
+                  onPress={toggleOverlay}
+                  buttonStyle={styles.buttonSuccess}
+                  titleStyle={styles.containerBtnSuccess}
+                  color={"#009475"}
+                />
+                </View>
+                */
+              }
+              <View style={styles.btns}>
+                <Button
+                  title="Aceptar"
+                  onPress={confirmAction}
+                  buttonStyle={styles.buttonSuccess}
+                  titleStyle={styles.containerBtnSuccess}
+                />
+                <Button
+                    title="Cancelar"
+                    onPress={toggleOverlay}
+                    buttonStyle={styles.buttonSuccess}
+                    titleStyle={styles.containerBtnSuccess}
+                    color={"error"}
+                />
+                </View>
             </View>
           </Overlay>
         </View>
       ) : (
-        console.log("Error en el tipo de mensaje")
-      )}
+        console.log("No se ha seleccionado un tipo de mensaje")
+      )
+    }
     </View>
   );
 }
@@ -185,8 +250,8 @@ const styles = StyleSheet.create({
   },
   titleSuccess: {
     color: "#000000",
-    marginTop: 16,
-    fontSize: 18,
+    marginTop: 12,
+    fontSize: 18
   },
   containerSuccess: {
     flex: 1,
@@ -195,8 +260,9 @@ const styles = StyleSheet.create({
   },
   buttonSuccess: {
     borderRadius: 5,
-    marginBottom: 15,
-    marginTop: 15,
+    marginBottom: "5%",
+    marginTop: "5%",
+    marginLeft: "10%"
   },
   containerBtnSuccess: {
     fontSize: 18,
@@ -205,4 +271,17 @@ const styles = StyleSheet.create({
   Success: {
     marginTop: 15
   },
+  overlayAsk: {
+    height: 200,
+    width: 350,
+    backgroundColor: "white",
+    borderColor: "#009475",
+    borderWidth: 4,
+    borderRadius: 12,
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  btns: {
+    flexDirection: "row"
+  }
 });

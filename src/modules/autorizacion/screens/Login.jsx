@@ -41,7 +41,7 @@ export default function Login(props) {
           };
           setSuccess(!success);
           setTimeout(() => {
-          setIsAuthenticated(true);
+            setIsAuthenticated(true);
             setSuccess(!success);
             console.log(response.data.data.token);
           }, 1000);

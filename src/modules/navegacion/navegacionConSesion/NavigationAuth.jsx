@@ -9,7 +9,8 @@ import { Icon} from "@rneui/base";
 
 const Tab = createBottomTabNavigator();
 
-export default function NavigationWithOutAuth() {
+export default function NavigationWithOutAuth(props) {
+  const { setIsAuthenticated } = props;
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -30,9 +31,12 @@ export default function NavigationWithOutAuth() {
         })}
       >
         <Tab.Screen name="Principal" component={EstacionamientosStack} />
+
         <Tab.Screen name="Discapacitados" component={DiscapacitadosStack} />
         <Tab.Screen name="Glosario" component={GlosarioStack} />
-        <Tab.Screen name="PerfilStack" component={PerfilStack}/>
+        <Tab.Screen name="Perfil">
+          {()=> <PerfilStack setIsAuthenticated={setIsAuthenticated}/>}
+        </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );
@@ -54,7 +58,7 @@ const getIconName = (routeName, focused) => {
       iconName = focused ? "book-open-page-variant" : "book-open-page-variant-outline";
       iconType = "material-community";
       break;
-    case "PerfilStack":
+    case "Perfil":
       iconName = focused ? "account" : "account-outline";
       iconType = "material-community";
       break;

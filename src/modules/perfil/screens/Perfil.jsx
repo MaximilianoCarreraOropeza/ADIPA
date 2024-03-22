@@ -1,34 +1,47 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image } from "@rneui/themed";
 import usuario from "../../../../assets/usuario.png";
 import cambiar from "../../../../assets/contra.png";
 import cerrar from "../../../../assets/salida.png";
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import Loading from "../../../kernel/components/Loading";
+import Message from "../../../kernel/components/Message";
 
 export default function Perfil(props) {
-
-  handleRemoveItem = async () => {
-    try {
-      await AsyncStorage.removeItem('token');
-      Alert.alert('Elemento eliminado exitosamente');
-    } catch (error) {
-      console.log(error);
-      Alert.alert('Error al eliminar el elemento');
-    }
-  }
-  const { navigation } = props;
+  const { setIsAuthenticated, navigation } = props;
   const fotoPerfil = usuario;
   const contra = cambiar;
   const salida = cerrar;
+  const [visible, setVisible] = useState(false);
+  const [error, setError] = useState(false);
+  const [ask, setAsk] = useState(false);
+  const [success, setSuccess] = useState(false);
+  const [confirm, setConfirm] = useState(false);
+
+const confirmLogout = async () => {
+    setConfirm(false);
+    setAsk(!ask);
+    if(confirm){
+      try {
+        await AsyncStorage.removeItem("token");
+        setIsAuthenticated(false);
+      } catch (e) {
+        setError(!error);
+      } finally{
+        setAsk(false);
+      }
+    } else {
+    }
+  };
+
+  
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.foto}>
-          <Image
-            source={fotoPerfil}
-            style={styles.img}
-          />
+          <Image source={fotoPerfil} style={styles.img} />
           <Text style={styles.estudiante}>Estudiante</Text>
         </View>
         <View style={styles.column}>
@@ -38,21 +51,41 @@ export default function Perfil(props) {
         </View>
       </View>
       <View style={styles.btns}>
-        <TouchableOpacity style={styles.btn} onPress={()=>{navigation.navigate("CambiarContra")}}>
-          <Image
-            source={contra}
-            style={styles.icono}
-          />
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            navigation.navigate("CambiarContra");
+          }}
+        >
+          <Image source={contra} style={styles.icono} />
           <Text style={styles.texto}>Cambiar Contraseña</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={handleRemoveItem}>
-          <Image
-            source={salida}
-            style={styles.icono}
-          />
+        <TouchableOpacity style={styles.btn} onPress={confirmLogout}>
+          <Image source={salida} style={styles.icono} />
           <Text style={[styles.texto, { color: "black" }]}>Cerrar Sesión</Text>
         </TouchableOpacity>
       </View>
+      <Loading visible={visible} title="Cerrando Sesión" />
+      <Message
+        type={"ask"}
+        visible={ask}
+        setVisible={setAsk}
+        confirm={confirm}
+        setConfirm={setConfirm}
+        title="¿Esta seguro de querer cerrar sesión?"
+      />
+      <Message
+        type={"error"}
+        visible={error}
+        setVisible={setError}
+        title="No se realizo el proceso"
+      />
+      <Message
+        type={"success"}
+        visible={success}
+        setVisible={setSuccess}
+        title="Se cerro sesion correctamente"
+      />
     </View>
   );
 }
@@ -63,7 +96,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     marginTop: "10%",
     alignItems: "center",
-    backgroundColor: "#F0F0F0"
+    backgroundColor: "#F0F0F0",
   },
   card: {
     flexDirection: "row",
@@ -76,7 +109,7 @@ const styles = StyleSheet.create({
   },
   foto: {
     marginRight: 20,
-    alignItems: "center"
+    alignItems: "center",
   },
   img: {
     width: 100,
@@ -90,7 +123,7 @@ const styles = StyleSheet.create({
   },
   column: {
     flex: 1,
-    alignItems: "center"
+    alignItems: "center",
   },
   nombre: {
     fontSize: 16,

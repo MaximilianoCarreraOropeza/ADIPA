@@ -8,7 +8,8 @@ import logo from "../../../../../assets/logo.png";
 const stack = createStackNavigator();
 const API_URL = "http://192.168.109.154:8080/api/auth/logout";
 
-export default function PerfilStack() {
+export default function PerfilStack(props) {
+  const { setIsAuthenticated } = props;
   const login = async () => {
     if (!isEmpty(email) && !isEmpty(password)) {
       setShowMessage({ email: "", password: "" });
@@ -54,10 +55,11 @@ export default function PerfilStack() {
       }}
     >
       <stack.Screen
-        name="Perfil"
-        component={Perfil}
+        name="PerfilScreen"
         options={{ headerTitle: "Perfil" }}
-      />
+      >
+        {() => <Perfil setIsAuthenticated={setIsAuthenticated} />}
+        </stack.Screen>
       <stack.Screen
         name="CambiarContra"
         component={CambiarContra}
