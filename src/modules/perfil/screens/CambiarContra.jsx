@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View } from "react-native";
 import React, { useState } from "react";
 import { Input, Icon, Button } from "@rneui/base";
+import Loading from "../../../kernel/components/Loading";
+import Error from "../../../kernel/components/Error";
 
 export default function CambiarContra(props) {
   const {navigation} = props;
@@ -11,46 +13,49 @@ export default function CambiarContra(props) {
   const [showPassword1, setShowPassword1] = useState(true);
   const [showPassword2, setShowPassword2] = useState(true);
   const [showPassword3, setShowPassword3] = useState(true);
+  const [visible, setVisible] = useState(false);
+  const [error, setError] = useState(false);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.textoInicial}>Cambiar Contraseña:</Text>
-      <Text style={styles.label}>Contraseña:</Text>
-      <Input
-        placeholder="Ingresa Tu Contraseña"
-        placeholderTextColor={"#70BEAE"}
-        inputContainerStyle={styles.textInput}
-        onChange={({ nativeEvent: { text } }) => setPassword(text)}
-        containerStyle={styles.input}
-        errorMessage={showMessage}
-        secureTextEntry={showPassword1}
-        rightIcon={
-          <Icon
-            type="material-community"
-            name={showPassword1 ? "eye-outline" : "eye-off-outline"}
-            color="black"
-            onPress={() => setShowPassword1(!showPassword1)}
-          />
-        }
-        leftIcon={<Icon type="material-community" name="lock" />}
-      />
-      <Text style={styles.label}>Nueva Contraseña:</Text>
-      <Input
-        placeholder="Ingresa Nueva Contraseña"
-        placeholderTextColor={"#70BEAE"}
-        inputContainerStyle={styles.textInput}
-        onChange={({ nativeEvent: { text } }) => setNewPassword(text)}
-        containerStyle={styles.input}
-        errorMessage={showMessage}
-        secureTextEntry={showPassword2}
-        rightIcon={
-          <Icon
-            type="material-community"
-            name={showPassword2 ? "eye-outline" : "eye-off-outline"}
-            color="black"
-            onPress={() => setShowPassword2(!showPassword2)}
-          />
-        }
+      <View style={styles.container2}>
+        <Text style={styles.textoInicial}>Cambiar Contraseña:</Text>
+        <Text style={styles.label}>Contraseña:</Text>
+        <Input
+          placeholder="Ingresa Tu Contraseña"
+          placeholderTextColor={"#70BEAE"}
+          inputContainerStyle={styles.textInput}
+          containerStyle={styles.input}
+          onChange={({ nativeEvent: { text } }) => setPassword(text)}
+          errorMessage={showMessage}
+          secureTextEntry={showPassword1}
+          rightIcon={
+            <Icon
+              type="material-community"
+              name={showPassword1 ? "eye-outline" : "eye-off-outline"}
+              color="black"
+              onPress={() => setShowPassword1(!showPassword1)}
+            />
+          }
+          leftIcon={<Icon type="material-community" name="lock" />}
+        />
+        <Text style={styles.label}>Nueva Contraseña:</Text>
+        <Input
+          placeholder="Ingresa Nueva Contraseña"
+          placeholderTextColor={"#70BEAE"}
+          inputContainerStyle={styles.textInput}
+          onChange={({ nativeEvent: { text } }) => setNewPassword(text)}
+          containerStyle={styles.input}
+          errorMessage={showMessage}
+          secureTextEntry={showPassword2}
+          rightIcon={
+            <Icon
+              type="material-community"
+              name={showPassword2 ? "eye-outline" : "eye-off-outline"}
+              color="black"
+              onPress={() => setShowPassword2(!showPassword2)}
+            />
+          }
         leftIcon={<Icon type="material-community" name="lock" />}
       />
       <Text style={styles.label}>Confirmar Contraseña:</Text>
@@ -73,20 +78,24 @@ export default function CambiarContra(props) {
         leftIcon={<Icon type="material-community" name="lock" />}
       />
       <Button
-        title="Iniciar Sesión"
+        title="Cambiar Contraseña"
         containerStyle={styles.btnContainer}
-        buttonStyle={styles.btnStyle}
+          buttonStyle={styles.btnStyle}
+          titleStyle={styles.titleStyle}
       />
       <Button
         title="Cancelar"
         type="clear"
-        containerStyle={styles.container2}
+        containerStyle={styles.btnContainer}
         buttonStyle={styles.btnStyle2}
         titleStyle={styles.titleBtnStyle2}
         onPress={() => (navigation.goBack())}
       />
+      </View>
+      <Loading visible={visible} title="Cambiando Contraseña" />
+      <Error visible={error} setVisible={setError} title="Error cambiando contraseña" />
     </View>
-  );
+  )
 }
 
 const styles = StyleSheet.create({
@@ -94,8 +103,10 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     justifyContent: "center",
-    alignItems: "center",
-    padding: 16,
+    alignItems: "center"
+  },
+  container2: {
+    width: "80%"
   },
   textoInicial: {
     fontWeight: "bold",
@@ -104,9 +115,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   input: {
-    height: 60,
+    height: 50,
     paddingHorizontal: 16,
-    marginVertical: 8,
+    marginBottom: 24,
+    marginTop: 8,
     borderWidth: 2,
     borderRadius: 20,
     borderColor: "#009475",
@@ -114,31 +126,29 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 16,
     color: "#0655AA",
-    alignSelf: "baseline",
-    marginLeft: 15,
-    marginTop: 15,
+    marginTop: 15
   },
   textInput: {
-    borderBottomWidth: 0,
-  },
-  container2: {
-    width: "80%",
-    marginTop: 16,
+    borderBottomWidth: 0
   },
   btnStyle: {
-    backgroundColor: "#002E60",
-    color: "#000",
-    borderRadius: 50,
+    backgroundColor: "#002E60"
   },
   btnContainer: {
-    width: "80%",
+    width: "90%",
     marginTop: 16,
+    borderRadius: 50,
+    alignSelf: "center"
   },
   btnStyle2: {
-    backgroundColor: "#002E60",
-    borderRadius: 50,
+    borderWidth: 1.5,
+    borderColor: "#002E60",
+    borderRadius: 50
+  },
+  titleStyle: {
+    color: "#fff",
   },
   titleBtnStyle2: {
-    color: "#ffff",
+    color: "#002E60",
   },
 });

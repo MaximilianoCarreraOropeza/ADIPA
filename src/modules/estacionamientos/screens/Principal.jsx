@@ -1,27 +1,23 @@
-import {
-  StyleSheet,
-  View,
-  Image,
-  TouchableOpacity,
-  Modal,
-  Button,
-} from "react-native";
+import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
 import React, { useState } from "react";
 import PingPoint from "./components/PingPoint";
 import { BackgroundImage } from "@rneui/base";
 import ConoceCampus from "../../../../assets/ConoceCampus.png";
 import mapaPin from "../../../../assets/mapaPin.png";
-import mapaCodec from "../../../../assets/mapacodec.jpg";
+import Codec from "../../../kernel/components/Codec";
 
 export default function Principal(props) {
   const { navigation } = props;
   const image1 = ConoceCampus;
   const image2 = mapaPin;
-  const image3 = mapaCodec;
   const [isModalVisible, setModalVisible] = useState(false);
 
   const handlerPress = (screen) => {
     navigation.navigate(screen);
+  };
+
+  const toggleOverlay = () => {
+    setModalVisible(!isModalVisible);
   };
 
   return (
@@ -118,29 +114,14 @@ export default function Principal(props) {
           </View>
         </BackgroundImage>
       </View>
-
       <View style={styles.container3}>
         <TouchableOpacity
-          onPress={() => setModalVisible(!isModalVisible)}
-          style={styles.conoces}
-        >
+          onPress={toggleOverlay}
+          style={styles.conoces}>
           <Image source={image1} style={styles.TouchableOpacity} />
         </TouchableOpacity>
-
-        <Modal visible={isModalVisible} >
-          <View style={{flex: 1}}>
-            <Image source={image3} style={styles.mapaModal} />
-            <View style={{position: "absolute"}}>
-              <Button
-                title="Cerrar"
-                color="#000000"
-                onPress={() => setModalVisible(!isModalVisible)}
-                style={styles.btnCerrar}
-              />
-            </View>
-          </View>
-        </Modal>
       </View>
+      <Codec visible={isModalVisible} setVisible={setModalVisible} />
     </View>
   );
 }
@@ -181,17 +162,17 @@ const styles = StyleSheet.create({
   pin: {
     position: "absolute",
     top: "11%",
-    left: "31%",
+    left: "43%",
   },
   pin2: {
     position: "absolute",
-    top: "7%",
-    left: "40%",
+    top: "5%",
+    left: "50%",
   },
   pin3: {
     position: "absolute",
-    top: "8%",
-    left: "79%",
+    top: "5%",
+    left: "75%",
   },
   pin4: {
     position: "absolute",
@@ -206,7 +187,7 @@ const styles = StyleSheet.create({
   pin6: {
     position: "absolute",
     top: "30%",
-    left: "80%",
+    left: "78%",
   },
   pin7: {
     position: "absolute",

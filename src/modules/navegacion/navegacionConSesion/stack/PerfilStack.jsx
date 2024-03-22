@@ -32,7 +32,7 @@ export default function PerfilStack() {
           name="CambiarContra"
           component={CambiarContra}
           options={{
-            headerTitle: "Cambiar Contraseña"
+            headerTitle: ""
           }}
         />
     </stack.Navigator>
