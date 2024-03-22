@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 const Tab = createBottomTabNavigator();
 
 export default function (props) {
+  const { setIsAuthenticated } = props;
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -13,11 +14,13 @@ export default function (props) {
         screenOptions={() => ({
           headerShown: false,
           tabBarStyle: {
-            display: "none"
-          }
+            display: "none",
+          },
         })}
       >
-        <Tab.Screen name="Auth" component={AuthStack} />
+        <Tab.Screen name="Auth">
+          {() => <AuthStack setIsAuthenticated={setIsAuthenticated} />}
+        </Tab.Screen>
       </Tab.Navigator>
     </NavigationContainer>
   );

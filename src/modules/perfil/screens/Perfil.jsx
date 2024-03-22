@@ -4,8 +4,19 @@ import { Image } from "@rneui/themed";
 import usuario from "../../../../assets/usuario.png";
 import cambiar from "../../../../assets/contra.png";
 import cerrar from "../../../../assets/salida.png";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function Perfil(props) {
+
+  handleRemoveItem = async () => {
+    try {
+      await AsyncStorage.removeItem('token');
+      Alert.alert('Elemento eliminado exitosamente');
+    } catch (error) {
+      console.log(error);
+      Alert.alert('Error al eliminar el elemento');
+    }
+  }
   const { navigation } = props;
   const fotoPerfil = usuario;
   const contra = cambiar;
@@ -34,7 +45,7 @@ export default function Perfil(props) {
           />
           <Text style={styles.texto}>Cambiar Contraseña</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={() => {}}>
+        <TouchableOpacity style={styles.btn} onPress={handleRemoveItem}>
           <Image
             source={salida}
             style={styles.icono}

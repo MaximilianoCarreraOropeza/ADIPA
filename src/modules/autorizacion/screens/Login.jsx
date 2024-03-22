@@ -5,9 +5,13 @@ import Logo from "../../../../assets/logo.png";
 import { isEmpty } from "lodash";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
+import axios from "axios";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const API_URL = "http://192.168.110.120:8080/adipa/auth/signin";
 
 export default function Login(props) {
-  const { navigation } = props;
+  const { navigation, setIsAuthenticated } = props;
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
@@ -20,14 +24,32 @@ export default function Login(props) {
   const login = async () => {
     if (!isEmpty(email) && !isEmpty(password)) {
       setShowMessage({ email: "", password: "" });
-      setSuccess(true);
       try {
-      } catch (error) {
-        setShowMessage({
-          email: "Usuario o contraseña incorrecto",
-          password: "Usuario o contraseña incorrecto",
+        setVisible(!visible);
+        const response = await axios.post(API_URL, {
+          matricula: email,
+          contrasena: password,
         });
+        if (response.status === 200) {
+          const token = response.data.data.token;
+          const storeData = async (value) => {
+            try {
+              await AsyncStorage.setItem('token', token);
+            } catch (e) {
+              console.log(e);
+            }
+          };
+          setSuccess(!success);
+          setTimeout(() => {
+          setIsAuthenticated(true);
+            setSuccess(!success);
+            console.log(response.data.data.token);
+          }, 1000);
+        }
+      } catch (error) {
+        setError(!error);
       } finally {
+        setVisible(false);
       }
     } else {
       setShowMessage({
@@ -45,6 +67,7 @@ export default function Login(props) {
       <View style={styles.container3}>
         <Text style={styles.label}>Matricula:</Text>
         <Input
+          value={email}
           placeholder="Ingresa Tu Matricula"
           keyboardType="email-address"
           placeholderTextColor={"#70BEAE"}
@@ -57,6 +80,7 @@ export default function Login(props) {
         />
         <Text style={styles.label}>Contraseña: *</Text>
         <Input
+          value={password}
           placeholder="Ingresa Tu Contraseña"
           placeholderTextColor={"#70BEAE"}
           inputContainerStyle={styles.textInput}
@@ -97,9 +121,24 @@ export default function Login(props) {
         />
       </View>
       <Loading visible={visible} title="Iniciando Sesión" />
-      <Message type={"error"} visible={error} setVisible={setError} title="Error al iniciar sesion" />
-      <Message type={"warning"} visible={warning} setVisible={setWarning} title="Usuario o contraseña no valida" />
-      <Message type={"success"} visible={success} setVisible={setSuccess} title="Se inicio sesion correctamente" />
+      <Message
+        type={"error"}
+        visible={error}
+        setVisible={setError}
+        title="Error al iniciar sesion"
+      />
+      <Message
+        type={"warning"}
+        visible={warning}
+        setVisible={setWarning}
+        title="Usuario o contraseña no valida"
+      />
+      <Message
+        type={"success"}
+        visible={success}
+        setVisible={setSuccess}
+        title="Se inicio sesion correctamente"
+      />
     </View>
   );
 }
@@ -177,6 +216,6 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0,
   },
   fontSize: {
-    fontSize: 16
-  }
+    fontSize: 16,
+  },
 });

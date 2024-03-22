@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { useState } from "react";
 import NavigationNotAuth from './src/modules/navegacion/navegacionSinSesion/NavigationNotAuth';
 import NavigationAuth from './src/modules/navegacion/navegacionConSesion/NavigationAuth';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('token');
+      if (value !== null) {
+        // value previously stored
+        setIsAuthenticated(true);
+      }
+      console.log(value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  //AsyncStorage.getItem('token');
   return (
-    //le pregunte al profe y me gusto su idea, basicamente aqui debemos de poner una condicional para saber si hay sesion o nel y de aqui
-    //se renderizara dependiendo si esta iniciado o no, y ya esa es la idea ya que cada navegacion es distinta y uno tiene tab y el otro solo son pantallas 
-    <NavigationAuth/>
+    isAuthenticated ? <NavigationAuth/> : <NavigationNotAuth setIsAuthenticated={setIsAuthenticated}/>
   );
 }
 
