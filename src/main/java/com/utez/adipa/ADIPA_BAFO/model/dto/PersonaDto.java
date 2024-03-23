@@ -16,4 +16,6 @@ public class PersonaDto {
     private String apellido_p;
     private String apellido_m;
 
+    private Long usuario_id;
+
 }

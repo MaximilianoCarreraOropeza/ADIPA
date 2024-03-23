@@ -13,8 +13,8 @@ import java.util.Optional;
 @Repository
 public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
     @Modifying
-    @Query(value = "INSERT INTO usuario (id_usuario, persona_id, matricula, contrasena) VALUES (:id_usuario, :persona_id, :matricula, :contrasena)", nativeQuery = true)
-    int saveUsuario(@Param("id_usuario") Long id_usuario, @Param("persona_id") Long persona_id, @Param("matricula") String matricula, @Param("contrasena") String contrasena);
+    @Query(value = "INSERT INTO usuario (id_usuario, tipo_id, matricula, contrasena) VALUES (:id_usuario, :tipo_id, :matricula, :contrasena)", nativeQuery = true)
+    int saveUsuario(@Param("id_usuario") Long id_usuario, @Param("tipo_id") Long tipo_id, @Param("matricula") String matricula, @Param("contrasena") String contrasena);
 
     Optional<Usuario> findByMatricula(String username);
 }

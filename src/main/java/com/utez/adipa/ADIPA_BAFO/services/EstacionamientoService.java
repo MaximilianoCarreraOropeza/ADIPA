@@ -36,4 +36,6 @@ public class EstacionamientoService {
         return new ResponseEntity<>(new ApiResponse(repository.findAll(), HttpStatus.OK), HttpStatus.OK);
     }
 
+
+
 }

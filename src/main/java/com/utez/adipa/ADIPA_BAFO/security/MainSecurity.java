@@ -25,7 +25,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableMethodSecurity
 public class MainSecurity {
     private final String[] WHITE_LIST = {
-            "/api/auth/**"
+            "/adipa/auth/**"
     };
 
     private final UserDetailsServiceImpl service;
@@ -61,19 +61,18 @@ public class MainSecurity {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http.cors(Customizer.withDefaults()).csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(req -> req.requestMatchers(WHITE_LIST).permitAll()
-                                .requestMatchers("/api/usuario/**").permitAll()
-                                .requestMatchers("/api/docente/**").permitAll()
-                                .requestMatchers("/api/persona/**").permitAll()
-                                .requestMatchers("/api/estacionamiento/**").permitAll()
-                                .requestMatchers("/api/estudiante/**").permitAll()
-                                .anyRequest().authenticated()
+                        .requestMatchers("/adipa/usuario/**").permitAll()
+                        .requestMatchers("adipa/tipousuario").permitAll()
+                        .requestMatchers("/adipa/persona/**").permitAll()
+                        .requestMatchers("/adipa/estacionamiento/**").permitAll()
+                        .anyRequest().authenticated()
                 )
                 .httpBasic(Customizer.withDefaults())
                 .headers(header -> header.frameOptions(HeadersConfigurer.FrameOptionsConfig::sameOrigin))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(filter(), UsernamePasswordAuthenticationFilter.class)
-                .logout(out -> out.logoutUrl("/api/auth/logout").clearAuthentication(true));
+                .logout(out -> out.logoutUrl("/adipa/auth/logout").clearAuthentication(true));
         return http.build();
     }
 

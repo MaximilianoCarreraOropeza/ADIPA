@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Set;
+
 @Entity
 @Getter
 @Setter
@@ -11,23 +13,18 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @ToString
-@Table(name = "persona")
-public class Persona {
+@Table(name = "tipo_usuario")
+public class TipoUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_persona")
-    private Long id_persona;
+    @Column(name = "id_tipo")
+    private Long id_tipo;
     @Column(name = "nombre", nullable = false)
     private String nombre;
-    @Column(name = "apellido_p", nullable = false)
-    private String apellido_p;
-    @Column(name = "apellido_m", nullable = false)
-    private String apellido_m;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "usuario_id")
+    @OneToMany(fetch =  FetchType.LAZY, mappedBy = "tipoUsuario")
     @JsonIgnore
-    private Usuario usuario;
+    private Set<Usuario> usuarios;
 
 }

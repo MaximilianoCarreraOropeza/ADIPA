@@ -8,7 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/estacionamiento")
+@RequestMapping("/adipa/estacionamiento")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class EstacionamientoController {
 
@@ -27,4 +27,6 @@ public class EstacionamientoController {
     public ResponseEntity<ApiResponse> getAll() {
         return service.findAll();
     }
+
+
 }

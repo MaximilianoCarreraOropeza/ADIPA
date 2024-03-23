@@ -14,5 +14,5 @@ public class UsuarioDto {
     private String matricula;
     private String contrasena;
 
-    private Long persona_id;
+    private Long tipo_id;
 }

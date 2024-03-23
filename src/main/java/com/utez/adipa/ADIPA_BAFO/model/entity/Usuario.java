@@ -22,7 +22,10 @@ public class Usuario {
     @Column(name = "contrasena", nullable = false)
     private String contrasena;
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "persona_id")
+    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "usuario")
     private Persona persona;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "tipo_id")
+    private TipoUsuario tipoUsuario;
 }
