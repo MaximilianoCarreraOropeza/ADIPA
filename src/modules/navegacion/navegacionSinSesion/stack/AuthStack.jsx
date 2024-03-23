@@ -3,19 +3,19 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../../../autorizacion/screens/Login";
 import CambiarContra from "../../../autorizacion/screens/RecuperaCuenta";
 
-const stack = createStackNavigator();
+const Stack = createStackNavigator();
 
 export default function AuthStack(props) {
   const { setIsAuthenticated } = props;
   return (
-    <stack.Navigator>
-      <stack.Screen
+    <Stack.Navigator>
+      <Stack.Screen
         name="Login"
         options={{ headerShown: false }}
       >
         {() => <Login setIsAuthenticated={setIsAuthenticated} />}  
-      </stack.Screen>
-      <stack.Screen
+      </Stack.Screen>
+      <Stack.Screen
         name="Contra"
         component={CambiarContra}
         options={{
@@ -26,6 +26,6 @@ export default function AuthStack(props) {
           },
         }}
       />
-    </stack.Navigator>
+    </Stack.Navigator>
   );
 }
