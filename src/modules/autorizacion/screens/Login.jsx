@@ -10,7 +10,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useNavigation } from '@react-navigation/native';
 
 const API_URL = "http://192.168.0.9:8080/adipa/auth/signin";
-
+//Cambios
 export default function Login(props) {
   const { setIsAuthenticated } = props;
   const navigation = useNavigation();
