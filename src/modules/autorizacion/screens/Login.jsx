@@ -6,13 +6,15 @@ import { isEmpty } from "lodash";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 
-const API_URL = "http://192.168.110.120:8080/adipa/auth/signin";
+const API_URL = "http://192.168.0.9:8080/adipa/auth/signin";
 
 export default function Login(props) {
   const { setIsAuthenticated } = props;
+  const navigation = useNavigation();
+const prueba = '';
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(true);
@@ -21,12 +23,6 @@ export default function Login(props) {
   const [error, setError] = useState(false);
   const [warning, setWarning] = useState(false);
   const [success, setSuccess] = useState(false);
-
-  //const API_URL1 = "http://192.168.110.120:8080/adipa/auth/signin";
-  const API_URL = "http://192.168.0.9:8080/adipa/auth/signin";
-
-  const navigation = useNavigation();
-  const prueba = "";
 
   const login = async () => {
     if (!isEmpty(email) && !isEmpty(password)) {
@@ -45,14 +41,13 @@ export default function Login(props) {
           const lastname = response.data.data.usuario.persona.apellido_m;
           const storeData = async (value) => {
             try {
-              await AsyncStorage.setItem("token", token);
-              await AsyncStorage.setItem("name", name);
-              await AsyncStorage.setItem("surname", surname);
-              await AsyncStorage.setItem("lastname", lastname);
-              await AsyncStorage.setItem("matricula", matricula);
-              prueba = await AsyncStorage.getItem("name");
+              await AsyncStorage.setItem('token', token);
+              await AsyncStorage.setItem('name', name);
+              await AsyncStorage.setItem('surname', surname);
+              await AsyncStorage.setItem('lastname', lastname);
+              await AsyncStorage.setItem('matricula', matricula);
+              prueba = await AsyncStorage.getItem('name')
             } catch (e) {
-              console.log(e);
               console.error(e);
             }
           };
@@ -60,7 +55,6 @@ export default function Login(props) {
           setTimeout(() => {
             setIsAuthenticated(true);
             setSuccess(!success);
-            console.log(response.data.data.token);
             console.log(prueba);
             console.log(matricula);
             console.log(name);

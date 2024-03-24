@@ -134,19 +134,7 @@ export default function Error(props) {
                 type="material-community"
               />
               <Text style={styles.titleSuccess}>{title}</Text>
-              {
-                /*
-                  <View>
-                <Button
-                  title="Aceptar"
-                  onPress={toggleOverlay}
-                  buttonStyle={styles.buttonSuccess}
-                  titleStyle={styles.containerBtnSuccess}
-                  color={"#009475"}
-                />
-                </View>
-                */
-              }
+            
               <View style={styles.btns}>
                 <Button
                   title="Aceptar"
