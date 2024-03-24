@@ -7,6 +7,7 @@ import cerrar from "../../../../assets/salida.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
+import axios from "axios";
 
 export default function Perfil(props) {
   const { setIsAuthenticated, navigation } = props;
@@ -18,24 +19,39 @@ export default function Perfil(props) {
   const [ask, setAsk] = useState(false);
   const [success, setSuccess] = useState(false);
   const [confirm, setConfirm] = useState(false);
-
-const confirmLogout = async () => {
-    setConfirm(false);
-    setAsk(!ask);
-    if(confirm){
-      try {
-        await AsyncStorage.removeItem("token");
-        setIsAuthenticated(false);
-      } catch (e) {
-        setError(!error);
-      } finally{
-        setAsk(false);
+  const [data, setData] = useState(null);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [matricula, setMatricula] = useState("");
+  setData();
+  setData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("name");
+      setName(value);
+      if (name !== null) {
+        console.warn(value);
       }
-    } else {
+    } catch (e) {
+      
+      console.error(e);
     }
   };
 
-  
+  if (confirm) {
+    const handleLoginOut = async () => {
+      try {
+        await AsyncStorage.removeItem("token");
+        setAsk(false);
+        setSuccess(true);
+        const close = () => setIsAuthenticated(false);
+        setTimeout(close, 1000);
+      } catch (e) {
+        setError(true);
+      }
+    };
+    handleLoginOut();
+  }
 
   return (
     <View style={styles.container}>
@@ -45,9 +61,9 @@ const confirmLogout = async () => {
           <Text style={styles.estudiante}>Estudiante</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.nombre}>Diego Eduardo</Text>
-          <Text style={styles.nombre}>Jaimez Flores</Text>
-          <Text style={styles.nombre}>20223tn021</Text>
+          <Text style={styles.nombre}>{name}</Text>
+          <Text style={styles.nombre}>{surname}</Text>
+          <Text style={styles.nombre}>{lastname}</Text>
         </View>
       </View>
       <View style={styles.btns}>
@@ -60,7 +76,7 @@ const confirmLogout = async () => {
           <Image source={contra} style={styles.icono} />
           <Text style={styles.texto}>Cambiar Contraseña</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={confirmLogout}>
+        <TouchableOpacity style={styles.btn} onPress={() => setAsk(true)}>
           <Image source={salida} style={styles.icono} />
           <Text style={[styles.texto, { color: "black" }]}>Cerrar Sesión</Text>
         </TouchableOpacity>
@@ -71,7 +87,7 @@ const confirmLogout = async () => {
         visible={ask}
         setVisible={setAsk}
         confirm={confirm}
-        setConfirm={setConfirm}
+        setConfirm={() => setConfirm(true)}
         title="¿Esta seguro de querer cerrar sesión?"
       />
       <Message
@@ -84,7 +100,7 @@ const confirmLogout = async () => {
         type={"success"}
         visible={success}
         setVisible={setSuccess}
-        title="Se cerro sesion correctamente"
+        title="Cierre de sesion exitosa correctamente"
       />
     </View>
   );
