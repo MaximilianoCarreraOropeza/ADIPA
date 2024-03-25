@@ -29,7 +29,7 @@ public class AuthService {
         this.provider = provider;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public ResponseEntity<ApiResponse> signIn(String matricula, String contrasena){
         try {
             Optional<Usuario> foundUser = service.findUserByMatricula(matricula);

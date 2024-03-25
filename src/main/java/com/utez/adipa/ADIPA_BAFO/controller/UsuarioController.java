@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+
 @RestController
 @RequestMapping("/adipa/usuario")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 public class UsuarioController {
 
     private final UsuarioService service;
-
     @GetMapping("/")
     public ResponseEntity<ApiResponse> getAll(){
         return service.findAll();
@@ -23,4 +23,5 @@ public class UsuarioController {
     public ResponseEntity<ApiResponse> getById(@PathVariable("id") Long id){
         return service.findBydId(id);
     }
+
 }

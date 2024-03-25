@@ -19,17 +19,17 @@ public class UsuarioService {
         this.repository = repository;
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public Optional<Usuario> findUserByMatricula(String username){
         return repository.findByMatricula(username);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public ResponseEntity<ApiResponse> findAll() {
         return new ResponseEntity<>(new ApiResponse(repository.findAll(), HttpStatus.OK), HttpStatus.OK);
     }
 
-    @Transactional(readOnly = true)
+    @Transactional
     public ResponseEntity<ApiResponse> findBydId(Long id){
         Optional<Usuario> foundUser = repository.findById(id);
         if(foundUser.isEmpty()){
@@ -37,4 +37,5 @@ public class UsuarioService {
         }
         return new ResponseEntity<>(new ApiResponse(foundUser.get(), HttpStatus.OK), HttpStatus.OK);
     }
+
 }

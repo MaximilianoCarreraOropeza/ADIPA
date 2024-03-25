@@ -15,4 +15,5 @@ public class UsuarioDto {
     private String contrasena;
 
     private Long tipo_id;
+
 }

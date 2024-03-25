@@ -28,4 +28,5 @@ public class Usuario {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "tipo_id")
     private TipoUsuario tipoUsuario;
+
 }

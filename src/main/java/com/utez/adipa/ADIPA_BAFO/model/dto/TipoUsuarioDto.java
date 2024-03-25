@@ -2,6 +2,7 @@ package com.utez.adipa.ADIPA_BAFO.model.dto;
 
 import lombok.*;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
@@ -12,4 +13,5 @@ public class TipoUsuarioDto {
 
     private Long id_tipo;
     private String nombre;
+
 }

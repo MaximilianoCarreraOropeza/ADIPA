@@ -3,10 +3,7 @@ package com.utez.adipa.ADIPA_BAFO.controller;
 import com.utez.adipa.ADIPA_BAFO.config.ApiResponse;
 import com.utez.adipa.ADIPA_BAFO.services.TipoUsuarioService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/adipa/tipousuario")
@@ -22,5 +19,10 @@ public class TipoUsuarioController {
     @GetMapping("/")
     public ResponseEntity<ApiResponse> getAll(){
         return service.finAll();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse> getById(@PathVariable Long id){
+        return service.findById(id);
     }
 }

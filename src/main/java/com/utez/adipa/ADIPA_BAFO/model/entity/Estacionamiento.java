@@ -15,7 +15,7 @@ public class Estacionamiento {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "estacionamiento_id")
+    @Column(name = "id_estacionamiento")
     private Long estacionamiento_id;
     @Column(name = "num_slot", nullable = false)
     private String num_slot;

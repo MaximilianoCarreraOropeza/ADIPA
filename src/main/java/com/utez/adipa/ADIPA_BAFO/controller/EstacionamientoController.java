@@ -28,5 +28,8 @@ public class EstacionamientoController {
         return service.findAll();
     }
 
-
+    @GetMapping("/{docencia_ubi}")
+    public ResponseEntity<ApiResponse> findByDocencia(@PathVariable String docencia_ubi){
+        return service.findByDocencia(docencia_ubi);
+    }
 }
