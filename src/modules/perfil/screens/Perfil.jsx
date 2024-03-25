@@ -10,39 +10,47 @@ import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 
 export default function Perfil(props) {
-
   const { setIsAuthenticated, navigation } = props;
   const fotoPerfil = usuario;
   const contra = cambiar;
   const salida = cerrar;
+  const [session, setSession] = useState([]);
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
   const [ask, setAsk] = useState(false);
   const [success, setSuccess] = useState(false);
   const [confirm, setConfirm] = useState(false);
-  const [data, setData] = useState(null);
   const [name, setName] = useState('');
   const [surname, setSurname] = useState('');
   const [lastname, setLastname] = useState('');
   const [matricula, setMatricula] = useState('');
-  getData();
+  const [role, setRole] = useState('');
   getData = async () => {
+
     try {
-      const value = await AsyncStorage.getItem('name');
-      setName(value);
-      if (name !== null) {
-        console.warn(value);
-      }
+      const value = await AsyncStorage.getItem('session');
+      if(value !== null){
+      const sessionData = JSON.parse(value);
+      setSession(sessionData); // Establecer el estado con los datos de sesión
+      setName(sessionData.name);
+      setSurname(sessionData.surname);
+      setLastname(sessionData.lastname);
+      setMatricula(sessionData.matricula);
+      setRole(sessionData.rol);}
     } catch (e) {
-      // error reading value
       console.error(e);
     }
   };
 
+  useEffect(() => {
+    getData(); // Llamar a getData() cuando el componente se monte
+    console.log(session);
+  }, []); // El segundo argumento [] asegura que se ejecute solo una vez
+
   if (confirm) {
     const handleLoginOut = async () => {
       try {
-        await AsyncStorage.removeItem("token");
+        await AsyncStorage.removeItem("session");
         setAsk(false);
         setSuccess(true);
         const close = () => setIsAuthenticated(false);
@@ -58,12 +66,12 @@ export default function Perfil(props) {
       <View style={styles.card}>
         <View style={styles.foto}>
           <Image source={fotoPerfil} style={styles.img} />
-          <Text style={styles.estudiante}>Estudiante</Text>
+          <Text style={styles.estudiante}>{role}</Text>
         </View>
         <View style={styles.column}>
           <Text style={styles.nombre}>{name}</Text>
-          <Text style={styles.nombre}>{surname}</Text>
-          <Text style={styles.nombre}>{lastname}</Text>
+          <Text style={styles.nombre}>{surname} {lastname}</Text>
+          <Text style={styles.nombre}>{matricula}</Text>
         </View>
       </View>
       <View style={styles.btns}>
