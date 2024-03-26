@@ -4,6 +4,7 @@ import com.utez.adipa.ADIPA_BAFO.security.jwt.JwtAuthenticationFilter;
 import com.utez.adipa.ADIPA_BAFO.security.service.UserDetailsServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -35,6 +36,7 @@ public class MainSecurity {
     }
 
     @Bean
+    @Primary
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }

@@ -20,12 +20,12 @@ public class TipoUsuarioService {
         this.repository = repository;
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public ResponseEntity<ApiResponse> finAll(){
         return new ResponseEntity<>(new ApiResponse(repository.findAll(), HttpStatus.OK), HttpStatus.OK);
     }
 
-    @Transactional
+    @Transactional(readOnly = true)
     public ResponseEntity<ApiResponse> findById(Long id){
         Optional<TipoUsuario> foundTipo = repository.findById(id);
         if (foundTipo.isEmpty()){
