@@ -1,5 +1,5 @@
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
-import React, { useState} from "react";
+import React, { useState } from "react";
 import PingPoint from "./components/PingPoint";
 import { BackgroundImage } from "@rneui/base";
 import ConoceCampus from "../../../../assets/ConoceCampus.png";
@@ -15,19 +15,13 @@ export default function Principal(props) {
 
   const playSound = async (sound) => {
     const soundObject = new Audio.Sound();
-    try {
-      await soundObject.loadAsync();
-      await soundObject.setPositionAsync(0);
-      await soundObject.playAsync();
-      /*if (soundObject._loaded) {
-        
-        await soundObject.playAsync(sound);
-      } else {
-        
+    if(!(sound === undefined)) {
+      try {
+        await soundObject.loadAsync(sound);
+        await soundObject.playAsync();
+      } catch (error) {
+        console.log(error);
       }
-      */
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -49,7 +43,7 @@ export default function Principal(props) {
               direccion={"Docencia5"}
               tipo={"carro"}
               exclusividad={"libre"}
-              playSound={()=>playSound(require("../../../../assets/prueba.mp3"))}
+              playSound={() => playSound()}
             />
           </View>
           <View style={styles.pin2}>
@@ -58,6 +52,7 @@ export default function Principal(props) {
               direccion={"Cedim"}
               tipo={"carro"}
               exclusividad={"res"}
+              playSound={() => playSound()}
             />
           </View>
           <View style={styles.pin3}>
@@ -66,6 +61,7 @@ export default function Principal(props) {
               direccion={"Docencia4"}
               tipo={"carro"}
               exclusividad={"ocupado"}
+              playSound={() => playSound()}
             />
           </View>
           <View style={styles.pin4}>
@@ -74,6 +70,7 @@ export default function Principal(props) {
               direccion={"Docencia3"}
               tipo={"carro"}
               exclusividad={"ocupado"}
+              playSound={() => playSound()}
             />
           </View>
           <View style={styles.pin5}>
@@ -82,6 +79,7 @@ export default function Principal(props) {
               direccion={"Docencia3Motos"}
               tipo={"moto"}
               exclusividad={"SN"}
+              playSound={() => playSound()}
             />
           </View>
           <View style={styles.pin6}>
@@ -90,6 +88,7 @@ export default function Principal(props) {
               direccion={"Jardineras"}
               tipo={"carro"}
               exclusividad={"res"}
+              playSound={() => playSound()}
             />
           </View>
           <View style={styles.pin7}>
@@ -98,6 +97,7 @@ export default function Principal(props) {
               direccion={"CafeBalcon"}
               tipo={"carro"}
               exclusividad={"libre"}
+              playSound={() => playSound()}
             />
           </View>
           <View style={styles.pin8}>
@@ -106,6 +106,7 @@ export default function Principal(props) {
               direccion={"Docencia1"}
               tipo={"carro"}
               exclusividad={"exclusivo"}
+              playSound={() => playSound()}
             />
           </View>
           <View style={styles.pin9}>
@@ -114,6 +115,7 @@ export default function Principal(props) {
               direccion={"CDS"}
               tipo={"carro"}
               exclusividad={"exclusivo"}
+              playSound={() => playSound()}
             />
           </View>
           <View style={styles.pin10}>
@@ -122,6 +124,7 @@ export default function Principal(props) {
               direccion={"TallerPesado2"}
               tipo={"carro"}
               exclusividad={"res"}
+              playSound={() => playSound()}
             />
           </View>
           <View style={styles.pin11}>
@@ -130,6 +133,7 @@ export default function Principal(props) {
               direccion={"CDSMotos"}
               tipo={"moto"}
               exclusividad={"SN"}
+              playSound={() => playSound()}
             />
           </View>
         </BackgroundImage>
@@ -175,11 +179,11 @@ const styles = StyleSheet.create({
   pin: {
     position: "absolute",
     top: "11%",
-    left: "43%",
+    left: "40%",
   },
   pin2: {
     position: "absolute",
-    top: "5%",
+    top: "3%",
     left: "50%",
   },
   pin3: {
@@ -200,7 +204,7 @@ const styles = StyleSheet.create({
   pin6: {
     position: "absolute",
     top: "30%",
-    left: "78%",
+    left: "79%",
   },
   pin7: {
     position: "absolute",

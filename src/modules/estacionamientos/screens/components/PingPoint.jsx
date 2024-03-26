@@ -2,6 +2,7 @@ import React from "react";
 import { TouchableOpacity, StyleSheet, View } from "react-native";
 import { Svg, Path, Image, Circle } from "react-native-svg";
 
+
 const PingPoint = ({ onPress, direccion, tipo, exclusividad, playSound }) => {
   return (
     <TouchableOpacity onPress={() => {

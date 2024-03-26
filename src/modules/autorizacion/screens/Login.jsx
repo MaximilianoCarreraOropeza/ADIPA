@@ -9,14 +9,14 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
-const API_URL = "http://192.168.1.82:8080/adipa/auth/signin";
+const API_URL = "http://192.168.100.27:8080/adipa/auth/signin";
 
 export default function Login(props) {
   const { setIsAuthenticated } = props;
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(true);
   const [showMessage, setShowMessage] = useState({ email: "", password: "" });
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
@@ -36,7 +36,7 @@ export default function Login(props) {
           .catch(() => {
             setTimeout(() => {
               setVisible(false);
-              setWarning(!warning);
+              setError(!error);
             }, 2000);
           });
         if (response.status === 200) {
@@ -140,16 +140,16 @@ export default function Login(props) {
       </View>
       <Loading visible={visible} title="Iniciando Sesión" />
       <Message
-        type={"error"}
-        visible={error}
-        setVisible={setError}
-        title="Error al iniciar sesion"
-      />
-      <Message
         type={"warning"}
         visible={warning}
         setVisible={setWarning}
-        title="Usuario o contraseña no valida"
+        title="Error al iniciar sesion"
+      />
+      <Message
+        type={"error"}
+        visible={error}
+        setVisible={setError}
+        title="Usuario y/o contraseña incorrectos"
       />
       <Message
         type={"success"}

@@ -30,7 +30,7 @@ export default function CambiarContra(props) {
     setIdUser(session.id);
   });
 
-  const API_URL = "http://192.168.1.82:8080/adipa/usuario/" + idUser;
+  const API_URL = "http://192.168.100.27:8080/adipa/usuario/" + idUser;
 
   const changePassword = async () => {
     try {
@@ -48,6 +48,10 @@ export default function CambiarContra(props) {
       !isEmpty(newPassword) &&
       !isEmpty(confirmPassword)
     ) {
+      if(!(newPassword === confirmPassword)) {
+        setWarning(true)
+
+      } else {
       setVisible(!visible)
       setShowMessage({ password: "", newPassword: "", confirmPassword: "" });
       changePassword();
@@ -59,6 +63,8 @@ export default function CambiarContra(props) {
         setSuccess(false);
         navigation.goBack();
       }, 3000)
+      }
+
     } else {
       setShowMessage({
         password: "Campo obligatorio",
@@ -159,7 +165,7 @@ export default function CambiarContra(props) {
         type={"warning"}
         visible={warning}
         setVisible={setWarning}
-        title="Usuario o contraseña no valida"
+        title="Contraseñas no coinciden"
       />
       <Message
         type={"success"}

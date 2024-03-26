@@ -1,7 +1,8 @@
-import { StyleSheet, View, Image } from "react-native";
-import React from "react";
+import { StyleSheet, Image, Dimensions } from "react-native";
+import React, { useEffect, useState} from "react";
 import { Overlay } from "@rneui/base";
 import mapaCodec from "../../../assets/mapacodec.jpg";
+import { View } from "react-native";
 
 export default function Codec(props) {
   const { visible, setVisible } = props;
@@ -9,34 +10,31 @@ export default function Codec(props) {
   const toggleOverlay = () => {
     setVisible(!visible);
   };
+
+
   return (
     <Overlay
       isVisible={visible}
-      windowsBackgroundColor="rgb(0,0,0,0,5)"
       overlayBackgroundColor="transparent"
       onBackdropPress={toggleOverlay}
       overlayStyle={styles.overlay}
     >
-        <Image source={image} style={styles.image}/>
+      <View style={styles.container}>
+        <Image source={image} style={styles.image} />
+      </View>
     </Overlay>
   );
 }
 
 const styles = StyleSheet.create({
   overlay: {
-    height: "50%",
-    width: "100%",
-    backgroundColor: "white",
-    borderColor: "#009475",
-    borderWidth: 4,
+    backgroundColor: "transparent",
     borderRadius: 12,
-    justifyContent: "center",
-    alignItems: "center",
+    width: "100%",
+    height: "100%",
   },
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
   },
   image: {
     width: "100%",
