@@ -6,18 +6,17 @@ import { isEmpty } from "lodash";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 import axios from "axios";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useNavigation } from "@react-navigation/native";
 
-const API_URL = "http://192.168.0.9:8080/adipa/auth/signin";
+const API_URL = "http://192.168.1.82:8080/adipa/auth/signin";
 
 export default function Login(props) {
   const { setIsAuthenticated } = props;
   const navigation = useNavigation();
-const prueba = '';
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const [showMessage, setShowMessage] = useState({ email: "", password: "" });
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
@@ -29,43 +28,46 @@ const prueba = '';
       setShowMessage({ email: "", password: "" });
       try {
         setVisible(!visible);
-        const response = await axios.post(API_URL, {
-          matricula: email,
-          contrasena: password,
-        });
+        const response = await axios
+          .post(API_URL, {
+            matricula: email,
+            contrasena: password,
+          })
+          .catch(() => {
+            setTimeout(() => {
+              setVisible(false);
+              setWarning(!warning);
+            }, 2000);
+          });
         if (response.status === 200) {
-          const token = response.data.data.token;
-          const matricula = response.data.data.usuario.matricula;
-          const name = response.data.data.usuario.persona.nombre;
-          const surname = response.data.data.usuario.persona.apellido_p;
-          const lastname = response.data.data.usuario.persona.apellido_m;
-          const storeData = async (value) => {
+          const session = {
+            id: response.data.data.usuario.id_usuario,
+            token: response.data.data.token,
+            matricula: response.data.data.usuario.matricula,
+            name: response.data.data.usuario.persona.nombre,
+            surname: response.data.data.usuario.persona.apellido_p,
+            lastname: response.data.data.usuario.persona.apellido_m,
+            rol: response.data.data.usuario.tipoUsuario.nombre,
+          };
+          const storeData = async () => {
             try {
-              await AsyncStorage.setItem('token', token);
-              await AsyncStorage.setItem('name', name);
-              await AsyncStorage.setItem('surname', surname);
-              await AsyncStorage.setItem('lastname', lastname);
-              await AsyncStorage.setItem('matricula', matricula);
-              prueba = await AsyncStorage.getItem('name')
+              await AsyncStorage.setItem("session", JSON.stringify(session));
             } catch (e) {
               console.error(e);
             }
           };
-          setSuccess(!success);
+          storeData();
           setTimeout(() => {
-            setIsAuthenticated(true);
+            setVisible(false);
             setSuccess(!success);
-            console.log(prueba);
-            console.log(matricula);
-            console.log(name);
-            console.log(surname);
-            console.log(lastname);
           }, 1000);
+          setTimeout(() => {
+            setSuccess(false);
+            setIsAuthenticated(true);
+          }, 3000);
         }
       } catch (error) {
         setError(!error);
-      } finally {
-        setVisible(false);
       }
     } else {
       setShowMessage({

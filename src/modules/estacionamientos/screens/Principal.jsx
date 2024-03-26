@@ -1,16 +1,35 @@
 import { StyleSheet, View, Image, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import React, { useState} from "react";
 import PingPoint from "./components/PingPoint";
 import { BackgroundImage } from "@rneui/base";
 import ConoceCampus from "../../../../assets/ConoceCampus.png";
 import mapaPin from "../../../../assets/mapaPin.png";
 import Codec from "../../../kernel/components/Codec";
+import { Audio } from "expo-av";
 
 export default function Principal(props) {
   const { navigation } = props;
   const image1 = ConoceCampus;
   const image2 = mapaPin;
   const [isModalVisible, setModalVisible] = useState(false);
+
+  const playSound = async (sound) => {
+    const soundObject = new Audio.Sound();
+    try {
+      await soundObject.loadAsync();
+      await soundObject.setPositionAsync(0);
+      await soundObject.playAsync();
+      /*if (soundObject._loaded) {
+        
+        await soundObject.playAsync(sound);
+      } else {
+        
+      }
+      */
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handlerPress = (screen) => {
     navigation.navigate(screen);
@@ -30,6 +49,7 @@ export default function Principal(props) {
               direccion={"Docencia5"}
               tipo={"carro"}
               exclusividad={"libre"}
+              playSound={()=>playSound(require("../../../../assets/prueba.mp3"))}
             />
           </View>
           <View style={styles.pin2}>
@@ -115,9 +135,7 @@ export default function Principal(props) {
         </BackgroundImage>
       </View>
       <View style={styles.container3}>
-        <TouchableOpacity
-          onPress={toggleOverlay}
-          style={styles.conoces}>
+        <TouchableOpacity onPress={toggleOverlay} style={styles.conoces}>
           <Image source={image1} style={styles.TouchableOpacity} />
         </TouchableOpacity>
       </View>

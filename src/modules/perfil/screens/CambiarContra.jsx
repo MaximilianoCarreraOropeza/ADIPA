@@ -1,12 +1,12 @@
 import { StyleSheet, Text, View } from "react-native";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Input, Icon, Button } from "@rneui/base";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 import { isEmpty } from "lodash";
 
 export default function CambiarContra(props) {
-  const { navigation } = props;
+  const { navigation, route } = props;
   const [showMessage, setShowMessage] = useState({
     password: "",
     newPassword: "",
@@ -20,7 +20,27 @@ export default function CambiarContra(props) {
   const [showPassword3, setShowPassword3] = useState(true);
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
+  const [warning, setWarning] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [idUser, setIdUser] = useState("");
+  const [session, setSession] = useState([]);
+
+  useEffect(() => {
+    setSession(route.params);
+    setIdUser(session.id);
+  });
+
+  const API_URL = "http://192.168.1.82:8080/adipa/usuario/" + idUser;
+
+  const changePassword = async () => {
+    try {
+      const response = await axios.patch(API_URL, {
+        contrasena: confirmPassword,
+      })
+    } catch (error) {
+        setError(!error);
+    }
+  }
 
   const CambiarContraseña = async () => {
     if (
@@ -28,8 +48,17 @@ export default function CambiarContra(props) {
       !isEmpty(newPassword) &&
       !isEmpty(confirmPassword)
     ) {
+      setVisible(!visible)
       setShowMessage({ password: "", newPassword: "", confirmPassword: "" });
-      setSuccess(true);
+      changePassword();
+      setTimeout(() => {
+        setVisible(false);
+        setSuccess(!success);
+      }, 1000);
+      setTimeout(() => {
+        setSuccess(false);
+        navigation.goBack();
+      }, 3000)
     } else {
       setShowMessage({
         password: "Campo obligatorio",
@@ -127,6 +156,12 @@ export default function CambiarContra(props) {
         title="Error al cambiar la contraseña"
       />
       <Message
+        type={"warning"}
+        visible={warning}
+        setVisible={setWarning}
+        title="Usuario o contraseña no valida"
+      />
+      <Message
         type={"success"}
         visible={success}
         setVisible={setSuccess}
@@ -190,6 +225,6 @@ const styles = StyleSheet.create({
     color: "#002E60",
   },
   fontSize: {
-    fontSize: 14
+    fontSize: 14,
   },
 });

@@ -12,7 +12,7 @@ const { visible, title } = props
         overlayStyle={styles.overlay}
     >
         <View style={styles.container}>
-            <ActivityIndicator size='large' color='green'/>
+            <ActivityIndicator size='large' color='#002E60'/>
             <Text style={styles.title}>{title}</Text>
         </View>
     </Overlay>
@@ -24,14 +24,14 @@ const styles = StyleSheet.create({
         height: 200,
         width: 350,
         backgroundColor: 'white',
-        borderColor: '#009475',
+        borderColor: '#002E60',
         borderWidth: 4,
         borderRadius: 12,
         justifyContent: 'center',
         alignItems: 'center'
     },
     title: {
-        color: '#009475',
+        color: '#002E60',
         marginTop: 16,
         fontSize: 18
     }, 

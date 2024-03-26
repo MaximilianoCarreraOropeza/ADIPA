@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 import React, { useEffect, useState } from "react";
 import { Image } from "@rneui/themed";
 import usuario from "../../../../assets/usuario.png";
@@ -9,7 +10,8 @@ import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 
 export default function Perfil(props) {
-  const { setIsAuthenticated, navigation } = props;
+  const { setIsAuthenticated } = props;
+  const navigation = useNavigation();
   const fotoPerfil = usuario;
   const contra = cambiar;
   const salida = cerrar;
@@ -18,63 +20,89 @@ export default function Perfil(props) {
   const [ask, setAsk] = useState(false);
   const [success, setSuccess] = useState(false);
   const [confirm, setConfirm] = useState(false);
-  const [data, setData] = useState(null);
-  const [name, setName] = useState('');
-  const [surname, setSurname] = useState('');
-  const [lastname, setLastname] = useState('');
-  const [matricula, setMatricula] = useState('');
-  getData();
+  const [id, setId] = useState('');
+  const [session, setSession] = useState([]);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [lastname, setLastname] = useState("");
+  const [matricula, setMatricula] = useState("");
+  const [role, setRole] = useState("");
+
   getData = async () => {
     try {
-      const value = await AsyncStorage.getItem('name');
-      setName(value);
-      if (name !== null) {
-        console.warn(value);
+      const value = await AsyncStorage.getItem("session");
+      if (value !== null) {
+        const sessionData = JSON.parse(value);
+        setSession(sessionData);
+        setId(session.id);
+        setName(sessionData.name);
+        setSurname(sessionData.surname);
+        setLastname(sessionData.lastname);
+        setMatricula(sessionData.matricula);
+        setRole(sessionData.rol);
       }
     } catch (e) {
-      // error reading value
-      console.error(e);
+      setError(!error);
     }
   };
 
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const confirmAction = async () => {
+    setAsk(!ask);
+  };
+
   if (confirm) {
-    const handleLoginOut = async () => {
+    const sessionClose = async () => {
       try {
-        await AsyncStorage.removeItem("token");
-        setAsk(false);
-        setSuccess(true);
-        const close = () => setIsAuthenticated(false);
-        setTimeout(close, 1000)
+        await AsyncStorage.removeItem("session").then(() => {
+          setConfirm(false);
+          setAsk(false);
+          setVisible(true);
+        });
+        setTimeout(() => {
+          setVisible(false);
+          setSuccess(true);
+        }, 2000);
+        setTimeout(() => {
+          setSuccess(false);
+          setIsAuthenticated(false);
+        }, 4000);
       } catch (e) {
-        setError(true);
+        setError(!error);
       }
     };
-    handleLoginOut();
+    sessionClose();
   }
+
   return (
     <View style={styles.container}>
       <View style={styles.card}>
         <View style={styles.foto}>
           <Image source={fotoPerfil} style={styles.img} />
-          <Text style={styles.estudiante}>Estudiante</Text>
+          <Text style={styles.estudiante}>{role}</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.nombre}>Diego Eduardo</Text>
-          <Text style={styles.nombre}>Jaimez Flores</Text>
-          <Text style={styles.nombre}>20223tn021</Text>
+          <Text style={styles.nombre}>{name}</Text>
+          <Text style={styles.nombre}>
+            {surname} {lastname}
+          </Text>
+          <Text style={styles.nombre}>{matricula}</Text>
         </View>
       </View>
       <View style={styles.btns}>
         <TouchableOpacity
           style={styles.btn}
           onPress={() => {
-            navigation.navigate("CambiarContra");
+            navigation.navigate("CambiarContra", session);
           }}
         >
           <Image source={contra} style={styles.icono} />
           <Text style={styles.texto}>Cambiar Contraseña</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.btn} onPress={confirmLogout}>
+        <TouchableOpacity style={styles.btn} onPress={confirmAction}>
           <Image source={salida} style={styles.icono} />
           <Text style={[styles.texto, { color: "black" }]}>Cerrar Sesión</Text>
         </TouchableOpacity>
@@ -150,9 +178,9 @@ const styles = StyleSheet.create({
   btn: {
     flexDirection: "row",
     alignItems: "center",
-    borderColor: "#002E60", // Color del borde
-    borderWidth: 2, // Ancho del borde
-    borderRadius: 20, // Más redondeado
+    borderColor: "#002E60",
+    borderWidth: 2,
+    borderRadius: 20,
     paddingVertical: 15,
     paddingHorizontal: 20,
     backgroundColor: "white",

@@ -3,7 +3,7 @@ import React from "react";
 import { Overlay, Button, Icon } from "@rneui/base";
 
 export default function Error(props) {
-  const { type, visible, setVisible, title, confirm, setConfirm} = props;
+  const { type, visible, setVisible, title, confirm, setConfirm } = props;
 
   const toggleOverlay = () => {
     setVisible(!visible);
@@ -11,7 +11,7 @@ export default function Error(props) {
 
   const confirmAction = () => {
     setConfirm(!confirm);
-  }
+  };
 
   return (
     <View>
@@ -33,20 +33,6 @@ export default function Error(props) {
                 type="material-community"
               />
               <Text style={styles.titleError}>{title}</Text>
-              {
-                /*
-                <View>
-
-                <Button
-                  title="Aceptar"
-                  onPress={toggleOverlay}
-                  buttonStyle={styles.buttonError}
-                  titleStyle={styles.containerBtnError}
-                  color="error"
-                />
-              </View>
-                */
-              }
             </View>
           </Overlay>
         </View>
@@ -68,17 +54,6 @@ export default function Error(props) {
                 type="material-community"
               />
               <Text style={styles.titleWarning}>{title}</Text>
-              {/*
-              <View>  
-                <Button
-                  title="Aceptar"
-                  onPress={toggleOverlay}
-                  buttonStyle={styles.buttonWarning}
-                  titleStyle={styles.containerBtnWarning}
-                  color="#F8EF22"
-                />
-              </View>
-                */}
             </View>
           </Overlay>
         </View>
@@ -88,7 +63,6 @@ export default function Error(props) {
             isVisible={visible}
             windowsBackgroundColor="rgb(0,0,0,0,5)"
             overlayBackgroundColor="transparent"
-            onBackdropPress={toggleOverlay}
             overlayStyle={styles.overlaySuccess}
           >
             <View style={styles.containerSuccess}>
@@ -100,23 +74,10 @@ export default function Error(props) {
                 type="material-community"
               />
               <Text style={styles.titleSuccess}>{title}</Text>
-              {
-                /*
-                  <View>
-                <Button
-                  title="Aceptar"
-                  onPress={toggleOverlay}
-                  buttonStyle={styles.buttonSuccess}
-                  titleStyle={styles.containerBtnSuccess}
-                  color={"#009475"}
-                />
-                </View>
-                */
-              }
             </View>
           </Overlay>
         </View>
-      ) :type == "ask" ? (
+      ) : type == "ask" ? (
         <View>
           <Overlay
             isVisible={visible}
@@ -127,36 +88,36 @@ export default function Error(props) {
           >
             <View style={styles.containerSuccess}>
               <Icon
-                name="account-question-outline"
+                name="comment-question"
                 size={50}
                 color="#009475"
                 iconStyle={styles.Success}
                 type="material-community"
               />
               <Text style={styles.titleSuccess}>{title}</Text>
-            
+
               <View style={styles.btns}>
                 <Button
                   title="Aceptar"
+                  type="outline"
                   onPress={confirmAction}
                   buttonStyle={styles.buttonSuccess}
                   titleStyle={styles.containerBtnSuccess}
                 />
                 <Button
-                    title="Cancelar"
-                    onPress={toggleOverlay}
-                    buttonStyle={styles.buttonSuccess}
-                    titleStyle={styles.containerBtnSuccess}
-                    color={"error"}
+                  title="Cancelar"
+                  type="outline"
+                  onPress={toggleOverlay}
+                  buttonStyle={styles.buttonError}
+                  titleStyle={styles.containerBtnError}
                 />
-                </View>
+              </View>
             </View>
           </Overlay>
         </View>
       ) : (
         console.log("No se ha seleccionado un tipo de mensaje")
-      )
-    }
+      )}
     </View>
   );
 }
@@ -183,13 +144,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttonError: {
-    borderRadius: 5,
-    marginBottom: 15,
-    marginTop: 15,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "red",
+    marginBottom: "5%",
+    marginTop: "5%",
+    marginLeft: "10%"
   },
   containerBtnError: {
     fontSize: 18,
-    color: "black"
+    color: "black",
   },
   Error: {
     marginTop: 15,
@@ -214,15 +178,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  buttonWarning: {
-    borderRadius: 5,
-    marginBottom: 15,
-    marginTop: 15,
-  },
-  containerBtnWarning: {
-    fontSize: 18,
-    color: "black"
-  },
   Warning: {
     marginTop: 15,
   },
@@ -239,7 +194,7 @@ const styles = StyleSheet.create({
   titleSuccess: {
     color: "#000000",
     marginTop: 12,
-    fontSize: 18
+    fontSize: 18,
   },
   containerSuccess: {
     flex: 1,
@@ -248,16 +203,17 @@ const styles = StyleSheet.create({
   },
   buttonSuccess: {
     borderRadius: 5,
+    borderWidth: 2,
     marginBottom: "5%",
     marginTop: "5%",
-    marginLeft: "10%"
+    marginLeft: "10%",
   },
   containerBtnSuccess: {
     fontSize: 18,
-    color: "black"
+    color: "black",
   },
   Success: {
-    marginTop: 15
+    marginTop: 15,
   },
   overlayAsk: {
     height: 200,
@@ -267,9 +223,9 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderRadius: 12,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   btns: {
-    flexDirection: "row"
-  }
+    flexDirection: "row",
+  },
 });

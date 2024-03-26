@@ -13,31 +13,31 @@ export default function Docencia5() {
         <View style={styles.containerSlots}>
           <SlotEstacionamiento
             estado={true}
-            exclusividad={"discapacidad"}
+            exclusividad={"SN"}
             tipo={"carro"}
             orientacion={"vertical"}
           />
           <SlotEstacionamiento
             estado={true}
-            exclusividad={"res"}
+            exclusividad={"SN"}
             tipo={"carro"}
             orientacion={"vertical"}
           />
           <SlotEstacionamiento
             estado={true}
-            exclusividad={"discapacidad"}
+            exclusividad={"SN"}
             tipo={"carro"}
             orientacion={"vertical"}
           />
           <SlotEstacionamiento
             estado={true}
-            exclusividad={"discapacidad"}
+            exclusividad={"SN"}
             tipo={"carro"}
             orientacion={"vertical"}
           />
           <SlotEstacionamiento
             estado={true}
-            exclusividad={"exclusivo"}
+            exclusividad={"SN"}
             tipo={"carro"}
             orientacion={"vertical"}
           />
@@ -51,84 +51,84 @@ export default function Docencia5() {
           <Image source={letraE} style={styles.imagenEstacionamiento} />
         </View>
         <View style={styles.containerSlots2}>
+        <SlotEstacionamiento
+          estado={true}
+          exclusividad={"SN"} 
+          tipo={"moto"} 
+          orientacion={"horizontal"}
+          />
           <SlotEstacionamiento
             estado={true}
-            exclusividad={"discapacidad"}
+            exclusividad={"SN"}
             tipo={"carro"}
             orientacion={"horizontal"}
           />
           <SlotEstacionamiento
             estado={true}
-            exclusividad={"res"}
+            exclusividad={"SN"}
             tipo={"carro"}
             orientacion={"horizontal"}
           />
           <SlotEstacionamiento
             estado={true}
-            exclusividad={"discapacidad"}
-            tipo={"carro"}
-            orientacion={"horizontal"}
-          />
-          <SlotEstacionamiento
-            estado={true}
-            exclusividad={"discapacidad"}
+            exclusividad={"exclusivo"}
             tipo={"carro"}
             orientacion={"horizontal"}
           />
         </View>
       </View>
       <View style={styles.containerVertical2}>
+      <SlotEstacionamiento
+          estado={true}
+          exclusividad={"SN"}
+          tipo={"carro"}
+          orientacion={"vertical"}
+        />
+        <SlotEstacionamiento
+          estado={true}
+          exclusividad={"SN"}
+          tipo={"carro"}
+          orientacion={"vertical"}
+        />
+        <SlotEstacionamiento
+          estado={true}
+          exclusividad={"SN"}
+          tipo={"carro"}
+          orientacion={"vertical"}
+        />
+        <SlotEstacionamiento
+          estado={true}
+          exclusividad={"SN"}
+          tipo={"carro"}
+          orientacion={"vertical"}
+        />
+        <SlotEstacionamiento
+          estado={true}
+          exclusividad={"SN"}
+          tipo={"carro"}
+          orientacion={"vertical"}
+        />
+        <SlotEstacionamiento
+          estado={true}
+          exclusividad={"SN"}
+          tipo={"carro"}
+          orientacion={"vertical"}
+        />
+        <SlotEstacionamiento
+          estado={true}
+          exclusividad={"SN"}
+          tipo={"carro"}
+          orientacion={"vertical"}
+        />
+        <SlotEstacionamiento
+          estado={true}
+          exclusividad={"SN"}
+          tipo={"carro"}
+          orientacion={"vertical"}
+        />
         <SlotEstacionamiento
           estado={true}
           exclusividad={"discapacidad"}
-          tipo={"carro"}
-          orientacion={"vertical"}
-        />
-        <SlotEstacionamiento
-          estado={true}
-          exclusividad={"res"}
-          tipo={"carro"}
-          orientacion={"vertical"}
-        />
-        <SlotEstacionamiento
-          estado={true}
-          exclusividad={"discapacidad"}
-          tipo={"carro"}
-          orientacion={"vertical"}
-        />
-        <SlotEstacionamiento
-          estado={true}
-          exclusividad={"discapacidad"}
-          tipo={"carro"}
-          orientacion={"vertical"}
-        />
-        <SlotEstacionamiento
-          estado={true}
-          exclusividad={"exclusivo"}
-          tipo={"carro"}
-          orientacion={"vertical"}
-        />
-        <SlotEstacionamiento
-          estado={true}
-          exclusividad={"res"}
-          tipo={"carro"}
-          orientacion={"vertical"}
-        />
-        <SlotEstacionamiento
-          estado={true}
-          exclusividad={"discapacidad"}
-          tipo={"carro"}
-          orientacion={"vertical"}
-        />
-        <SlotEstacionamiento
-          estado={true}
-          exclusividad={"discapacidad"}
-          tipo={"carro"}
-          orientacion={"vertical"}
-        />
-        <SlotEstacionamiento
-          estado={true}
-          exclusividad={"exclusivo"}
           tipo={"carro"}
           orientacion={"vertical"}
         />
