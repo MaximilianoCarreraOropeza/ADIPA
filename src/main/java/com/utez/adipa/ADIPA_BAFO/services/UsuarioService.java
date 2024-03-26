@@ -4,7 +4,6 @@ import com.utez.adipa.ADIPA_BAFO.config.ApiResponse;
 import com.utez.adipa.ADIPA_BAFO.model.dao.UsuarioRepository;
 import com.utez.adipa.ADIPA_BAFO.model.dto.UsuarioDto;
 import com.utez.adipa.ADIPA_BAFO.model.entity.Usuario;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;

@@ -1,7 +1,6 @@
 package com.utez.adipa.ADIPA_BAFO.controller;
 
 import com.utez.adipa.ADIPA_BAFO.config.ApiResponse;
-import com.utez.adipa.ADIPA_BAFO.model.dto.PersonaDto;
 import com.utez.adipa.ADIPA_BAFO.services.PersonaService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

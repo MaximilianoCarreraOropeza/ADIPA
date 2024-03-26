@@ -3,7 +3,6 @@ package com.utez.adipa.ADIPA_BAFO.controller;
 import com.utez.adipa.ADIPA_BAFO.config.ApiResponse;
 import com.utez.adipa.ADIPA_BAFO.model.dto.UsuarioDto;
 import com.utez.adipa.ADIPA_BAFO.services.UsuarioService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;

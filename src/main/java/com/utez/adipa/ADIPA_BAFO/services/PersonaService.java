@@ -2,11 +2,7 @@ package com.utez.adipa.ADIPA_BAFO.services;
 
 import com.utez.adipa.ADIPA_BAFO.config.ApiResponse;
 import com.utez.adipa.ADIPA_BAFO.model.dao.PersonaRepository;
-import com.utez.adipa.ADIPA_BAFO.model.dao.UsuarioRepository;
-import com.utez.adipa.ADIPA_BAFO.model.dto.PersonaDto;
-import com.utez.adipa.ADIPA_BAFO.model.dto.UsuarioDto;
 import com.utez.adipa.ADIPA_BAFO.model.entity.Persona;
-import com.utez.adipa.ADIPA_BAFO.model.entity.Usuario;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -19,11 +15,9 @@ import java.util.Optional;
 public class PersonaService {
 
     private final PersonaRepository repository;
-    private final UsuarioRepository usuarioRepository;
 
-    public PersonaService(PersonaRepository repository, UsuarioRepository usuarioRepository) {
+    public PersonaService(PersonaRepository repository) {
         this.repository = repository;
-        this.usuarioRepository = usuarioRepository;
     }
 
     @Transactional(readOnly = true)
