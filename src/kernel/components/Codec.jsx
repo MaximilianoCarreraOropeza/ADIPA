@@ -1,44 +1,90 @@
+import React from "react";
 import { StyleSheet, Image, Dimensions } from "react-native";
-import React, { useEffect, useState} from "react";
+import {
+  GestureDetector,
+  Gesture,
+  GestureHandlerRootView,
+} from "react-native-gesture-handler";
+import Animated, {
+  useSharedValue,
+  useAnimatedStyle,
+  withTiming,
+} from "react-native-reanimated";
 import { Overlay } from "@rneui/base";
 import mapaCodec from "../../../assets/mapacodec.jpg";
-import { View } from "react-native";
 
 export default function Codec(props) {
   const { visible, setVisible } = props;
   const image = mapaCodec;
+  const width = Dimensions.get("window").width;
+  const ANCHO_IMAGE = width;
+  const ALTO_IMAGE = width;
+  const escalaImg = useSharedValue(1);
+  const x = useSharedValue(0);
+  const y = useSharedValue(0);
+
+  const centroImagen = {
+    x: ANCHO_IMAGE / 2,
+    y: ALTO_IMAGE / 2,
+  };
+
   const toggleOverlay = () => {
     setVisible(!visible);
   };
 
+  const pinch = Gesture.Pinch()
+    .onStart((e) => {
+      x.value = e.focalX;
+      y.value = e.focalY;
+    })
+    .onUpdate((e) => {
+      escalaImg.value = e.scale;
+    })
+    .onEnd(() => {
+      escalaImg.value = withTiming(1, { duration: 500 });
+    });
+
+  const styles = StyleSheet.create({
+    overlay: {
+      backgroundColor: "white",
+      width: ANCHO_IMAGE,
+      height: ALTO_IMAGE,
+    },
+    image: {
+      width: ANCHO_IMAGE,
+      height: ALTO_IMAGE,
+      resizeMode: "center",
+    },
+  });
+
+  const animatedStyle = useAnimatedStyle(() => ({
+    transform: [
+      { translateX: x.value },
+      { translateY: y.value },
+      { translateX: -centroImagen.x },
+      { translateY: -centroImagen.y },
+      { scale: escalaImg.value },
+      { translateX: -x.value },
+      { translateY: -y.value },
+      { translateX: centroImagen.x },
+      { translateY: centroImagen.y },
+    ],
+  }));
 
   return (
     <Overlay
       isVisible={visible}
-      overlayBackgroundColor="transparent"
       onBackdropPress={toggleOverlay}
       overlayStyle={styles.overlay}
     >
-      <View style={styles.container}>
-        <Image source={image} style={styles.image} />
-      </View>
+      <GestureHandlerRootView>
+        <GestureDetector gesture={pinch}>
+          <Animated.Image
+            source={image}
+            style={[styles.image, animatedStyle]}
+          />
+        </GestureDetector>
+      </GestureHandlerRootView>
     </Overlay>
   );
 }
-
-const styles = StyleSheet.create({
-  overlay: {
-    backgroundColor: "transparent",
-    borderRadius: 12,
-    width: "100%",
-    height: "100%",
-  },
-  container: {
-    flex: 1,
-  },
-  image: {
-    width: "100%",
-    height: "100%",
-    resizeMode: "contain",
-  },
-});

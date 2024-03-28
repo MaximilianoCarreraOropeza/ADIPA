@@ -8,7 +8,7 @@ export default function Docencia3Motos() {
   const letraE = letraEimportado;
   const calle = calleImportado;
   return (
-    <ScrollView horizontal={true} style={styles.scrollView}>
+    <ScrollView horizontal={true}>
       <View style={styles.container}>
         <View style={styles.containerLeft}>
           <SlotEstacionamiento
@@ -501,107 +501,60 @@ export default function Docencia3Motos() {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#554E56",
     justifyContent: "flex-start",
-    flexDirection: "row", // Ajuste para alinear horizontalmente los contenedores
-    alignItems: "flex-start", // Ajuste para alinear verticalmente los contenedores
+    flexDirection: "row", 
+    alignItems: "flex-start"
   },
   containerLeftPlus: {
-    flex: 1,
-    backgroundColor: "#554E56",
-    justifyContent: "flex-start",
-    flexDirection: "row", // Ajuste para alinear horizontalmente los contenedores
-    alignItems: "flex-start", // Ajuste para alinear verticalmente los contenedores
-    marginTop: 25,
+    flexDirection: "row",
+    marginTop: 25
   },
   containerLeftPlus2: {
-    flex: 1,
-    backgroundColor: "#554E56",
-    justifyContent: "flex-start",
-    flexDirection: "row", // Ajuste para alinear horizontalmente los contenedores
-    alignItems: "flex-start", // Ajuste para alinear verticalmente los contenedores
+    flexDirection: "row",
     marginTop: 25,
-    left: 60,
+    left: 60
   },
-
   containerCenter: {
-    flex: 1,
-    backgroundColor: "#554E56",
-    justifyContent: "flex-center",
     padding: 25,
     marginTop: 140,
-    right: 325,
+    right: 325
   },
-
   containerRight: {
-    flex: 1,
-    backgroundColor: "#554E56",
-    justifyContent: "flex-end",
     padding: 25,
     marginTop: 140,
-    right: 355,
+    right: 355
   },
-
   containerRightPlus: {
-    flex: 1,
-    backgroundColor: "#554E56",
-    justifyContent: "flex-end",
     padding: 25,
     marginTop: 140,
     right: 220,
-    bottom: 35,
+    bottom: 35
   },
-
   containerRightPlus2: {
-    flex: 1,
-    backgroundColor: "#554E56",
-    justifyContent: "flex-end",
     padding: 25,
-    right: 100,
+    right: 100
   },
-
   containerLeft: {
-    flex: 1,
-    backgroundColor: "#554E56",
-    justifyContent: "flex-start",
-    padding: 25,
+    padding: 25
   },
-
-  docencia: {
-    width: 20,
-    height: 20,
-  },
-
-  slot: {
-    border: 10,
-    borderColor: "#E5A800",
-    borderRadius: 80,
-  },
-
   imagenDocencia: {
     width: 100,
     height: 100,
     marginTop: 15,
-    marginBottom: 15,
+    marginBottom: 15
   },
-
   imagenEstacionamiento: {
     width: 110,
     height: 110,
     position: "absolute",
     top: 300,
-    right: 490,
+    right: 490
   },
-
   imagenCalle: {
-    height: 675,
-    width: 120,
+    height: 800,
+    width: 145,
     position: "absolute",
-    right: 230,
-  },
-
-  scrollView: {
-    backgroundColor: "#554E56",
-  },
+    right: 210
+  }
 });

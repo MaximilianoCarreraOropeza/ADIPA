@@ -4,7 +4,7 @@ import SlotEstacionamiento from "./components/SlotEstacionamiento";
 
 export default function CDS() {
   return (
-    <ScrollView horizontal={true} style={styles.scrollView}>
+    <ScrollView horizontal={true}>
       <View style={styles.container}>
         <View style={styles.containerLeft}>
           <SlotEstacionamiento
@@ -32,7 +32,6 @@ export default function CDS() {
             orientacion={"horizontal"}
           />
         </View>
-
         <View style={styles.containerArriba}>
           <SlotEstacionamiento
             estado={true}
@@ -217,82 +216,55 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#554E56",
     justifyContent: "flex-start",
-    flexDirection: "row", // Ajuste para alinear horizontalmente los contenedores
-    alignItems: "flex-start", // Ajuste para alinear verticalmente los contenedores
+    flexDirection: "row", 
+    alignItems: "flex-start" 
   },
-
   containerLeft: {
-    flex: 1,
-    backgroundColor: "#554E56",
-    justifyContent: "flex-start",
     padding: 25,
-    marginTop: 250,
+    marginTop: 250
   },
-
   containerArriba: {
-    flex: 1,
-    backgroundColor: "#554E56",
-    justifyContent: "flex-start",
-    flexDirection: "row", // Ajuste para alinear horizontalmente los contenedores
-    alignItems: "flex-start", // Ajuste para alinear verticalmente los contenedores
-    marginTop: 50,
+    flexDirection: "row",
+    marginTop: 50
   },
-
   containerArribaMenos: {
-    flex: 1,
-    backgroundColor: "#554E56",
-    justifyContent: "flex-start",
-    flexDirection: "row", // Ajuste para alinear horizontalmente los contenedores
-    alignItems: "flex-start", // Ajuste para alinear verticalmente los contenedores
+    flexDirection: "row",
     marginTop: 130,
-    marginRight: 30,
+    marginRight: 30
   },
-
   containerEnd: {
     position: "absolute",
     bottom: 180,
     left: 150,
-    backgroundColor: "#554E56",
-    flexDirection: "row", // Ajuste para alinear horizontalmente los contenedores
+    flexDirection: "row"
   },
 
   disposicionImagen: {
     position: "absolute",
     bottom: 20,
     left: 300,
-    backgroundColor: "#554E56",
-    flexDirection: "row", // Ajuste para alinear horizontalmente los contenedores
+    flexDirection: "row"
   },
-
   disposicionElemento: {
-    flex: 1,
-    top: 40,
+    top: "1%",
     left: 300,
-    backgroundColor: "#554E56",
-    flexDirection: "row", // Ajuste para alinear horizontalmente los contenedores
+    flexDirection: "row"
   },
-
   docencia: {
     width: 20,
     height: 20,
   },
-
   imagenDocencia: {
     width: 100,
     height: 100,
     marginTop: 15,
     marginBottom: 15,
   },
-
   imagenEstacionamiento: {
     width: 110,
     height: 110,
     position: "absolute",
     top: 250,
-    right: 165,
-  },
-
-  scrollView: {
-    backgroundColor: "#554E56",
-  },
+    right: 165
+  }
 });

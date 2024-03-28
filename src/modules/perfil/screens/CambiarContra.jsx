@@ -30,17 +30,17 @@ export default function CambiarContra(props) {
     setIdUser(session.id);
   });
 
-  const API_URL = "http://192.168.100.27:8080/adipa/usuario/" + idUser;
+  const API_URL = "http://192.168.1.82:8080/adipa/usuario/" + idUser;
 
   const changePassword = async () => {
     try {
       const response = await axios.patch(API_URL, {
         contrasena: confirmPassword,
-      })
+      });
     } catch (error) {
-        setError(!error);
+      setError(!error);
     }
-  }
+  };
 
   const CambiarContraseña = async () => {
     if (
@@ -48,23 +48,21 @@ export default function CambiarContra(props) {
       !isEmpty(newPassword) &&
       !isEmpty(confirmPassword)
     ) {
-      if(!(newPassword === confirmPassword)) {
-        setWarning(true)
-
+      if (!(newPassword === confirmPassword)) {
+        setWarning(true);
       } else {
-      setVisible(!visible)
-      setShowMessage({ password: "", newPassword: "", confirmPassword: "" });
-      changePassword();
-      setTimeout(() => {
-        setVisible(false);
-        setSuccess(!success);
-      }, 1000);
-      setTimeout(() => {
-        setSuccess(false);
-        navigation.goBack();
-      }, 3000)
+        setVisible(!visible);
+        setShowMessage({ password: "", newPassword: "", confirmPassword: "" });
+        changePassword();
+        setTimeout(() => {
+          setVisible(false);
+          setSuccess(!success);
+        }, 1000);
+        setTimeout(() => {
+          setSuccess(false);
+          navigation.goBack();
+        }, 3000);
       }
-
     } else {
       setShowMessage({
         password: "Campo obligatorio",
