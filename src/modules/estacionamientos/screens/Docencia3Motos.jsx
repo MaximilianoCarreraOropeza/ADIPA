@@ -8,7 +8,7 @@ export default function Docencia3Motos() {
   const letraE = letraEimportado;
   const calle = calleImportado;
   return (
-    <ScrollView horizontal={true}>
+    <ScrollView horizontal={true} style={{backgroundColor: "#554E56",}}>
       <View style={styles.container}>
         <View style={styles.containerLeft}>
           <SlotEstacionamiento

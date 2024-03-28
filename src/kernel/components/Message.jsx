@@ -97,19 +97,19 @@ export default function Error(props) {
               <Text style={styles.titleSuccess}>{title}</Text>
 
               <View style={styles.btns}>
+              <Button
+                  title="Cancelar"
+                  type="outline"
+                  onPress={toggleOverlay}
+                  buttonStyle={styles.buttonError}
+                  titleStyle={styles.containerBtnError}
+                />
                 <Button
                   title="Aceptar"
                   type="outline"
                   onPress={confirmAction}
                   buttonStyle={styles.buttonSuccess}
                   titleStyle={styles.containerBtnSuccess}
-                />
-                <Button
-                  title="Cancelar"
-                  type="outline"
-                  onPress={toggleOverlay}
-                  buttonStyle={styles.buttonError}
-                  titleStyle={styles.containerBtnError}
                 />
               </View>
             </View>

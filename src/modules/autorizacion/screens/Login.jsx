@@ -9,7 +9,7 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
 
-const API_URL = "http://192.168.1.82:8080/adipa/auth/signin";
+const API_URL = "http://192.168.0.10:8080/adipa/auth/signin";
 
 export default function Login(props) {
   const { setIsAuthenticated } = props;

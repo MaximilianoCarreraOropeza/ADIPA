@@ -4,6 +4,8 @@ import { Input, Icon, Button } from "@rneui/base";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 import { isEmpty } from "lodash";
+import axios from 'axios';
+
 
 export default function CambiarContra(props) {
   const { navigation, route } = props;
@@ -30,17 +32,18 @@ export default function CambiarContra(props) {
     setIdUser(session.id);
   });
 
-  const API_URL = "http://192.168.1.82:8080/adipa/usuario/" + idUser;
+  const API_URL = "http://192.168.0.10:8080/adipa/usuario/" + idUser;
 
   const changePassword = async () => {
     try {
       const response = await axios.patch(API_URL, {
         contrasena: confirmPassword,
-      });
+      })
+      console.log(response.data);
     } catch (error) {
-      setError(!error);
+        setError(!error);
     }
-  };
+  }
 
   const CambiarContraseña = async () => {
     if (
@@ -48,21 +51,17 @@ export default function CambiarContra(props) {
       !isEmpty(newPassword) &&
       !isEmpty(confirmPassword)
     ) {
-      if (!(newPassword === confirmPassword)) {
-        setWarning(true);
-      } else {
-        setVisible(!visible);
-        setShowMessage({ password: "", newPassword: "", confirmPassword: "" });
-        changePassword();
-        setTimeout(() => {
-          setVisible(false);
-          setSuccess(!success);
-        }, 1000);
-        setTimeout(() => {
-          setSuccess(false);
-          navigation.goBack();
-        }, 3000);
-      }
+      setVisible(!visible)
+      setShowMessage({ password: "", newPassword: "", confirmPassword: "" });
+      changePassword();
+      setTimeout(() => {
+        setVisible(false);
+        setSuccess(!success);
+      }, 1000);
+      setTimeout(() => {
+        setSuccess(false);
+        navigation.goBack();
+      }, 3000)
     } else {
       setShowMessage({
         password: "Campo obligatorio",
@@ -78,6 +77,7 @@ export default function CambiarContra(props) {
         <Text style={styles.textoInicial}>Cambiar Contraseña:</Text>
         <Text style={styles.label}>Contraseña:</Text>
         <Input
+        value={password}
           placeholder="Ingresa Tu Contraseña"
           placeholderTextColor={"#70BEAE"}
           inputContainerStyle={styles.textInput}
@@ -98,6 +98,7 @@ export default function CambiarContra(props) {
         />
         <Text style={styles.label}>Nueva Contraseña:</Text>
         <Input
+        value={newPassword}
           placeholder="Ingresa Nueva Contraseña"
           placeholderTextColor={"#70BEAE"}
           inputContainerStyle={styles.textInput}
@@ -118,6 +119,7 @@ export default function CambiarContra(props) {
         />
         <Text style={styles.label}>Confirmar Contraseña:</Text>
         <Input
+        value={confirmPassword}
           placeholder="Confirmar tu Contraseña"
           placeholderTextColor={"#70BEAE"}
           inputContainerStyle={styles.textInput}
@@ -163,7 +165,7 @@ export default function CambiarContra(props) {
         type={"warning"}
         visible={warning}
         setVisible={setWarning}
-        title="Contraseñas no coinciden"
+        title="Usuario o contraseña no valida"
       />
       <Message
         type={"success"}
