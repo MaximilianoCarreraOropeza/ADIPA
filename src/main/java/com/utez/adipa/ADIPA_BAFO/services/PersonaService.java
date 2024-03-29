@@ -62,6 +62,22 @@ public class PersonaService {
         }
     }
 
+    @Transactional(rollbackFor = {SQLException.class})
+    public ResponseEntity<ApiResponse> update(PersonaDto personaDto){
+        Usuario foundUsuario = usuarioRepository.findById(personaDto.getUsuario_id()).orElseThrow(() -> new RuntimeException("UsuarioNotFound"));
+        Persona foundPersona = repository.findById(personaDto.getId_persona()).orElseThrow(() -> new RuntimeException("PersonaNotFound"));
+
+        foundPersona.setId_persona(personaDto.getId_persona());
+        foundPersona.setNombre(personaDto.getNombre());
+        foundPersona.setApellido_p(personaDto.getApellido_p());
+        foundPersona.setApellido_m(personaDto.getApellido_m());
+        foundPersona.setUsuario(foundUsuario);
+
+        repository.saveAndFlush(foundPersona);
+
+        return new ResponseEntity<>(new ApiResponse(foundPersona, HttpStatus.OK), HttpStatus.OK);
+    }
+
 
 
 }

@@ -36,4 +36,14 @@ public class PersonaController {
             return new ResponseEntity<>(new ApiResponse(HttpStatus.INTERNAL_SERVER_ERROR, true, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/")
+    public ResponseEntity<ApiResponse> update(@RequestBody PersonaDto personaDto){
+        try {
+            service.update(personaDto);
+            return new ResponseEntity<>(new ApiResponse(personaDto, HttpStatus.OK), HttpStatus.OK);
+        } catch (RuntimeException runtimeException){
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, runtimeException.getMessage()), HttpStatus.NOT_FOUND);
+        }
+    }
 }
