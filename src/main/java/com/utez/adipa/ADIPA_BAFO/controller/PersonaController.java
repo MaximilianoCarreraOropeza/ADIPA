@@ -31,11 +31,9 @@ public class PersonaController {
     @PostMapping("/")
     public ResponseEntity<ApiResponse> save(@RequestBody PersonaDto personaDto){
         try {
-            service.register(personaDto);
-            return new ResponseEntity<>(new ApiResponse(personaDto, HttpStatus.OK), HttpStatus.OK);
-        } catch (RuntimeException runtimeException){
-            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, runtimeException.getMessage()), HttpStatus.NOT_FOUND);
+            return service.register(personaDto);
+        } catch (Exception e){
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.INTERNAL_SERVER_ERROR, true, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
         }
-
     }
 }

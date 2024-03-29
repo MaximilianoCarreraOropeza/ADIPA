@@ -42,18 +42,24 @@ public class PersonaService {
 
     @Transactional(rollbackFor = {SQLException.class})
     public ResponseEntity<ApiResponse> register(PersonaDto personaDto){
-        Usuario usuario = usuarioRepository.findById(personaDto.getUsuario_id()).orElseThrow(() -> new RuntimeException("UserNotFound"));
+        Optional<Usuario> foundUsuario = usuarioRepository.findById(personaDto.getUsuario_id());
 
-        Persona persona = new Persona();
-        persona.setId_persona(personaDto.getId_persona());
-        persona.setNombre(personaDto.getNombre());
-        persona.setApellido_p(personaDto.getApellido_p());
-        persona.setApellido_m(personaDto.getApellido_m());
-        persona.setUsuario(usuario);
+        if (foundUsuario.isPresent()) {
+            Usuario usuario = foundUsuario.get();
 
-        repository.save(persona);
+            Persona persona = new Persona();
+            persona.setId_persona(personaDto.getId_persona());
+            persona.setNombre(personaDto.getNombre());
+            persona.setApellido_p(personaDto.getApellido_p());
+            persona.setApellido_m(personaDto.getApellido_m());
+            persona.setUsuario(usuario);
 
-        return new ResponseEntity<>(new ApiResponse(persona, HttpStatus.OK), HttpStatus.OK);
+            repository.save(persona);
+
+            return new ResponseEntity<>(new ApiResponse(persona, HttpStatus.OK), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, "UsuarioNotFound"), HttpStatus.NOT_FOUND);
+        }
     }
 
 
