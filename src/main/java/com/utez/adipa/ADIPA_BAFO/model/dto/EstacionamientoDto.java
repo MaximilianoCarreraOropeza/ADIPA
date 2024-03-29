@@ -11,13 +11,13 @@ import lombok.*;
 @ToString
 public class EstacionamientoDto {
 
-    private Long estacionamiento_id;
+    private Long id_estacionamiento;
     private String num_slot;
     private String docencia_ubi;
     private Byte status;
 
     public Estacionamiento toEntity(){
-        return new Estacionamiento(estacionamiento_id, num_slot, docencia_ubi, status);
+        return new Estacionamiento(id_estacionamiento, num_slot, docencia_ubi, status);
     }
 
 }

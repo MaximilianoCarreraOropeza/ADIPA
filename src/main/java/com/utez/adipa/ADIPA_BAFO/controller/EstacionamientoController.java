@@ -3,7 +3,9 @@ package com.utez.adipa.ADIPA_BAFO.controller;
 import com.utez.adipa.ADIPA_BAFO.config.ApiResponse;
 import com.utez.adipa.ADIPA_BAFO.model.dto.EstacionamientoDto;
 import com.utez.adipa.ADIPA_BAFO.services.EstacionamientoService;
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,5 +33,25 @@ public class EstacionamientoController {
     @GetMapping("/{docencia_ubi}")
     public ResponseEntity<ApiResponse> findByDocencia(@PathVariable String docencia_ubi){
         return service.findByDocencia(docencia_ubi);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<ApiResponse> update(@RequestBody EstacionamientoDto estacionamientoDto){
+        try {
+            service.update(estacionamientoDto);
+            return new ResponseEntity<>(new ApiResponse(estacionamientoDto, HttpStatus.OK), HttpStatus.OK);
+        } catch (RuntimeException runtimeException){
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, runtimeException.getMessage()), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<ApiResponse> delete(@PathVariable Long id){
+        try {
+            service.delete(id);
+            return new ResponseEntity<>(new ApiResponse(id, HttpStatus.OK), HttpStatus.OK);
+        } catch (EntityNotFoundException e){
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, e.getMessage()), HttpStatus.NOT_FOUND);
+        }
     }
 }

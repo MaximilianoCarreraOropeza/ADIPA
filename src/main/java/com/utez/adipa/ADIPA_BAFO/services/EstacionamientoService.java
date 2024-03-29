@@ -2,7 +2,9 @@ package com.utez.adipa.ADIPA_BAFO.services;
 
 import com.utez.adipa.ADIPA_BAFO.config.ApiResponse;
 import com.utez.adipa.ADIPA_BAFO.model.dao.EstacionamientoRepository;
+import com.utez.adipa.ADIPA_BAFO.model.dto.EstacionamientoDto;
 import com.utez.adipa.ADIPA_BAFO.model.entity.Estacionamiento;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 
@@ -47,5 +50,30 @@ public class EstacionamientoService {
         return new ResponseEntity<>(new ApiResponse(foundDocencia.stream().map(obj -> new Estacionamiento(
                 (Long) obj[0], (String) obj[1], (String) obj[2], (Byte) obj[3]))
                 .collect(Collectors.toList()), HttpStatus.OK), HttpStatus.OK);
+    }
+
+    @Transactional(rollbackFor = {SQLException.class})
+    public ResponseEntity<ApiResponse> update(EstacionamientoDto estacionamientoDto){
+        Estacionamiento foundEstacionamiento = repository.findById(estacionamientoDto.getId_estacionamiento()).orElseThrow(() -> new RuntimeException("EstacionamientoNotFound"));
+
+        foundEstacionamiento.setEstacionamiento_id(estacionamientoDto.getId_estacionamiento());
+        foundEstacionamiento.setDocencia_ubi(estacionamientoDto.getDocencia_ubi());
+        foundEstacionamiento.setNum_slot(estacionamientoDto.getNum_slot());
+        foundEstacionamiento.setStatus(estacionamientoDto.getStatus());
+
+        repository.saveAndFlush(foundEstacionamiento);
+
+        return new ResponseEntity<>(new ApiResponse(foundEstacionamiento, HttpStatus.OK), HttpStatus.OK);
+    }
+
+    @Transactional(rollbackFor = {SQLException.class})
+    public void delete(Long id){
+        Optional<Estacionamiento> foundEstacionamiento = repository.findById(id);
+        if (foundEstacionamiento.isPresent()){
+            repository.deleteById(id);
+        } else {
+            throw new EntityNotFoundException("EstacionamientoNotFound");
+        }
+
     }
 }

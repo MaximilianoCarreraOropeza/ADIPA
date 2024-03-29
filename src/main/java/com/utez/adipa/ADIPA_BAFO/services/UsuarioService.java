@@ -140,7 +140,6 @@ public class UsuarioService {
                     return usuario;
                 }).toList();
 
-
         return new ResponseEntity<>(new ApiResponse(usuarios, HttpStatus.OK), HttpStatus.OK);
     }
 
