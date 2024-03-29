@@ -49,10 +49,10 @@ public class UsuarioController {
         }
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<ApiResponse> update(@PathVariable Long id, @RequestBody UsuarioDto usuarioDto){
+    @PutMapping("/")
+    public ResponseEntity<ApiResponse> update(@RequestBody UsuarioDto usuarioDto){
         try {
-            service.update(id, usuarioDto, passwordEncoder);
+            service.update(usuarioDto, passwordEncoder);
             return new ResponseEntity<>(new ApiResponse(usuarioDto, HttpStatus.OK), HttpStatus.OK);
         } catch (RuntimeException runtimeException){
             return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, runtimeException.getMessage()), HttpStatus.NOT_FOUND);

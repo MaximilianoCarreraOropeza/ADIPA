@@ -92,8 +92,8 @@ public class UsuarioService {
     }
 
     @Transactional(rollbackFor = {SQLException.class})
-    public ResponseEntity<ApiResponse> update(Long id, UsuarioDto usuarioDto, PasswordEncoder passwordEncoder){
-        Usuario foundUsuario = repository.findById(id).orElseThrow(() -> new RuntimeException("UsuarioNotFound"));
+    public ResponseEntity<ApiResponse> update(UsuarioDto usuarioDto, PasswordEncoder passwordEncoder){
+        Usuario foundUsuario = repository.findById(usuarioDto.getId_usuario()).orElseThrow(() -> new RuntimeException("UsuarioNotFound"));
         TipoUsuario foundTipoUsuario = tipoUsuarioRepository.findById(usuarioDto.getTipo_id()).orElseThrow(() -> new RuntimeException("TipoUsuarioNotFound"));
 
         foundUsuario.setId_usuario(usuarioDto.getId_usuario());
