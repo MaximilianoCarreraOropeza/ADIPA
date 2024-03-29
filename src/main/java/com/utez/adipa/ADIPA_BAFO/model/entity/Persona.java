@@ -25,7 +25,7 @@ public class Persona {
     @Column(name = "apellido_m", nullable = false)
     private String apellido_m;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "usuario_id")
     @JsonIgnore
     private Usuario usuario;

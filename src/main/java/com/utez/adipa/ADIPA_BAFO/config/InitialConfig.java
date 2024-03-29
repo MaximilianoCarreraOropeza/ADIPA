@@ -23,11 +23,11 @@ public class InitialConfig implements CommandLineRunner {
     @Transactional(rollbackFor = {SQLException.class})
     public void run(String... args) throws Exception {
         if (!tipoUsuarioRepository.existsById(1L)) {
-            tipoUsuarioRepository.saveRole(1L, "empleado" );
+            tipoUsuarioRepository.saveRole(1L, "Empleado" );
         }
 
         if (!tipoUsuarioRepository.existsById(2L)) {
-            tipoUsuarioRepository.saveRole(2L, "estudiante" );
+            tipoUsuarioRepository.saveRole(2L, "Estudiante" );
         }
 
         if (!usuarioRepository.existsById(1L)) {

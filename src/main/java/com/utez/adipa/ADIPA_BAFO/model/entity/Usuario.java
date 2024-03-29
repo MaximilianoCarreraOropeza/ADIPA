@@ -22,7 +22,7 @@ public class Usuario {
     @Column(name = "contrasena", nullable = false)
     private String contrasena;
 
-    @OneToOne(cascade = CascadeType.PERSIST, mappedBy = "usuario")
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuario")
     private Persona persona;
 
     @ManyToOne(fetch = FetchType.EAGER)

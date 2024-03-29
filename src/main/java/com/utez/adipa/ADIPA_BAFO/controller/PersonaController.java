@@ -1,7 +1,9 @@
 package com.utez.adipa.ADIPA_BAFO.controller;
 
 import com.utez.adipa.ADIPA_BAFO.config.ApiResponse;
+import com.utez.adipa.ADIPA_BAFO.model.dto.PersonaDto;
 import com.utez.adipa.ADIPA_BAFO.services.PersonaService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,5 +26,16 @@ public class PersonaController {
     @GetMapping("/")
     public ResponseEntity<ApiResponse> getAll(){
         return service.findAll();
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<ApiResponse> save(@RequestBody PersonaDto personaDto){
+        try {
+            service.register(personaDto);
+            return new ResponseEntity<>(new ApiResponse(personaDto, HttpStatus.OK), HttpStatus.OK);
+        } catch (RuntimeException runtimeException){
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, runtimeException.getMessage()), HttpStatus.NOT_FOUND);
+        }
+
     }
 }
