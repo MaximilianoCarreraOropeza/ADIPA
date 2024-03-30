@@ -1,7 +1,6 @@
 package com.utez.adipa.ADIPA_BAFO.security.entity;
 
 import com.utez.adipa.ADIPA_BAFO.model.dto.EmailDto;
-import com.utez.adipa.ADIPA_BAFO.model.entity.Usuario;
 import com.utez.adipa.ADIPA_BAFO.services.IEmailService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
@@ -31,13 +30,9 @@ public class EmailServiceImpl implements IEmailService {
             helper.setTo(emailDto.getDestinatario());
             helper.setSubject(emailDto.getAsunto());
 
-            Usuario usuario = new Usuario();
-            usuario.setContrasena(usuario.getContrasena());
             // Procesar la plantilla Thymeleaf
             Context context = new Context();
-
-            context.setVariable("mensaje", emailDto.getMensaje());
-
+            context.setVariable("pin", emailDto.getPin());
             String contenidoHtml = templateEngine.process("email", context);
 
             helper.setText(contenidoHtml, true);

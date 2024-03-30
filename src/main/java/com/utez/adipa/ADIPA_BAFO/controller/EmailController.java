@@ -1,5 +1,6 @@
 package com.utez.adipa.ADIPA_BAFO.controller;
 
+import com.utez.adipa.ADIPA_BAFO.config.ApiResponse;
 import com.utez.adipa.ADIPA_BAFO.model.dto.EmailDto;
 import com.utez.adipa.ADIPA_BAFO.services.IEmailService;
 import jakarta.mail.MessagingException;
@@ -19,8 +20,13 @@ public class EmailController {
     }
 
     @PostMapping("/send-email")
-    private ResponseEntity<String> sendEmail(@RequestBody EmailDto email) throws MessagingException {
+    private ResponseEntity<ApiResponse> sendEmail(@RequestBody EmailDto email) throws MessagingException {
+        try{
             emailService.enviarCorreo(email);
-            return new ResponseEntity<>("Correo enviado exitosamente", HttpStatus.OK);
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.OK, false, "Correo enviado exitosamente"), HttpStatus.OK);
+        } catch (RuntimeException runtimeException){
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND,true, runtimeException.getMessage()), HttpStatus.NOT_FOUND);
+        }
+
     }
 }

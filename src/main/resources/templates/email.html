@@ -1,16 +1,39 @@
 <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Recuperación de Cuenta - ADIPA</title>
 </head>
 <body>
-<p th:text="${mensaje}"></p>
-<p>¡Hola!,</p>
-<p>Recibes este correo electrónico porque has solicitado recuperar tu contraseña de nuestra aplicación.</p>
-<p style="color: #e84f4f">Tu contraseña actual es: 021</p>
-<p>Si no has solicitado esta acción, puedes ignorar este correo electrónico.</p>
-<p>Gracias,</p>
-<p style="color: #1f86c9">ADIPA - Aplicación Móvil de Disponibilidad de Aparcamientos</p>
+<h1 style="color: #009475; text-align: center; font-weight: bold;">Recuperación de Contraseña</h1>
+<a style="color: #002E60; font-weight: bold; text-align: justify;">Estimado/a Usuario,
+    <br><br>
+    Hemos recibido una solicitud para recuperar su contraseña,<br><br>
+</a>
+<a style="color: #002E60; font-weight: bold">
+    De ser así, copia este PIN de 6 digítos para confirmar tu identidad y visualizar tu contraseña actual... <br><br>
+</a>
+<a style="color: red; font-weight: bold">
+    PIN:
+</a>
+<a th:text="${pin}" style= "font-weight: bold"> </a>
+
+<br><br>
+<a style="color: #002E60; font-weight: bold; text-align: justify;">
+    Si no lo has solicitado o no deseas continuar con este proceso, por favor ignora este mensaje.
+
+    Si tienes alguna pregunta o necesitas ayuda adicional, no dudes en contactar a nuestro equipo de soporte en este mismo correo.
+
+    <br><br>
+    Atentamente,<br>
+    ADIPA - Aplicación Movil de Disponibilidad de Aparcamientos
+</a>
+
+<br><br>
+<a href="http://www.utez.edu.mx/" target="blank">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/5/54/Logo-utez.png" alt="Logo-utez" style="height: 15%; width: 15%;">
+</a>
+<img src="https://lh3.googleusercontent.com/a/ACg8ocJFAL_sWaXqlZmNckusvAWeS38kKXugv796UF1ANyAHXA=s288-c-no" alt="logo-ADIPA" style="height: 7%; width: 7%; margin-left: 3%;">
 </body>
 </html>
