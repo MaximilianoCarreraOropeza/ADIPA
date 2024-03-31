@@ -4,7 +4,7 @@ import { Input, Icon, Button } from "@rneui/base";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 import { isEmpty } from "lodash";
-import { getUserByMatricula } from "../../../kernel/components/use_slot";
+import {postApi, getUserByMatricula} from "../../../kernel/config/use_connection";
 
 export default function RecuperaCuenta(props) {
   const { navigation } = props;
@@ -13,12 +13,79 @@ export default function RecuperaCuenta(props) {
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [warning, setWarning] = useState(false);
+  const [correo, setCorreo] = useState("");
+  const role = "";
+  const [id_usuario, setId_usuario] = useState("");
+  const [destiny, setDestiny] = useState("");
+  const [asunt, setAsunt] = useState("");
 
   const enviarCorreo = async () => {
     if (!isEmpty(matricula)) {
       setShowMessage({ matricula: "" });
-      setSuccess(true);
-      navigation.navigate("ValideToken", matricula);
+      getUserByMatricula(matricula)
+        .then((response) => {
+          if (response.status == "OK") {
+          console.log(response.data[0].tipoUsuario.nombre);
+          setTimeout(() => {
+          setVisible(!visible);
+          }, 2000);
+          role = response.data[0].tipoUsuario.nombre; 
+          console.log("GetRole", role);
+          setId_usuario(response.data[0].id_usuario);
+          console.warn("GetUser", response.status);
+            if (role == "Estudiante") {
+              console.log("estudiante", role)
+              setCorreo(matricula);
+            } else if (role == "Empleado") {
+              console.log("empleado ", role);
+              const apellido = response.data[0].persona.apellido_p;
+              const nombre = response.data[0].persona.nombre;
+              const primerParte = nombre + "" + apellido;
+              setCorreo(primerParte);
+            }
+            console.warn("SendCorreo", correo);
+            const destinatario = correo + "@utez.edu.mx";
+            const asunto = "Recuperación de Cuenta - ADIPA";
+            setDestiny(destinatario);
+            setAsunt(asunto);
+            postApi("/send-email", {
+              destinatario: destiny,
+              asunto: asunt,
+            })
+              .then((response) => {
+                console.warn("SendEmail",response.status);
+                if (response.status == "OK") {
+                  const pin = response.data.pin;
+                  const cuenta = {
+                    id: id_usuario,
+                    matricula: matricula,
+                    pin: pin,
+                  };
+                  setTimeout(() => {
+                    setVisible(false);
+                    setSuccess(!success);
+                  }, 1000);
+                  setTimeout(() => {
+                    setSuccess(false);
+                    navigation.navigate("ValideToken", cuenta);
+                  }, 3000);
+                }else if(response.status == "NOT_FOUND"){
+                  console.log("Algo pasó carnal")
+                }
+              })
+              .catch(() => {
+                setVisible(false);
+                setWarning(!warning);
+              });
+          }
+        })
+        .catch(() => {
+          setTimeout(() => {
+            setVisible(false);
+            setError(!error);
+          }, 1000);
+        });
     } else {
       setShowMessage({ matricula: "Campo obligatorio" });
     }
@@ -65,6 +132,12 @@ export default function RecuperaCuenta(props) {
         type={"error"}
         visible={error}
         setVisible={setError}
+        title="Matricula no encontrada"
+      />
+      <Message
+        type={"warning"}
+        visible={warning}
+        setVisible={setWarning}
         title="Error enviando matricula"
       />
       <Message

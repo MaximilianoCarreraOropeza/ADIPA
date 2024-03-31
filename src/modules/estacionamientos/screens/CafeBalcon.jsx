@@ -2,7 +2,7 @@ import { StyleSheet, View, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import SlotEstacionamiento from "./components/SlotEstacionamiento";
 import letraEimportado from "../../../../assets/letra_e.png";
-import { getSlots } from "../../../kernel/config/use_slot";
+import { getSlots } from "../../../kernel/config/use_connection";
 
 export default function CafeBalcon() {
   const [slots, setSlots] = useState([]);

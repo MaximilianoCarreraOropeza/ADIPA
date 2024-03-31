@@ -1,7 +1,7 @@
 import { StyleSheet, View, ScrollView, Image } from "react-native";
 import { React, useState, useEffect} from "react";
 import SlotEstacionamiento from "./components/SlotEstacionamiento";
-import { getSlots } from "../../../kernel/config/use_slot";
+import { getSlots } from "../../../kernel/config/use_connection";
 
 export default function CDS() {
   const [slots, setSlots] = useState([]);

@@ -3,7 +3,7 @@ import { React, useState, useEffect} from "react";
 import SlotEstacionamiento from "./components/SlotEstacionamientoD3";
 import letraEimportado from "../../../../assets/letra_e.png";
 import docenciaimportado from "../../../../assets/docencia.png";
-import { getSlots } from "../../../kernel/config/use_slot";
+import { getSlots } from "../../../kernel/config/use_connection";
 
 export default function Docencia3() {
   const [slots, setSlots] = useState([]);

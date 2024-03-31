@@ -25,7 +25,7 @@ export default function AuthStack(props) {
         }}
       />
       <Stack.Screen
-        name="Validacion contraseña"
+        name="ValideToken"
         component={ValideToken}
         options={{
           headerTitle: "",

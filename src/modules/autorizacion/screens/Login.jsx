@@ -5,10 +5,9 @@ import Logo from "../../../../assets/logo.png";
 import { isEmpty } from "lodash";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
-import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { postApi } from "../../../kernel/components/use_post";
+import { postApi } from "../../../kernel/config/use_connection";
 
 export default function Login(props) {
   const { setIsAuthenticated } = props;
@@ -24,13 +23,12 @@ export default function Login(props) {
 
   const login = () => {
     if (!(isEmpty(email) && isEmpty(password))) {
+      setVisible(!visible);
       postApi("auth/signin", {
         matricula: email,
-        password: password,
+        contrasena: password
       })
         .then((response) => {
-          setVisible(!visible);
-          console.log(response.status);
           if (response.status === "OK") {
             const session = {
               id: response.data.usuario.id_usuario,
@@ -59,11 +57,17 @@ export default function Login(props) {
               setIsAuthenticated(true);
             }, 3000);
           } else if (response.status === "BAD_REQUEST") {
-            console.log("Muy bien carnal");
+            setTimeout(() => {
+              setVisible(false);
+              setError(!error);
+            }, 1000);
           }
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
+          setTimeout(() => {
+            setVisible(false);
+            setWarning(!warning);
+          }, 1000);
         });
     }
   };

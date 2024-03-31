@@ -3,7 +3,7 @@ import { React, useState, useEffect } from "react";
 import SlotEstacionamiento from "./components/SlotEstacionamiento";
 import letraEimportado from "../../../../assets/letra_e.png";
 import calleImportado from "../../../../assets/Calle_DMotos.png";
-import { getSlots } from "../../../kernel/config/use_slot";
+import { getSlots } from "../../../kernel/config/use_connection";
 
 
 export default function Docencia3Motos() {

@@ -61,17 +61,30 @@ export default function Perfil(props) {
           setConfirm(false);
           setAsk(false);
           setVisible(true);
-        });
+          setTimeout(() => {
+            setVisible(false);
+            setSuccess(true);
+          }, 2000);
+          setTimeout(() => {
+            setSuccess(false);
+            setIsAuthenticated(false);
+          }, 4000);
+        }).catch(()=>{
+          setConfirm(false);
+          setAsk(false);
+          setVisible(true);
+          setTimeout(() => {
+            setVisible(false);
+            setError(true);
+          }, 2000);
+        })
+      } catch (e) {
+        setConfirm(false);
+        setAsk(false);
         setTimeout(() => {
           setVisible(false);
-          setSuccess(true);
-        }, 2000);
-        setTimeout(() => {
-          setSuccess(false);
-          setIsAuthenticated(false);
-        }, 4000);
-      } catch (e) {
-        setError(!error);
+          setError(!error);
+        }, 1000);
       }
     };
     sessionClose();

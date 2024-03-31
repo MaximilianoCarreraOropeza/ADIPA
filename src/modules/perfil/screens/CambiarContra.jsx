@@ -4,7 +4,7 @@ import { Input, Icon, Button } from "@rneui/base";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 import { isEmpty } from "lodash";
-import { postApi } from "../../../kernel/components/use_post";
+import { postChance } from "../../../kernel/config/use_connection";
 
 export default function CambiarContra(props) {
   const { navigation, route } = props;
@@ -28,46 +28,55 @@ export default function CambiarContra(props) {
   const [contrasena, setContrasena] = useState("");
 
   useEffect(() => {
-    const sessionxd = route.params;
-    setContrasena(sessionxd.contrasena);
     setSession(route.params);
-    setIdUser(sessionxd.id);
+    setContrasena(session.contrasena);
+    setIdUser(session.id);
   });
 
   const API_URL = "usuario/" + idUser;
 
   const CambiarContraseña = async () => {
-    if (
-      !isEmpty(password) &&
-      !isEmpty(newPassword) &&
-      !isEmpty(confirmPassword)
-    ) {
-      setVisible(!visible)
+    /* 
+    setVisible(!visible)
       setShowMessage({ password: "", newPassword: "", confirmPassword: "" });
+      if (newPassword !== confirmPassword) {
+        if(password === contrasena){
+          postChance(API_URL, {contrasena: confirmPassword})
+          .then(() => {
+            setTimeout(() => {
+              setVisible(false);
+              setSuccess(!success);
+            }, 1000);
+            setTimeout(() => {
+              setSuccess(false);
+              navigation.goBack();
+            }, 3000)
+          })
+          .catch(() => {
+            setTimeout(() => {
+              setVisible(false);
+              setError(!error);
+            }, 1000);
+          });
+        }else{
+          setTimeout(() => {
+            setVisible(false);
+            setError(!error);
+          }, 1000);
+        }
+      }else{
+        setWarning(!warning);
+      }
+    
+    */
+    if (isEmpty(password) && isEmpty(newPassword) && isEmpty(confirmPassword)) {
+      setShowMessage({ password: "Campo obligatorio", newPassword: "Campo obligatorio", confirmPassword: "Campo obligatorio"})
+    } else if(newPassword !== password){
+      setWarning(!warning);
+    }else{
       if(password === contrasena){
-      postApi(API_URL, {contrasena: confirmPassword})
-      .then((response) => {
-        console.log(response.status);
-      }).catch((error) => {
-        console.error(error);
-      });
-      setTimeout(() => {
-        setVisible(false);
-        setSuccess(!success);
-      }, 1000);
-      setTimeout(() => {
-        setSuccess(false);
-        navigation.goBack();
-      }, 3000)
-    } else {
-      console.error("Excelente, eres un genio");
-    }
-    } else {
-      setShowMessage({
-        password: "Campo obligatorio",
-        newPassword: "Campo obligatorio",
-        confirmPassword: "Campo obligatorio",
-      });
+
+      }
     }
   };
 
@@ -159,13 +168,13 @@ export default function CambiarContra(props) {
         type={"error"}
         visible={error}
         setVisible={setError}
-        title="Error al cambiar la contraseña"
+        title="Contraseñas no coinciden"
       />
       <Message
         type={"warning"}
         visible={warning}
         setVisible={setWarning}
-        title="Contraseñas no coinciden"
+        title="Error al cambiar la contraseña"
       />
       <Message
         type={"success"}
