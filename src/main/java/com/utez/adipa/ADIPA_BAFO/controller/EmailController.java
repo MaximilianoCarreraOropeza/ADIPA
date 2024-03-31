@@ -23,7 +23,7 @@ public class EmailController {
     private ResponseEntity<ApiResponse> sendEmail(@RequestBody EmailDto email) throws MessagingException {
         try{
             emailService.enviarCorreo(email);
-            return new ResponseEntity<>(new ApiResponse(HttpStatus.OK, false, "Correo enviado exitosamente"), HttpStatus.OK);
+            return new ResponseEntity<>(new ApiResponse(email, HttpStatus.OK), HttpStatus.OK);
         } catch (RuntimeException runtimeException){
             return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND,true, runtimeException.getMessage()), HttpStatus.NOT_FOUND);
         }
