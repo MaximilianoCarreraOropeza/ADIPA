@@ -8,8 +8,7 @@ import Message from "../../../kernel/components/Message";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-
-const API_URL = "http://192.168.1.82:8080/adipa/auth/signin";
+import { postApi } from "../../../kernel/components/use_post";
 
 export default function Login(props) {
   const { setIsAuthenticated } = props;
@@ -23,57 +22,49 @@ export default function Login(props) {
   const [warning, setWarning] = useState(false);
   const [success, setSuccess] = useState(false);
 
-  const login = async () => {
-    if (!isEmpty(email) && !isEmpty(password)) {
-      setShowMessage({ email: "", password: "" });
-      try {
-        setVisible(!visible);
-        const response = await axios
-          .post(API_URL, {
-            matricula: email,
-            contrasena: password,
-          })
-          .catch(() => {
+  const login = () => {
+    if (!(isEmpty(email) && isEmpty(password))) {
+      postApi("auth/signin", {
+        matricula: email,
+        password: password,
+      })
+        .then((response) => {
+          setVisible(!visible);
+          console.log(response.status);
+          if (response.status === "OK") {
+            const session = {
+              id: response.data.usuario.id_usuario,
+              matricula: response.data.usuario.matricula,
+              contrasena: password,
+              name: response.data.usuario.persona.nombre,
+              surname: response.data.usuario.persona.apellido_p,
+              lastname: response.data.usuario.persona.apellido_m,
+              role: response.data.usuario.tipoUsuario.nombre
+            };
+            console.log(session);
+            const storeData = async () => {
+              try {
+                await AsyncStorage.setItem("session", JSON.stringify(session));
+              } catch (e) {
+                console.error(e);
+              }
+            };
+            storeData();
             setTimeout(() => {
               setVisible(false);
-              setError(!error);
-            }, 2000);
-          });
-        if (response.status === 200) {
-          const session = {
-            id: response.data.data.usuario.id_usuario,
-            token: response.data.data.token,
-            matricula: response.data.data.usuario.matricula,
-            name: response.data.data.usuario.persona.nombre,
-            surname: response.data.data.usuario.persona.apellido_p,
-            lastname: response.data.data.usuario.persona.apellido_m,
-            rol: response.data.data.usuario.tipoUsuario.nombre,
-          };
-          const storeData = async () => {
-            try {
-              await AsyncStorage.setItem("session", JSON.stringify(session));
-            } catch (e) {
-              console.error(e);
-            }
-          };
-          storeData();
-          setTimeout(() => {
-            setVisible(false);
-            setSuccess(!success);
-          }, 1000);
-          setTimeout(() => {
-            setSuccess(false);
-            setIsAuthenticated(true);
-          }, 3000);
-        }
-      } catch (error) {
-        setError(!error);
-      }
-    } else {
-      setShowMessage({
-        email: "Campo obligatorio",
-        password: "Campo obligatorio",
-      });
+              setSuccess(!success);
+            }, 1000);
+            setTimeout(() => {
+              setSuccess(false);
+              setIsAuthenticated(true);
+            }, 3000);
+          } else if (response.status === "BAD_REQUEST") {
+            console.log("Muy bien carnal");
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+        });
     }
   };
 

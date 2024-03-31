@@ -59,7 +59,7 @@ export default function Discapacitado(props) {
           </View>
           <View style={styles.pin7}>
             <PingPoint onPress={handlerPress} direccion={'CafeBalconDis'} tipo={'carro'} exclusividad={'discapacidad'}
-              playSound={() => playSound(require("../../../../assets/Cafe Balcon.mp3"))}
+              playSound={() => playSound(require("../../../../assets/Cafe Balcón.mp3"))}
             />
           </View>
           <View style={styles.pin8}>

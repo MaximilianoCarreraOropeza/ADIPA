@@ -1,12 +1,33 @@
 import { StyleSheet, View, Image } from "react-native";
-import React from "react";
+import { React, useState, useEffect} from "react";
 import SlotEstacionamiento from "./components/SlotEstacionamientoD3";
 import letraEimportado from "../../../../assets/letra_e.png";
 import docenciaimportado from "../../../../assets/docencia.png";
+import { getSlots } from "../../../kernel/config/use_slot";
 
 export default function Docencia3() {
+  const [slots, setSlots] = useState([]);
   const letraE = letraEimportado;
   const docencia = docenciaimportado;
+  
+  useEffect(() => {
+    getSlots('docencia3')
+      .then((response) => {
+        if (response.status === "OK") {
+          setSlots(response.data);
+        } else {
+          console.error("Error al obtener los espacios de estacionamieno1:", response);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener los espacios de estacionamiento2:", error);
+      });
+  }, []); 
+  
+  useEffect(() => {
+    console.log(slots);
+  }, [slots]);
+
   return (
     <View style={styles.container}>
       <View style={styles.container2}>

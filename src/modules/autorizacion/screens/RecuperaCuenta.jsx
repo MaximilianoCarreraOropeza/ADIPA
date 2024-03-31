@@ -4,10 +4,11 @@ import { Input, Icon, Button } from "@rneui/base";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 import { isEmpty } from "lodash";
+import { getUserByMatricula } from "../../../kernel/components/use_slot";
 
 export default function RecuperaCuenta(props) {
-  const {navigation} = props;
-  const [showMessage, setShowMessage] = useState({matricula: ""});
+  const { navigation } = props;
+  const [showMessage, setShowMessage] = useState({ matricula: "" });
   const [matricula, setMatricula] = useState("");
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
@@ -15,13 +16,14 @@ export default function RecuperaCuenta(props) {
 
   const enviarCorreo = async () => {
     if (!isEmpty(matricula)) {
-      setShowMessage({matricula: ""});
+      setShowMessage({ matricula: "" });
       setSuccess(true);
+      navigation.navigate("ValideToken", matricula);
     } else {
-      setShowMessage({matricula: "Campo obligatorio"});
+      setShowMessage({ matricula: "Campo obligatorio" });
     }
-  }
-  
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
@@ -39,8 +41,8 @@ export default function RecuperaCuenta(props) {
           leftIcon={<Icon type="material-community" name="account" />}
         />
         <Text style={styles.txtAviso}>
-          Se enviará un enlace para reestablecer su contraseña al correo asociado
-          a su cuenta.
+          Se enviará un enlace para reestablecer su contraseña al correo
+          asociado a su cuenta.
         </Text>
         <Button
           title="Continuar"
@@ -55,12 +57,22 @@ export default function RecuperaCuenta(props) {
           containerStyle={styles.btnContainer}
           buttonStyle={styles.btnStyle2}
           titleStyle={styles.titleStyle2}
-          onPress={()=>navigation.goBack()}
+          onPress={() => navigation.goBack()}
         />
-        </View>
-        <Loading visible={visible} title="Realizando Proceso" />
-        <Message type={"error"} visible={error} setVisible={setError} title="Error enviando matricula" />
-        <Message type={"success"} visible={success} setVisible={setSuccess} title="Se envio matricula correctamente" />
+      </View>
+      <Loading visible={visible} title="Realizando Proceso" />
+      <Message
+        type={"error"}
+        visible={error}
+        setVisible={setError}
+        title="Error enviando matricula"
+      />
+      <Message
+        type={"success"}
+        visible={success}
+        setVisible={setSuccess}
+        title="Se envio matricula correctamente"
+      />
     </View>
   );
 }
@@ -73,14 +85,14 @@ const styles = StyleSheet.create({
   },
   container2: {
     width: "90%",
-    justifyContent: "flex-start"
+    justifyContent: "flex-start",
   },
   label: {
     fontSize: 18,
     marginLeft: 20,
     marginTop: 15,
     color: "#0655AA",
-    alignSelf: "flex-start"
+    alignSelf: "flex-start",
   },
   textoInicial: {
     fontWeight: "bold",
@@ -98,30 +110,30 @@ const styles = StyleSheet.create({
     marginTop: 8,
     borderWidth: 2,
     borderRadius: 20,
-    borderColor: "#009475"
+    borderColor: "#009475",
   },
   textInput: {
-    borderBottomWidth: 0
+    borderBottomWidth: 0,
   },
   txtAviso: {
     fontSize: 12,
     fontWeight: "bold",
     alignSelf: "center",
-    marginHorizontal: 12
+    marginHorizontal: 12,
   },
   btnStyle: {
     backgroundColor: "#002E60",
-    borderRadius: 50
+    borderRadius: 50,
   },
   btnContainer: {
     width: "90%",
     paddingTop: 25,
-    alignSelf: "center"
+    alignSelf: "center",
   },
   btnStyle2: {
     borderWidth: 1.5,
     borderColor: "#002E60",
-    borderRadius: 50
+    borderRadius: 50,
   },
   titleStyle: {
     color: "#fff",
@@ -130,6 +142,6 @@ const styles = StyleSheet.create({
     color: "#002E60",
   },
   fontSize: {
-    fontSize: 16
-  }
+    fontSize: 16,
+  },
 });

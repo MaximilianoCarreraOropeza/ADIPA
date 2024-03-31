@@ -2,31 +2,37 @@ import { StyleSheet, View, Image } from "react-native";
 import React, { useState, useEffect } from "react";
 import SlotEstacionamiento from "./components/SlotEstacionamiento";
 import letraEimportado from "../../../../assets/letra_e.png";
-import axios from "axios";
-
-const API_URL = "http://192.168.109.67:8080/adipa/estacionamiento"; //Quien lo use, cambiar la IP por la suya
+import { getSlots } from "../../../kernel/config/use_slot";
 
 export default function CafeBalcon() {
-
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    const interval = setInterval(() => {
-      fetchData();
-    }, 1000); // Llama a fetchData cada 5 segundos
-
-    return () => clearInterval(interval); // Limpia el intervalo cuando el componente se desmonta
-  }, []);
-  const fetchData = async () => {
-    try {
-      const response = await axios.get(API_URL);
-      const info = response.data;
-      setData(info);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };   
-
+  const [slots, setSlots] = useState([]);
   const letraE = letraEimportado;
+  
+  useEffect(() => {
+    getSlots("cafebalcon")
+      .then((response) => {
+        if (response.status === "OK") {
+          setSlots(response.data);
+        } else {
+          console.error(
+            "Error al obtener los espacios de estacionamieno1:",
+            response
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(
+          "Error al obtener los espacios de estacionamiento2:",
+          error
+        );
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(slots);
+  }, [slots]);
+
+ 
   return (
     <View style={styles.container}>
       <View style={styles.containerHorizontal}>
@@ -92,13 +98,8 @@ export default function CafeBalcon() {
         }
         */}
         <SlotEstacionamiento
-            estado={true}
-            exclusividad={"SN"}
-            tipo={"carro"}
-            orientacion={"horizontal"}/>
-        <SlotEstacionamiento
           estado={true}
-          exclusividad={"discapacidad-exclusivo"}
+          exclusividad={"SN"}
           tipo={"carro"}
           orientacion={"horizontal"}
         />
@@ -108,7 +109,13 @@ export default function CafeBalcon() {
           tipo={"carro"}
           orientacion={"horizontal"}
         />
-         <SlotEstacionamiento
+        <SlotEstacionamiento
+          estado={true}
+          exclusividad={"discapacidad-exclusivo"}
+          tipo={"carro"}
+          orientacion={"horizontal"}
+        />
+        <SlotEstacionamiento
           estado={true}
           exclusividad={"SN"}
           tipo={"carro"}
@@ -200,10 +207,7 @@ export default function CafeBalcon() {
         />
       </View>
       <View style={styles.containerHorizontal2}>
-        <Image
-          source={letraE}
-          style={styles.imagenEstacionamiento}
-        />
+        <Image source={letraE} style={styles.imagenEstacionamiento} />
         <SlotEstacionamiento
           estado={true}
           exclusividad={"SN"}
@@ -384,32 +388,32 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#696969",
-    flexDirection: "row"
+    flexDirection: "row",
   },
   containerHorizontal: {
     flex: 1,
     width: "100%",
     height: "100%",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   containerHorizontal2: {
     flex: 1,
     width: "100%",
     height: "100%",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   containerHorizontal3: {
     flex: 1,
     width: "100%",
     height: "100%",
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   imagenEstacionamiento: {
     width: 80,
     height: 80,
-    marginBottom: 30
-  }
+    marginBottom: 30,
+  },
 });

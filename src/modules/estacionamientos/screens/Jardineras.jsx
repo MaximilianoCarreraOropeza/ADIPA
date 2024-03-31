@@ -1,10 +1,37 @@
 import { StyleSheet, Image, View } from "react-native";
-import React from "react";
+import { React, useState, useEffect } from "react";
 import SlotEstacionamiento from "./components/SlotEstacionamiento";
 import letraEimportado from "../../../../assets/letra_e.png";
+import { getSlots } from "../../../kernel/config/use_slot";
 
 export default function Jardineras() {
   const imagenEstacionamiento = letraEimportado;
+  const [slots, setSlots] = useState([]);
+
+  useEffect(() => {
+    getSlots("jardineras")
+      .then((response) => {
+        if (response.status === "OK") {
+          setSlots(response.data);
+        } else {
+          console.error(
+            "Error al obtener los espacios de estacionamieno1:",
+            response
+          );
+        }
+      })
+      .catch((error) => {
+        console.error(
+          "Error al obtener los espacios de estacionamiento2:",
+          error
+        );
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log(slots);
+  }, [slots]);
+
   return (
     <View style={styles.container}>
       <View style={styles.containerVertical}>
@@ -411,7 +438,7 @@ const styles = StyleSheet.create({
   },
   container2: {
     flex: 1,
-    flexDirection: "row"
+    flexDirection: "row",
   },
   containerVertical: {
     flex: 1,
@@ -419,17 +446,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   containerVertical2: {
-    flex: 1
+    flex: 1,
   },
   containerVertical3: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   containerVertical3_5: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "center"
+    alignItems: "center",
   },
   containerVertical4: {
     flex: 2,
@@ -439,21 +466,21 @@ const styles = StyleSheet.create({
   containerVertical5: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "flex-end"
+    alignItems: "flex-end",
   },
   containerVertical6: {
     flex: 1,
     justifyContent: "center",
-    alignItems: "flex-start"
+    alignItems: "flex-start",
   },
   containerTop: {
-    transform: [{ rotate: "-5deg" }]
+    transform: [{ rotate: "-5deg" }],
   },
   containerDown: {
     transform: [{ rotate: "5deg" }],
   },
   containerCenter: {
-    transform: [{ rotate: "20deg" }]
+    transform: [{ rotate: "20deg" }],
   },
   imagenEstacionamiento: {
     width: 80,

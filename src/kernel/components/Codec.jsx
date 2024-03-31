@@ -17,8 +17,9 @@ export default function Codec(props) {
   const { visible, setVisible } = props;
   const image = mapaCodec;
   const width = Dimensions.get("window").width;
-  const ANCHO_IMAGE = width;
-  const ALTO_IMAGE = width;
+  const height = Dimensions.get("window").height;
+  const ANCHO_IMAGE = width * 1.0;
+  const ALTO_IMAGE = height * 0.5;
   const escalaImg = useSharedValue(1);
   const x = useSharedValue(0);
   const y = useSharedValue(0);
@@ -41,7 +42,7 @@ export default function Codec(props) {
       escalaImg.value = e.scale;
     })
     .onEnd(() => {
-      escalaImg.value = withTiming(1, { duration: 500 });
+      escalaImg.value = withTiming(1, { duration: 1000 });
     });
 
   const styles = StyleSheet.create({
@@ -49,11 +50,13 @@ export default function Codec(props) {
       backgroundColor: "white",
       width: ANCHO_IMAGE,
       height: ALTO_IMAGE,
+      justifyContent: "center",
+      alignItems: "center"
     },
     image: {
       width: ANCHO_IMAGE,
       height: ALTO_IMAGE,
-      resizeMode: "center",
+      resizeMode: "contain"
     },
   });
 

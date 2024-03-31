@@ -1,8 +1,28 @@
 import { StyleSheet, View, ScrollView, Image } from "react-native";
-import React from "react";
+import { React, useState, useEffect} from "react";
 import SlotEstacionamiento from "./components/SlotEstacionamiento";
+import { getSlots } from "../../../kernel/config/use_slot";
 
 export default function CDS() {
+  const [slots, setSlots] = useState([]);
+  
+  useEffect(() => {
+    getSlots('cds')
+      .then((response) => {
+        if (response.status === "OK") {
+          setSlots(response.data);
+        } else {
+          console.error("Error al obtener los espacios de estacionamieno1:", response);
+        }
+      })
+      .catch((error) => {
+        console.error("Error al obtener los espacios de estacionamiento2:", error);
+      });
+  }, []); 
+  
+  useEffect(() => {
+    console.log(slots);
+  }, [slots]);
   return (
     <ScrollView horizontal={true}>
       <View style={styles.container}>

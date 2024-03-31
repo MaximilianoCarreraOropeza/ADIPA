@@ -39,7 +39,7 @@ export default function Perfil(props) {
         setSurname(sessionData.surname);
         setLastname(sessionData.lastname);
         setMatricula(sessionData.matricula);
-        setRole(sessionData.rol);
+        setRole(sessionData.role);
       }
     } catch (e) {
       setError(!error);

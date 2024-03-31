@@ -4,6 +4,7 @@ import { Input, Icon, Button } from "@rneui/base";
 import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 import { isEmpty } from "lodash";
+import { postApi } from "../../../kernel/components/use_post";
 
 export default function CambiarContra(props) {
   const { navigation, route } = props;
@@ -24,23 +25,16 @@ export default function CambiarContra(props) {
   const [success, setSuccess] = useState(false);
   const [idUser, setIdUser] = useState("");
   const [session, setSession] = useState([]);
+  const [contrasena, setContrasena] = useState("");
 
   useEffect(() => {
+    const sessionxd = route.params;
+    setContrasena(sessionxd.contrasena);
     setSession(route.params);
-    setIdUser(session.id);
+    setIdUser(sessionxd.id);
   });
 
-  const API_URL = "http://192.168.1.82:8080/adipa/usuario/" + idUser;
-
-  const changePassword = async () => {
-    try {
-      const response = await axios.patch(API_URL, {
-        contrasena: confirmPassword,
-      });
-    } catch (error) {
-      setError(!error);
-    }
-  };
+  const API_URL = "usuario/" + idUser;
 
   const CambiarContraseña = async () => {
     if (
@@ -48,21 +42,26 @@ export default function CambiarContra(props) {
       !isEmpty(newPassword) &&
       !isEmpty(confirmPassword)
     ) {
-      if (!(newPassword === confirmPassword)) {
-        setWarning(true);
-      } else {
-        setVisible(!visible);
-        setShowMessage({ password: "", newPassword: "", confirmPassword: "" });
-        changePassword();
-        setTimeout(() => {
-          setVisible(false);
-          setSuccess(!success);
-        }, 1000);
-        setTimeout(() => {
-          setSuccess(false);
-          navigation.goBack();
-        }, 3000);
-      }
+      setVisible(!visible)
+      setShowMessage({ password: "", newPassword: "", confirmPassword: "" });
+      if(password === contrasena){
+      postApi(API_URL, {contrasena: confirmPassword})
+      .then((response) => {
+        console.log(response.status);
+      }).catch((error) => {
+        console.error(error);
+      });
+      setTimeout(() => {
+        setVisible(false);
+        setSuccess(!success);
+      }, 1000);
+      setTimeout(() => {
+        setSuccess(false);
+        navigation.goBack();
+      }, 3000)
+    } else {
+      console.error("Excelente, eres un genio");
+    }
     } else {
       setShowMessage({
         password: "Campo obligatorio",
@@ -78,6 +77,7 @@ export default function CambiarContra(props) {
         <Text style={styles.textoInicial}>Cambiar Contraseña:</Text>
         <Text style={styles.label}>Contraseña:</Text>
         <Input
+          value={password}
           placeholder="Ingresa Tu Contraseña"
           placeholderTextColor={"#70BEAE"}
           inputContainerStyle={styles.textInput}
@@ -98,6 +98,7 @@ export default function CambiarContra(props) {
         />
         <Text style={styles.label}>Nueva Contraseña:</Text>
         <Input
+          value={newPassword}
           placeholder="Ingresa Nueva Contraseña"
           placeholderTextColor={"#70BEAE"}
           inputContainerStyle={styles.textInput}
@@ -118,6 +119,7 @@ export default function CambiarContra(props) {
         />
         <Text style={styles.label}>Confirmar Contraseña:</Text>
         <Input
+          value={confirmPassword}
           placeholder="Confirmar tu Contraseña"
           placeholderTextColor={"#70BEAE"}
           inputContainerStyle={styles.textInput}

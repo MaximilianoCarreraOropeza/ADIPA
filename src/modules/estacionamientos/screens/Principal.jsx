@@ -43,7 +43,7 @@ export default function Principal(props) {
               direccion={"Docencia5"}
               tipo={"carro"}
               exclusividad={"libre"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/Docencia5.mp3"))}
             />
           </View>
           <View style={styles.pin2}>
@@ -52,7 +52,7 @@ export default function Principal(props) {
               direccion={"Cedim"}
               tipo={"carro"}
               exclusividad={"res"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/CEDIM.mp3"))}
             />
           </View>
           <View style={styles.pin3}>
@@ -61,7 +61,7 @@ export default function Principal(props) {
               direccion={"Docencia4"}
               tipo={"carro"}
               exclusividad={"ocupado"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/Docencia4.mp3"))}
             />
           </View>
           <View style={styles.pin4}>
@@ -70,7 +70,7 @@ export default function Principal(props) {
               direccion={"Docencia3"}
               tipo={"carro"}
               exclusividad={"ocupado"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/Docencia3.mp3"))}
             />
           </View>
           <View style={styles.pin5}>
@@ -79,7 +79,7 @@ export default function Principal(props) {
               direccion={"Docencia3Motos"}
               tipo={"moto"}
               exclusividad={"SN"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/Docencia3Motos.mp3"))}
             />
           </View>
           <View style={styles.pin6}>
@@ -88,7 +88,7 @@ export default function Principal(props) {
               direccion={"Jardineras"}
               tipo={"carro"}
               exclusividad={"res"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/Jardineras.mp3"))}
             />
           </View>
           <View style={styles.pin7}>
@@ -97,7 +97,7 @@ export default function Principal(props) {
               direccion={"CafeBalcon"}
               tipo={"carro"}
               exclusividad={"libre"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/Cafe Balcón.mp3"))}
             />
           </View>
           <View style={styles.pin8}>
@@ -106,7 +106,7 @@ export default function Principal(props) {
               direccion={"Docencia1"}
               tipo={"carro"}
               exclusividad={"exclusivo"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/Docencia1.mp3"))}
             />
           </View>
           <View style={styles.pin9}>
@@ -115,7 +115,7 @@ export default function Principal(props) {
               direccion={"CDS"}
               tipo={"carro"}
               exclusividad={"exclusivo"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/CDS.mp3"))}
             />
           </View>
           <View style={styles.pin10}>
@@ -124,7 +124,7 @@ export default function Principal(props) {
               direccion={"TallerPesado2"}
               tipo={"carro"}
               exclusividad={"res"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/TallerPesado2.mp3"))}
             />
           </View>
           <View style={styles.pin11}>
@@ -133,7 +133,7 @@ export default function Principal(props) {
               direccion={"CDSMotos"}
               tipo={"moto"}
               exclusividad={"SN"}
-              playSound={() => playSound()}
+              playSound={() => playSound(require("../../../../assets/CDSMotos.mp3"))}
             />
           </View>
         </BackgroundImage>
