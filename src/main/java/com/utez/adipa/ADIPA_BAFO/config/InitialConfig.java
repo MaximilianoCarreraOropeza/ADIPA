@@ -31,11 +31,11 @@ public class InitialConfig implements CommandLineRunner {
         }
 
         if (!usuarioRepository.existsById(1L)) {
-            usuarioRepository.saveUsuario(1L, 1L, "021", encoder.encode("021"));
+            usuarioRepository.saveUsuario(1L, 1L, "20223tn021", encoder.encode("JaimezFlores104"));
         }
 
         if (!usuarioRepository.existsById(2L)) {
-            usuarioRepository.saveUsuario(2L, 2L, "032", encoder.encode("032"));
+            usuarioRepository.saveUsuario(2L, 2L, "20223tn032", encoder.encode("20223tn032"));
         }
 
         if (!personaRepository.existsById(1L)) {

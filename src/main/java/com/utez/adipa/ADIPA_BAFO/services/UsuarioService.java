@@ -72,7 +72,7 @@ public class UsuarioService {
 
         Usuario usuario = new Usuario();
         usuario.setId_usuario(usuarioDto.getId_usuario());
-        usuario.setMatricula(usuarioDto.getMatricula());
+        usuario.setMatricula(usuarioDto.getMatricula().toLowerCase());
         usuario.setContrasena(passwordEncoder.encode(usuarioDto.getContrasena()));
         usuario.setTipoUsuario(tipoUsuario);
 
@@ -97,7 +97,7 @@ public class UsuarioService {
         TipoUsuario foundTipoUsuario = tipoUsuarioRepository.findById(usuarioDto.getTipo_id()).orElseThrow(() -> new RuntimeException("TipoUsuarioNotFound"));
 
         foundUsuario.setId_usuario(usuarioDto.getId_usuario());
-        foundUsuario.setMatricula(usuarioDto.getMatricula());
+        foundUsuario.setMatricula(usuarioDto.getMatricula().toLowerCase());
         foundUsuario.setContrasena(passwordEncoder.encode(usuarioDto.getContrasena()));
         foundUsuario.setTipoUsuario(foundTipoUsuario);
 
