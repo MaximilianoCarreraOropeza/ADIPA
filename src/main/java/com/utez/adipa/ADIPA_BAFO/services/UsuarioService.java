@@ -122,7 +122,11 @@ public class UsuarioService {
 
                     Persona persona = new Persona();
                     persona.setId_persona((Long) obj[4]);
-                    persona.setUsuario(personaRepository.findById((Long) obj[5]).get().getUsuario());
+                    // Recomendado por chat
+                    Optional<Persona> foundPersona = personaRepository.findById((Long) obj[5]);
+                    Persona personaUsu = foundPersona.isPresent() ? foundPersona.get() : new Persona();
+                    personaUsu.setUsuario(foundPersona.map(Persona :: getUsuario).orElse(null));
+
                     persona.setNombre((String) obj[6]);
                     persona.setApellido_p((String) obj[7]);
                     persona.setApellido_m((String) obj[8]);

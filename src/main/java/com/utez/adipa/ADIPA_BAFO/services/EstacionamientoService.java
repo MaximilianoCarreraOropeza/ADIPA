@@ -41,6 +41,16 @@ public class EstacionamientoService {
         return new ResponseEntity<>(new ApiResponse(repository.findAll(), HttpStatus.OK), HttpStatus.OK);
     }
 
+    @Transactional(readOnly = true)
+    public ResponseEntity<ApiResponse> findById(Long id){
+        Optional<Estacionamiento> foundEstacionamiento = repository.findById(id);
+        if (foundEstacionamiento.isPresent()){
+            return new ResponseEntity<>(new ApiResponse(foundEstacionamiento, HttpStatus.OK), HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, "EstacionameintoIDNotFound"), HttpStatus.NOT_FOUND);
+        }
+    }
+
     @Transactional
     public ResponseEntity<ApiResponse> findByDocencia(String docencia_ubi){
         List<Object[]> foundDocencia = repository.findByDocencia_ubi(docencia_ubi);
@@ -74,6 +84,17 @@ public class EstacionamientoService {
         } else {
             throw new EntityNotFoundException("EstacionamientoNotFound");
         }
+    }
 
+    @Transactional(rollbackFor = {SQLException.class})
+    public ResponseEntity<ApiResponse> changeStatus(Long id, EstacionamientoDto estacionamientoDto){
+        Optional<Estacionamiento> foundEstacionamiento = repository.findById(id);
+        if (foundEstacionamiento.isEmpty()){
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, "EstacionamientoNotFound"), HttpStatus.NOT_FOUND);
+        }
+        Estacionamiento estacionamiento = foundEstacionamiento.get();
+        estacionamiento.setStatus(estacionamientoDto.getStatus());
+
+        return new ResponseEntity<>(new ApiResponse(repository.save(estacionamiento), HttpStatus.OK), HttpStatus.OK);
     }
 }

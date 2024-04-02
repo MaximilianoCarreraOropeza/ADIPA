@@ -30,9 +30,14 @@ public class EstacionamientoController {
         return service.findAll();
     }
 
-    @GetMapping("/{docencia_ubi}")
+    @GetMapping("/docencia/{docencia_ubi}")
     public ResponseEntity<ApiResponse> findByDocencia(@PathVariable String docencia_ubi){
         return service.findByDocencia(docencia_ubi);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<ApiResponse> findById(@PathVariable Long id){
+        return service.findById(id);
     }
 
     @PutMapping("/")
@@ -53,5 +58,10 @@ public class EstacionamientoController {
         } catch (EntityNotFoundException e){
             return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, e.getMessage()), HttpStatus.NOT_FOUND);
         }
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<ApiResponse> changeStatus(@PathVariable("id") Long id, @RequestBody EstacionamientoDto estacionamientoDto){
+        return service.changeStatus(id, estacionamientoDto);
     }
 }
