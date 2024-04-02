@@ -72,7 +72,7 @@ public class UsuarioService {
 
         Usuario usuario = new Usuario();
         usuario.setId_usuario(usuarioDto.getId_usuario());
-        usuario.setMatricula(usuarioDto.getMatricula().toLowerCase());
+        usuario.setMatricula(usuarioDto.getMatricula());
         usuario.setContrasena(passwordEncoder.encode(usuarioDto.getContrasena()));
         usuario.setTipoUsuario(tipoUsuario);
 
@@ -97,7 +97,7 @@ public class UsuarioService {
         TipoUsuario foundTipoUsuario = tipoUsuarioRepository.findById(usuarioDto.getTipo_id()).orElseThrow(() -> new RuntimeException("TipoUsuarioNotFound"));
 
         foundUsuario.setId_usuario(usuarioDto.getId_usuario());
-        foundUsuario.setMatricula(usuarioDto.getMatricula().toLowerCase());
+        foundUsuario.setMatricula(usuarioDto.getMatricula());
         foundUsuario.setContrasena(passwordEncoder.encode(usuarioDto.getContrasena()));
         foundUsuario.setTipoUsuario(foundTipoUsuario);
 
@@ -111,7 +111,6 @@ public class UsuarioService {
         List<Object[]> foundMatricula = repository.findUsuarioByMatricula(matricula);
         if(foundMatricula.isEmpty()){
             return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, "MatriculaNotFound"), HttpStatus.NOT_FOUND);
-
         }
         List<Usuario> usuarios = foundMatricula.stream().map(obj -> {
                     Usuario usuario = new Usuario();
@@ -123,7 +122,7 @@ public class UsuarioService {
 
                     Persona persona = new Persona();
                     persona.setId_persona((Long) obj[4]);
-                    persona.setUsuario(personaRepository.findById((Long) obj[5]).orElse(null).getUsuario());
+                    persona.setUsuario(personaRepository.findById((Long) obj[5]).get().getUsuario());
                     persona.setNombre((String) obj[6]);
                     persona.setApellido_p((String) obj[7]);
                     persona.setApellido_m((String) obj[8]);
