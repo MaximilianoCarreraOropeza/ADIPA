@@ -49,7 +49,8 @@ public class PersonaService {
 
             Persona persona = new Persona();
             persona.setId_persona(personaDto.getId_persona());
-            persona.setNombre(personaDto.getNombre());
+            persona.setNombre1(personaDto.getNombre1());
+            persona.setNombre2(personaDto.getNombre2());
             persona.setApellido_p(personaDto.getApellido_p());
             persona.setApellido_m(personaDto.getApellido_m());
             persona.setUsuario(usuario);
@@ -68,7 +69,8 @@ public class PersonaService {
         Persona foundPersona = repository.findById(personaDto.getId_persona()).orElseThrow(() -> new RuntimeException("PersonaNotFound"));
 
         foundPersona.setId_persona(personaDto.getId_persona());
-        foundPersona.setNombre(personaDto.getNombre());
+        foundPersona.setNombre1(personaDto.getNombre1());
+        foundPersona.setNombre2(personaDto.getNombre2());
         foundPersona.setApellido_p(personaDto.getApellido_p());
         foundPersona.setApellido_m(personaDto.getApellido_m());
         foundPersona.setUsuario(foundUsuario);

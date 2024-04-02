@@ -19,7 +19,7 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Long> {
 
     Optional<Usuario> findByMatricula(String username);
     @Modifying
-    @Query(value = "SELECT Usuario.id_usuario, Usuario.tipo_id, Usuario.contrasena, Usuario.matricula, Persona.id_persona, Persona.usuario_id, Persona.nombre, Persona.apellido_p, Persona.apellido_m, Tipo_Usuario.id_tipo, Tipo_Usuario.nombre " +
+    @Query(value = "SELECT Usuario.id_usuario, Usuario.tipo_id, Usuario.contrasena, Usuario.matricula, Persona.id_persona, Persona.usuario_id, Persona.nombre1, Persona.nombre2,Persona.apellido_p, Persona.apellido_m, Tipo_Usuario.id_tipo, Tipo_Usuario.nombre " +
             "FROM Usuario " +
             "JOIN Persona ON Usuario.id_usuario = Persona.usuario_id " +
             "JOIN Tipo_Usuario ON Usuario.tipo_id = Tipo_Usuario.id_tipo " +

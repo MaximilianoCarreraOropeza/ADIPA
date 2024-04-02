@@ -12,7 +12,8 @@ import lombok.*;
 public class PersonaDto {
 
     private Long id_persona;
-    private String nombre;
+    private String nombre1;
+    private String nombre2;
     private String apellido_p;
     private String apellido_m;
 

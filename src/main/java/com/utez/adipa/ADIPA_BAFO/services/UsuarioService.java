@@ -127,16 +127,17 @@ public class UsuarioService {
                     Persona personaUsu = foundPersona.isPresent() ? foundPersona.get() : new Persona();
                     personaUsu.setUsuario(foundPersona.map(Persona :: getUsuario).orElse(null));
 
-                    persona.setNombre((String) obj[6]);
-                    persona.setApellido_p((String) obj[7]);
-                    persona.setApellido_m((String) obj[8]);
+                    persona.setNombre1((String) obj[6]);
+                    persona.setNombre2((String) obj[7]);
+                    persona.setApellido_p((String) obj[8]);
+                    persona.setApellido_m((String) obj[9]);
 
                     usuario.setPersona(persona);
 
                     TipoUsuario tipoUsuario = new TipoUsuario();
 
-                    tipoUsuario.setId_tipo((Long) obj[9]);
-                    tipoUsuario.setNombre((String) obj[10]);
+                    tipoUsuario.setId_tipo((Long) obj[10]);
+                    tipoUsuario.setNombre((String) obj[11]);
 
                     usuario.setTipoUsuario(tipoUsuario);
 

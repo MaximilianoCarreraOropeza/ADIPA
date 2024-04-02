@@ -1,6 +1,5 @@
 package com.utez.adipa.ADIPA_BAFO.model.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -11,13 +10,17 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 @ToString
-@Table(name = "persona")
-public class Persona {
+@Table(name = "externo")
+public class Externo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_persona")
-    private Long id_persona;
+    @Column(name = "id_externo")
+    private Long id_externo;
+    @Column(name = "usuario", nullable = false)
+    private String usuario;
+    @Column(name = "contrasena", nullable = false)
+    private String contrasena;
     @Column(name = "nombre1", nullable = false)
     private String nombre1;
     @Column(name = "nombre2", nullable = true)
@@ -26,10 +29,4 @@ public class Persona {
     private String apellido_p;
     @Column(name = "apellido_m", nullable = false)
     private String apellido_m;
-
-    @OneToOne(cascade = CascadeType.PERSIST)
-    @JoinColumn(name = "usuario_id")
-    @JsonIgnore
-    private Usuario usuario;
-
 }
