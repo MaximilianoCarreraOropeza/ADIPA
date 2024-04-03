@@ -67,6 +67,7 @@ public class MainSecurity {
                         .requestMatchers("/adipa/tipousuario/**").permitAll()
                         .requestMatchers("/adipa/persona/**").permitAll()
                         .requestMatchers("/adipa/estacionamiento/**").permitAll()
+                        .requestMatchers("/adipa/externo/**").permitAll()
                         .requestMatchers("/adipa/send-email").permitAll()
                         .requestMatchers("/wsadipa/**").permitAll()
                         .anyRequest().authenticated()

@@ -2,7 +2,6 @@ package com.utez.adipa.ADIPA_BAFO.model.dto;
 
 import lombok.*;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
