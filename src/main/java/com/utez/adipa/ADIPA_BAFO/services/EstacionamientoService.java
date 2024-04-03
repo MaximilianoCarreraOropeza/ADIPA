@@ -66,7 +66,7 @@ public class EstacionamientoService {
     public ResponseEntity<ApiResponse> update(EstacionamientoDto estacionamientoDto){
         Estacionamiento foundEstacionamiento = repository.findById(estacionamientoDto.getId_estacionamiento()).orElseThrow(() -> new RuntimeException("EstacionamientoNotFound"));
 
-        foundEstacionamiento.setEstacionamiento_id(estacionamientoDto.getId_estacionamiento());
+        foundEstacionamiento.setId_estacionamiento(estacionamientoDto.getId_estacionamiento());
         foundEstacionamiento.setDocencia_ubi(estacionamientoDto.getDocencia_ubi());
         foundEstacionamiento.setNum_slot(estacionamientoDto.getNum_slot());
         foundEstacionamiento.setStatus(estacionamientoDto.getStatus());
