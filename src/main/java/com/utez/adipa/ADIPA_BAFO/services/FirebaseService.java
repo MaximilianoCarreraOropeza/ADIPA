@@ -26,7 +26,7 @@ public class FirebaseService {
         return estacionamientos;
     }
 
-    public Firebase getEstacionamiento(String id_estacionamiento) throws ExecutionException, InterruptedException {
+    public Firebase getIdEstacionamiento(String id_estacionamiento) throws ExecutionException, InterruptedException {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         DocumentReference documentReference = dbFirestore.collection("adipa").document(id_estacionamiento);
         ApiFuture<DocumentSnapshot> future = documentReference.get();
@@ -55,5 +55,26 @@ public class FirebaseService {
         Firestore dbFirestore = FirestoreClient.getFirestore();
         ApiFuture<WriteResult> colletionApiFuture = dbFirestore.collection("adipa").document(firebase.getId_estacionamiento()).set(firebase);
         return colletionApiFuture.get().getUpdateTime().toString();
+    }
+
+    public List<Firebase> getEstacionamientosByDocenciaUbi(String docencia_ubi) throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        CollectionReference collectionReference = dbFirestore.collection("adipa");
+        Query query = collectionReference.whereEqualTo("docencia_ubi", docencia_ubi);
+        ApiFuture<QuerySnapshot> future = query.get();
+        QuerySnapshot querySnapshot = future.get();
+        List<Firebase> estacionamientos = new ArrayList<>();
+        for (DocumentSnapshot document : querySnapshot.getDocuments()) {
+            Firebase firebase = document.toObject(Firebase.class);
+            estacionamientos.add(firebase);
+        }
+        return estacionamientos;
+    }
+
+    public String updateStatus(String id_estacionamiento, boolean newStatus) throws ExecutionException, InterruptedException {
+        Firestore dbFirestore = FirestoreClient.getFirestore();
+        DocumentReference documentReference = dbFirestore.collection("adipa").document(id_estacionamiento);
+        ApiFuture<WriteResult> updateFuture = documentReference.update("status", newStatus);
+        return updateFuture.get().getUpdateTime().toString();
     }
 }

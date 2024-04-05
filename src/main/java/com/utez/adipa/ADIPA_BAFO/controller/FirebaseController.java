@@ -28,9 +28,9 @@ public class FirebaseController {
     }
 
     @GetMapping("/")
-    public ResponseEntity<ApiResponse> getFirebase(@RequestParam String id_estacionamiento) {
+    public ResponseEntity<ApiResponse> getIdFirebase(@RequestParam String id_estacionamiento) {
         try {
-            return new ResponseEntity<>(new ApiResponse(service.getEstacionamiento(id_estacionamiento), HttpStatus.OK), HttpStatus.OK);
+            return new ResponseEntity<>(new ApiResponse(service.getIdEstacionamiento(id_estacionamiento), HttpStatus.OK), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, e.getMessage()), HttpStatus.NOT_FOUND);
         }
@@ -63,6 +63,23 @@ public class FirebaseController {
         }
     }
 
+    @GetMapping("/docencia")
+    public ResponseEntity<ApiResponse> getEstacionamientosByDocenciaUbi(@RequestParam String docencia_ubi) {
+        try {
+            return new ResponseEntity<>(new ApiResponse(service.getEstacionamientosByDocenciaUbi(docencia_ubi), HttpStatus.OK), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, e.getMessage()), HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PatchMapping("/{id_estacionamiento}/status")
+    public ResponseEntity<ApiResponse> updateStatus(@PathVariable String id_estacionamiento, @RequestParam boolean newStatus) {
+        try {
+            return new ResponseEntity<>(new ApiResponse(service.updateStatus(id_estacionamiento, newStatus), HttpStatus.OK), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND, true, e.getMessage()), HttpStatus.NOT_FOUND);
+        }
+    }
 
 
 }
