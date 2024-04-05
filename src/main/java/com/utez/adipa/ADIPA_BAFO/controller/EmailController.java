@@ -3,7 +3,6 @@ package com.utez.adipa.ADIPA_BAFO.controller;
 import com.utez.adipa.ADIPA_BAFO.config.ApiResponse;
 import com.utez.adipa.ADIPA_BAFO.model.dto.EmailDto;
 import com.utez.adipa.ADIPA_BAFO.services.IEmailService;
-import jakarta.mail.MessagingException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,12 +19,12 @@ public class EmailController {
     }
 
     @PostMapping("/send-email")
-    private ResponseEntity<ApiResponse> sendEmail(@RequestBody EmailDto email) throws MessagingException {
+    private ResponseEntity<ApiResponse> sendEmail(@RequestBody EmailDto email) {
         try{
             emailService.enviarCorreo(email);
             return new ResponseEntity<>(new ApiResponse(email, HttpStatus.OK), HttpStatus.OK);
-        } catch (RuntimeException runtimeException){
-            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND,true, runtimeException.getMessage()), HttpStatus.NOT_FOUND);
+        } catch (Exception e){
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.NOT_FOUND,true, e.getMessage()), HttpStatus.NOT_FOUND);
         }
 
     }

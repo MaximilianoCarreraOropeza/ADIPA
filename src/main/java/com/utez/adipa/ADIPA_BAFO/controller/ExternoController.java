@@ -22,7 +22,11 @@ public class ExternoController {
 
     @PostMapping("/")
     public ResponseEntity<ApiResponse> create(@Valid @RequestBody ExternoDto externoDto){
-        return service.save(externoDto.toEntity());
+        try{
+            return service.save(externoDto.toEntity());
+        } catch (Exception e){
+            return new ResponseEntity<>(new ApiResponse(HttpStatus.INTERNAL_SERVER_ERROR, true, e.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
+        }
     }
 
     @GetMapping("/")
