@@ -60,7 +60,7 @@ export default function Glosario() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "space-between"
+    justifyContent: "center"
   },
   imagen: {
     width: 45,
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: "black",
     fontWeight: "bold",
-    marginLeft: 10,
+    marginLeft: 10
   },
   itemContainer: {
     flexDirection: "row",
@@ -79,8 +79,8 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     elevation: 2,
     borderRadius: 10,
-    marginVertical: 5,
-    marginHorizontal: 10
+    marginVertical: "2%",
+    marginHorizontal: "2%"
   },
   lastItemContainer: {
     borderBottomWidth: 1,

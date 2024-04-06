@@ -17,8 +17,10 @@ export default function AuthStack(props) {
         name="Contra"
         component={CambiarContra}
         options={{
-          headerTitle: "",
+          headerTitle: "Recupera tu Cuenta",
+          headerTitleAlign: "center",
           headerShown: true,
+          headerTitleStyle: {fontWeight: "bold", fontSize: 21},
           tabBarStyle: {
             display: "none",
           },
@@ -28,8 +30,10 @@ export default function AuthStack(props) {
         name="ValideToken"
         component={ValideToken}
         options={{
-          headerTitle: "",
+          headerTitle: "Cambiar Contraseña",
+          headerTitleAlign: "center",
           headerShown: true,
+          headerTitleStyle: {fontWeight: "bold", fontSize: 21},
           tabBarStyle: {
             display: "none",
           },

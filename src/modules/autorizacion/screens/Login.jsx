@@ -29,22 +29,27 @@ export default function Login(props) {
         contrasena: password
       })
         .then((response) => {
+          console.log(response);
           if (response.status === "OK") {
             const session = {
               id: response.data.usuario.id_usuario,
               matricula: response.data.usuario.matricula,
               contrasena: password,
-              name: response.data.usuario.persona.nombre,
+              name: response.data.usuario.persona.nombre1,
+              name2: response.data.usuario.persona.nombre2,
               surname: response.data.usuario.persona.apellido_p,
               lastname: response.data.usuario.persona.apellido_m,
               role: response.data.usuario.tipoUsuario.nombre
             };
-            console.log(session);
             const storeData = async () => {
               try {
                 await AsyncStorage.setItem("session", JSON.stringify(session));
               } catch (e) {
-                console.error(e);
+                setTimeout((e) => {
+                  console.log(e)
+                  setVisible(false);
+                  setError(!error);
+                }, 1000);
               }
             };
             storeData();
@@ -59,14 +64,20 @@ export default function Login(props) {
           } else if (response.status === "BAD_REQUEST") {
             setTimeout(() => {
               setVisible(false);
-              setError(!error);
+              setWarning(!warning);
+            }, 1000);
+          } else if(response.status === "NOT_FOUND"){
+            setTimeout(() => {
+              setVisible(false);
+              setWarning(!warning);
             }, 1000);
           }
         })
         .catch(() => {
-          setTimeout(() => {
+          setTimeout((e) => {
+            console.log(e)
             setVisible(false);
-            setWarning(!warning);
+            setError(!error);
           }, 1000);
         });
     }
@@ -91,7 +102,7 @@ export default function Login(props) {
           leftIcon={<Icon type="material-community" name="account" />}
           errorMessage={showMessage.email}
         />
-        <Text style={styles.label}>Contraseña: *</Text>
+        <Text style={styles.label}>Contraseña:</Text>
         <Input
           value={password}
           placeholder="Ingresa Tu Contraseña"
@@ -138,19 +149,19 @@ export default function Login(props) {
         type={"warning"}
         visible={warning}
         setVisible={setWarning}
-        title="Error al iniciar sesion"
+        title="Usuario y/o contraseña incorrectos"
       />
       <Message
         type={"error"}
         visible={error}
         setVisible={setError}
-        title="Usuario y/o contraseña incorrectos"
+        title="Error al iniciar sesión"
       />
       <Message
         type={"success"}
         visible={success}
         setVisible={setSuccess}
-        title="Se inicio sesion correctamente"
+        title="Se inicio sesión correctamente"
       />
     </View>
   );

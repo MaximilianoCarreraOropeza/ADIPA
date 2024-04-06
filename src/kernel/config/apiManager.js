@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const ApiManager = axios.create({ 
-    baseURL: "http://192.168.1.82:8080/adipa/",
+    baseURL: process.env.EXPO_PUBLIC_API_URL,
     responseType: "json",
     withCredentials: true,
 });

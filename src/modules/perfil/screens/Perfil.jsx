@@ -23,6 +23,7 @@ export default function Perfil(props) {
   const [id, setId] = useState('');
   const [session, setSession] = useState([]);
   const [name, setName] = useState("");
+  const [name2, setName2] = useState("");
   const [surname, setSurname] = useState("");
   const [lastname, setLastname] = useState("");
   const [matricula, setMatricula] = useState("");
@@ -36,6 +37,7 @@ export default function Perfil(props) {
         setSession(sessionData);
         setId(session.id);
         setName(sessionData.name);
+        setName2(sessionData.name2);
         setSurname(sessionData.surname);
         setLastname(sessionData.lastname);
         setMatricula(sessionData.matricula);
@@ -98,7 +100,9 @@ export default function Perfil(props) {
           <Text style={styles.estudiante}>{role}</Text>
         </View>
         <View style={styles.column}>
-          <Text style={styles.nombre}>{name}</Text>
+          <Text style={styles.nombre}>
+            {name} {name2}
+          </Text>
           <Text style={styles.nombre}>
             {surname} {lastname}
           </Text>
