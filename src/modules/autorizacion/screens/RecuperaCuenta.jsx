@@ -38,7 +38,7 @@ export default function RecuperaCuenta(props) {
                 const apellido = response.data[0].persona.apellido_p;
                tempCorreo = `${nombre}${apellido}@gmail.com`;
               }
-              console.warn(`SetCorreo ${tempCorreo}`);
+              console.log(`SetCorreo ${tempCorreo}`);
               const asunto = "Recuperación de Cuenta - ADIPA";
               postApi("send-email", {
                 destinatario: tempCorreo, 

@@ -7,7 +7,7 @@ import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useNavigation } from "@react-navigation/native";
-import { postApi } from "../../../kernel/config/use_connection";
+import { sendLogin } from "../../../kernel/config/use_connection";
 
 export default function Login(props) {
   const { setIsAuthenticated } = props;

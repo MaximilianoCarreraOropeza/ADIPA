@@ -30,17 +30,17 @@ return error.response.data;
 }
 
 export const sendLogin = async (data) => {
-try {
-    const result = await apiManager("auth/signin", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },  
-        data: data
-    });
-    return result.data;
-  } catch (error) {
-    return error.response.data;
+  try {
+      const result = await apiManager("auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },  
+          data: data
+      });
+      return result.data;
+    } catch (error) {
+      return error.response.data;
 }
 };
 
@@ -103,7 +103,7 @@ export const getPetition = async() => {
 
 export const postPetition = async (data) => {
   try {
-      const result = await apiManager("externo", {
+      const result = await apiManager("externo/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -118,7 +118,7 @@ export const postPetition = async (data) => {
 
   export const putPetition = async (data) => {
     try {
-        const result = await apiManager('externo', {
+        const result = await apiManager('externo/', {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",

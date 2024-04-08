@@ -5,7 +5,7 @@ export default function Docencia5() {
   return (
     <WebView
       style={styles.container}
-      source={{uri: 'http://192.168.0.251:5173/docencia5'}}
+      source={{uri: 'https://b21wjf5j-5173.usw3.devtunnels.ms/docencia5'}}
     />
   );
 }

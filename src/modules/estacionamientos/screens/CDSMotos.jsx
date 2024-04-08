@@ -7,7 +7,7 @@ export default function CDSMotos() {
   return (
     <WebView
       style={styles.container}
-      source={{uri: 'http://192.168.109.30:5173/cdsmotos'}}
+      source={{uri: 'https://b21wjf5j-5173.usw3.devtunnels.ms/cdsmotos'}}
     />
   )
 }

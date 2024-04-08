@@ -4,6 +4,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Perfil from "../../../perfil/screens/Perfil";
 import CambiarContra from "../../../perfil/screens/CambiarContra";
 import logo from "../../../../../assets/logo.png";
+import Solicitudes from "../../../perfil/screens/Solicitudes";
 
 const stack = createStackNavigator();
 

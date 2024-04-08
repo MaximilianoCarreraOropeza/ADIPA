@@ -41,7 +41,7 @@ export default function AuthStack(props) {
         }}
       />
       <Stack.Screen
-        name="CrearCuenta"
+        name="Register"
         component={Register}
         options={{
           headerTitle: "",
