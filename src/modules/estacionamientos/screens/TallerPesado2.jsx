@@ -1,13 +1,27 @@
-import { StyleSheet } from "react-native";
-import React from "react";
+import { StyleSheet, View } from "react-native";
+import React, { useState,   useEffect } from 'react';
 import { WebView } from 'react-native-webview';
+import Loading from "../../../kernel/components/Loading";
+
 
 export default function TallerPesado2() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
+    return () => clearTimeout(timeout);
+  }, []);
+  
   return (
-    <WebView
-      style={styles.container}
-      source={{uri: 'https://b21wjf5j-5173.usw3.devtunnels.ms/tallerpesado2'}}
-    />
+    <View style={styles.container}>
+      <WebView
+        style={styles.container}
+        source={{uri: process.env.EXPO_PUBLIC_FRONT+"/cafebalcon"}}
+      />
+      <Loading visible={isLoading} title="Cargando Estacionamiento"/>
+    </View>   
   );
 }
 

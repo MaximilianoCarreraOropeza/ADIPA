@@ -18,11 +18,13 @@ export default function RecuperaCuenta(props) {
 
   const enviarCorreo = async () => {
     if (!isEmpty(matricula)) {
+      setVisible(!visible);
       setShowMessage({ matricula: "" });
       getUserByMatricula(matricula)
       .then(
         (response) => {
             if(response.status === "OK"){
+              console.log(response.data[0]);
             const id_usuario = response.data[0].id_usuario;
               const matricula = response.data[0].matricula;
               const role = response.data[0].tipoUsuario.nombre;
@@ -34,7 +36,7 @@ export default function RecuperaCuenta(props) {
                 tempCorreo = `${matricula}@utez.edu.mx`;
               } else {
                 console.log(`El usuario es empleado`);
-                const nombre = response.data[0].persona.nombre;
+                const nombre = response.data[0].persona.nombre1;
                 const apellido = response.data[0].persona.apellido_p;
                tempCorreo = `${nombre}${apellido}@gmail.com`;
               }
@@ -67,8 +69,7 @@ export default function RecuperaCuenta(props) {
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
-        <Text style={styles.textoInicial}>Recupera tu cuenta:</Text>
-        <Text style={styles.label}>Matricula: </Text>
+        <Text style={styles.label}>Usuario: </Text>
         <Input
         value={matricula}
           placeholder="Ingresa tu matricula"
@@ -84,6 +85,9 @@ export default function RecuperaCuenta(props) {
         <Text style={styles.txtAviso}>
           Se enviará un enlace para reestablecer su contraseña al correo
           asociado a su cuenta.
+          El usuario puede ser una matricula para los estudiantes, 
+          número de empleado para los docentes o administrativos, 
+          o correo electronico para usuarios externos
         </Text>
         <Button
           title="Continuar"
@@ -106,19 +110,19 @@ export default function RecuperaCuenta(props) {
         type={"error"}
         visible={error}
         setVisible={setError}
-        title="Matricula no encontrada"
+        title="Usuario no encontrada"
       />
       <Message
         type={"warning"}
         visible={warning}
         setVisible={setWarning}
-        title="Error enviando matricula"
+        title="Error enviando correo de recuperación"
       />
       <Message
         type={"success"}
         visible={success}
         setVisible={setSuccess}
-        title="Se envio matricula correctamente"
+        title="Se envio correo de recuperación correctamente"
       />
     </View>
   );
@@ -140,14 +144,6 @@ const styles = StyleSheet.create({
     marginTop: 15,
     color: "#0655AA",
     alignSelf: "flex-start",
-  },
-  textoInicial: {
-    fontWeight: "bold",
-    fontSize: 20,
-    alignSelf: "flex-start",
-    marginBottom: 5,
-    marginTop: 15,
-    marginLeft: 20,
   },
   inputMatricula: {
     width: "95%",

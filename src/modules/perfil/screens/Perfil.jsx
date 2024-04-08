@@ -35,8 +35,9 @@ export default function Perfil(props) {
       if (value !== null) {
         const sessionData = JSON.parse(value);
         setSession(sessionData);
+        console.log(sessionData);
         setId(session.id);
-        setName(sessionData.name);
+        setName(sessionData.name1);
         setName2(sessionData.name2);
         setSurname(sessionData.surname);
         setLastname(sessionData.lastname);

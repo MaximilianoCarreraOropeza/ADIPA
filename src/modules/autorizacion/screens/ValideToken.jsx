@@ -13,7 +13,6 @@ export default function ValideToken(props) {
     newPassword: "",
     confirmPassword: "",
   });
-  const [showPassword1, setShowPassword1] = useState(true);
   const [showPassword2, setShowPassword2] = useState(true);
   const [showPassword3, setShowPassword3] = useState(true);
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -83,7 +82,6 @@ export default function ValideToken(props) {
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
-        <Text style={styles.textoInicial}>Cambiar Contraseña:</Text>
         <Text style={styles.label}>Pin:</Text>
         <Input
           value={pin}
@@ -94,15 +92,6 @@ export default function ValideToken(props) {
           containerStyle={styles.input}
           onChange={({ nativeEvent: { text } }) => setPin(text)}
           errorMessage={showMessage.pin}
-          secureTextEntry={showPassword1}
-          rightIcon={
-            <Icon
-              type="material-community"
-              name={showPassword1 ? "eye-outline" : "eye-off-outline"}
-              color="black"
-              onPress={() => setShowPassword1(!showPassword1)}
-            />
-          }
           leftIcon={<Icon type="material-community" name="lock" />}
         />
         <Text style={styles.label}>Nueva Contraseña:</Text>

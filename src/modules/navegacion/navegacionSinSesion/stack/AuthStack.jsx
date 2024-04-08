@@ -44,8 +44,10 @@ export default function AuthStack(props) {
         name="Register"
         component={Register}
         options={{
-          headerTitle: "",
+          headerTitle: "Registra tu Usuario",
+          headerTitleAlign: "center",
           headerShown: true,
+          headerTitleStyle: {fontWeight: "bold", fontSize: 21},
           tabBarStyle: {
             display: "none",
           },

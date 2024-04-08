@@ -34,7 +34,8 @@ export default function Login(props) {
               id: response.data.usuario.id_usuario,
               matricula: response.data.usuario.matricula,
               contrasena: password,
-              name: response.data.usuario.persona.nombre,
+              name1: response.data.usuario.persona.nombre1,
+              name2: response.data.usuario.persona.nombre2,
               surname: response.data.usuario.persona.apellido_p,
               lastname: response.data.usuario.persona.apellido_m,
               role: response.data.usuario.tipoUsuario.nombre

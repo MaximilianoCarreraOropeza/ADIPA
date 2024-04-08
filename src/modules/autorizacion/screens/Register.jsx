@@ -8,10 +8,11 @@ import { useNavigation } from "@react-navigation/native";
 import { postPetition } from "../../../kernel/config/use_connection";
 
 
-export default function CrearCuenta(props) {
+export default function CrearCuenta() {
   const navigation = useNavigation();
-  const [showPassword, setShowPassword] = useState(false);
-  const [showMessage, setShowMessage] = useState({ email: "", password: "" });
+  const [showPassword1, setShowPassword1] = useState(true);
+  const [showPassword2, setShowPassword2] = useState(true);
+  const [showMessage, setShowMessage] = useState({name: "", surname: "", lastname: "", email: "", password: "", confirmPassword: "" });
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
   const [warning, setWarning] = useState(false);
@@ -24,6 +25,7 @@ export default function CrearCuenta(props) {
   const [lastname, setLastname] = useState("");
 
   const CrearCuenta = () => {
+    setVisible(!visible);
     const info = {
         email: email,
         password: password,
@@ -33,7 +35,13 @@ export default function CrearCuenta(props) {
         lastname: lastname,
     };
     console.log(info);
-    if (!(isEmpty(email) && isEmpty(password))) {
+    if (!(isEmpty(email) && isEmpty(password) && isEmpty(confirmPassword) && isEmpty(name) && isEmpty(surname) && isEmpty(lastname))){
+      if (password !== confirmPassword){
+        setTimeout(() => {
+          setVisible(false);
+          setWarning(!warning);
+        }, 1000);
+      } else {
         const tempName = name.split(" ");
         if(tempName.length > 0){
             if(tempName.length <= 2){
@@ -47,9 +55,8 @@ export default function CrearCuenta(props) {
         var name1 = name;
         var name2 = "NoAplica";
     }
-      //setVisible(!visible);
-      console.log(`${name1} ${name2}`);
-      postPetition({ 
+    console.log(`${name1} ${name2}`);
+    postPetition({ 
     usuario: info.email,
     contrasena: info.confirmPassword,
     nombre1: name1,
@@ -58,15 +65,33 @@ export default function CrearCuenta(props) {
     apellido_m: info.surname,
       }).then(
         (response) => {
-        console.log(info);
-            console.log(response);
+          console.log(response);
             if(response.status === 'OK'){
-                console.log('Todo salió bien');
+                setTimeout(() => {
+                  setVisible(false);
+                  setSuccess(!success);
+                }, 1000);
+                setTimeout(() => {
+                    setSuccess(false);
+                    navigation.goBack();
+                }, 3000);
             } else {
-                console.log('Algo salió mal\n', response);
+              setTimeout(() => {
+                setVisible(false);
+                setSuccess(!success);
+              }, 1000);
             }
         }
-      ).catch((error) => {console.log(error);});
+      ).catch(() => {
+        setTimeout(() => {
+          setVisible(false);
+          setSuccess(!success);
+        }, 1000);
+      });
+      }
+        
+    } else {
+      setShowMessage({name: "Campo obligatorio", surname: "Campo obligatorio", lastname: "Campo obligatorio", email: "Campo obligatorio", password: "Campo obligatorio", confirmPassword: "Campo obligatorio"});
     }
   };
 
@@ -78,40 +103,37 @@ export default function CrearCuenta(props) {
             <Input
             value={name}
                 placeholder="Ingrese su nombre"
-                keyboardType="email-address"
                 placeholderTextColor={"#70BEAE"}
                 inputContainerStyle={styles.textInput}
                 inputStyle={styles.fontSize}
                 onChange={({ nativeEvent: { text } }) => setName(text)}
                 containerStyle={styles.input}
                 leftIcon={<Icon type="material-community" name="face-man" />}
-                errorMessage={showMessage.email}
+                errorMessage={showMessage.name}
             />
             <Text style={styles.label}>Apellido Paterno:</Text>
             <Input
             value={surname}
-                placeholder="Ingrese su nombre"
-                keyboardType="email-address"
+                placeholder="Ingrese su apellido paterno"
                 placeholderTextColor={"#70BEAE"}
                 inputContainerStyle={styles.textInput}
                 inputStyle={styles.fontSize}
                 containerStyle={styles.input}
                 onChange={({ nativeEvent: { text } }) => setSurname(text)}
                 leftIcon={<Icon type="material-community" name="human-male" />}
-                errorMessage={showMessage.email}
+                errorMessage={showMessage.lastname}
             />
             <Text style={styles.label}>Apellido Materno</Text>
             <Input
             value={lastname}
-                placeholder="Ingrese su nombre"
-                keyboardType="email-address"
+                placeholder="Ingrese su materno"
                 placeholderTextColor={"#70BEAE"}
                 inputContainerStyle={styles.textInput}
                 inputStyle={styles.fontSize}
                 containerStyle={styles.input}
                 onChange={({ nativeEvent: { text } }) => setLastname(text)}
                 leftIcon={<Icon type="material-community" name="human-female" />}
-                errorMessage={showMessage.email}
+                errorMessage={showMessage.surname}
             />
             <Text style={styles.label}>Correo Electrónico:</Text>
             <Input
@@ -130,7 +152,6 @@ export default function CrearCuenta(props) {
             <Input
             value={password}
                 placeholder="Ingrese su nombre"
-                keyboardType="email-address"
                 placeholderTextColor={"#70BEAE"}
                 onChange={({ nativeEvent: { text } }) => setPassword(text)}
                 inputContainerStyle={styles.textInput}
@@ -139,20 +160,19 @@ export default function CrearCuenta(props) {
                 rightIcon={
                     <Icon
                       type="material-community"
-                      name={showPassword ? "eye-outline" : "eye-off-outline"}
+                      name={showPassword2 ? "eye-outline" : "eye-off-outline"}
                       color="black"
-                      onPress={() => setShowPassword(!showPassword)}
+                      onPress={() => setShowPassword2(!showPassword2)}
                     />
                   }
                   leftIcon={<Icon type="material-community" name="lock" />}
-                  secureTextEntry={showPassword}
+                  secureTextEntry={showPassword2}
                   errorMessage={showMessage.password}
             />
             <Text style={styles.label}>Confirmar Contraseña:</Text>
             <Input
             value={confirmPassword}
                 placeholder="Ingrese una contraseña"
-                keyboardType="email-address"
                 placeholderTextColor={"#70BEAE"}
                 inputContainerStyle={styles.textInput}
                 inputStyle={styles.fontSize}
@@ -161,13 +181,13 @@ export default function CrearCuenta(props) {
                 rightIcon={
                     <Icon
                       type="material-community"
-                      name={showPassword ? "eye-outline" : "eye-off-outline"}
+                      name={showPassword1 ? "eye-outline" : "eye-off-outline"}
                       color="black"
-                      onPress={() => setShowPassword(!showPassword)}
+                      onPress={() => setShowPassword1(!showPassword1)}
                     />
                   }
                   leftIcon={<Icon type="material-community" name="lock" />}
-                  secureTextEntry={showPassword}
+                  secureTextEntry={showPassword1}
                   errorMessage={showMessage.password}
             />
         </View>
@@ -176,14 +196,20 @@ export default function CrearCuenta(props) {
           title="Registrate"
           onPress={CrearCuenta}
           containerStyle={styles.btnContainerStyle2}
+          buttonStyle={styles.btnStyle2}
+          titleStyle={styles.titleBtnStyle2}
+          errorMessage={showMessage}
+        />
+        <Button
+          title="Cancelar"
+          onPress={() => navigation.goBack()}
+          containerStyle={styles.btnContainerStyle2}
           buttonStyle={styles.btnStyle3}
           titleStyle={styles.titleBtnStyle3}
           errorMessage={showMessage}
         />
         </View>
-
-      <Loading visible={visible} title="Creando Cuenta" />
-      
+      <Loading visible={visible} title="Creando Cuenta"/>
       <Message
         type={"error"}
         visible={error}
@@ -194,7 +220,7 @@ export default function CrearCuenta(props) {
         type={"warning"}
         visible={warning}
         setVisible={setWarning}
-        title="Usuario o contraseña no valida"
+        title="Contraseñas no coinciden"
       />
       <Message
         type={"success"}
