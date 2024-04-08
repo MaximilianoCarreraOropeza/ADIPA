@@ -6,7 +6,6 @@ import CambiarContra from "../../../perfil/screens/CambiarContra";
 import logo from "../../../../../assets/logo.png";
 
 const stack = createStackNavigator();
-const API_URL = "http://192.168.109.154:8080/api/auth/logout";
 
 export default function PerfilStack(props) {
   const { setIsAuthenticated } = props;
@@ -65,6 +64,13 @@ export default function PerfilStack(props) {
         component={CambiarContra}
         options={{
           headerTitle: "",
+        }}
+      />
+      <stack.Screen
+        name="Solicitudes"
+        component={Solicitudes}
+        options={{
+          headerTitle: "Solicitudes",
         }}
       />
     </stack.Navigator>

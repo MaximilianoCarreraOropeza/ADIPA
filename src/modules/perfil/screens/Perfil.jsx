@@ -119,6 +119,19 @@ export default function Perfil(props) {
           <Image source={contra} style={styles.icono} />
           <Text style={styles.texto}>Cambiar Contraseña</Text>
         </TouchableOpacity>
+        {
+          role === "Administrador" && (
+            <TouchableOpacity
+              style={styles.btn}
+              onPress={() => {
+                navigation.navigate("Solicitudes");
+              }}
+            >
+              <Image source={contra} style={styles.icono} />
+              <Text style={styles.texto}>Solicitudes Pendientes</Text>
+            </TouchableOpacity>
+          )
+        }
         <TouchableOpacity style={styles.btn} onPress={confirmAction}>
           <Image source={salida} style={styles.icono} />
           <Text style={[styles.texto, { color: "black" }]}>Cerrar Sesión</Text>
@@ -131,19 +144,19 @@ export default function Perfil(props) {
         setVisible={setAsk}
         confirm={confirm}
         setConfirm={setConfirm}
-        title="¿Esta seguro de querer cerrar sesión?"
+        title="¿Está seguro de querer cerrar sesión?"
       />
       <Message
         type={"error"}
         visible={error}
         setVisible={setError}
-        title="No se realizo el proceso"
+        title="No se realizó el proceso"
       />
       <Message
         type={"success"}
         visible={success}
         setVisible={setSuccess}
-        title="Se cerro sesion correctamente"
+        title="Se cerró sesión correctamente"
       />
     </View>
   );

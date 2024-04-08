@@ -6,7 +6,7 @@ export default function TallerPesado2() {
   return (
     <WebView
       style={styles.container}
-      source={{uri: 'http://'}}
+      source={{uri: 'http://192.168.109.30:5173/tallerpesado2'}}
     />
   );
 }

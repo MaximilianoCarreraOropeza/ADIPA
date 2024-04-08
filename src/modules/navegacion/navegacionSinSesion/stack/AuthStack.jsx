@@ -3,6 +3,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Login from "../../../autorizacion/screens/Login";
 import CambiarContra from "../../../autorizacion/screens/RecuperaCuenta";
 import ValideToken from "../../../autorizacion/screens/ValideToken";
+import Register from "../../../autorizacion/screens/Register";
 
 const Stack = createStackNavigator();
 
@@ -34,6 +35,17 @@ export default function AuthStack(props) {
           headerTitleAlign: "center",
           headerShown: true,
           headerTitleStyle: {fontWeight: "bold", fontSize: 21},
+          tabBarStyle: {
+            display: "none",
+          },
+        }}
+      />
+      <Stack.Screen
+        name="CrearCuenta"
+        component={Register}
+        options={{
+          headerTitle: "",
+          headerShown: true,
           tabBarStyle: {
             display: "none",
           },

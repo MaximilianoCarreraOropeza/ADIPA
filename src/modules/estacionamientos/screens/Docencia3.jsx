@@ -6,7 +6,7 @@ export default function Docencia3() {
   return (
     <WebView
       style={styles.container}
-      source={{uri: 'http://192.168.109.30:5173'}}
+      source={{uri: 'http://192.168.109.30:5173/docencia3'}}
     />
   )
 }

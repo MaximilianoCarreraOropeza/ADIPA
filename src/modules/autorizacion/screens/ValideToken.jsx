@@ -35,8 +35,7 @@ export default function ValideToken(props) {
   const API_URL = "usuario/" + idUser;
 
   const ValidateToken = async () => {
-    /*
-        if (
+    if (
       !(
         isEmpty(pin && newPassword) &&
         isEmpty(newPassword) &&
@@ -78,58 +77,13 @@ export default function ValideToken(props) {
         confirmPassword: "Campo obligatorio",
       });
     }
-    
-    */
-    if (isEmpty(pin) && isEmpty(newPassword) && isEmpty(confirmPassword)){
-      setShowMessage({
-        pin: "Campo obligatorio",
-        newPassword: "Campo obligatorio",
-        confirmPassword: "Campo obligatorio",
-      });
-    } else if(newPassword !== confirmPassword){
-      setWarning(!warning);
-    } else {
-      setVisible(!visible);
-      setShowMessage({ pin: "", newPassword: "", confirmPassword: "" });
-      if (pin === pinEmail) {
-        postChance(API_URL, { contrasena: confirmPassword })
-          .then((response) => {
-            console.log(response);
-            if (response.status === "OK") {
-              console.log("Cambio de contraseña exitoso");
-              setTimeout(() => {
-                setVisible(false);
-                setSuccess(!success);
-              }, 1000);
-              setTimeout(() => {
-                setSuccess(false);
-                navigation.navigate("Login");
-              }, 3000);
-            } else {
-              console.error("Error al cambiar la contraseña");
-              setTimeout(() => {
-                setVisible(false);
-                setError(!error);
-              }, 1000);
-            }
-          })
-          .catch((e) => {
-            console.log(e)
-            setTimeout(() => {
-              setVisible(false);
-              setError(!error);
-            }, 1000);
-          });
-      } else {
-        console.error("Excelente, eres un genio");
-      }
-    }
-  }
+  };
 
 
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
+        <Text style={styles.textoInicial}>Cambiar Contraseña:</Text>
         <Text style={styles.label}>Pin:</Text>
         <Input
           value={pin}
@@ -236,7 +190,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "white",
-    justifyContent: "flex-start",
+    justifyContent: "center",
     alignItems: "center",
   },
   container2: {

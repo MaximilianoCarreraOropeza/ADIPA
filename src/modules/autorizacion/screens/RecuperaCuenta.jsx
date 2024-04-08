@@ -19,13 +19,16 @@ export default function RecuperaCuenta(props) {
   const enviarCorreo = async () => {
     if (!isEmpty(matricula)) {
       setShowMessage({ matricula: "" });
-      getUserByMatricula(matricula).then(
+      getUserByMatricula(matricula)
+      .then(
         (response) => {
-            setVisible(!visible);
             if(response.status === "OK"){
-              const id_usuario = response.data[0].id_usuario;
+            const id_usuario = response.data[0].id_usuario;
               const matricula = response.data[0].matricula;
               const role = response.data[0].tipoUsuario.nombre;
+              console.log(id_usuario);
+              console.log(matricula);
+              console.log(role);
               if(role === "Estudiante"){
                 console.log(`El usuario es estudiante`);
                 tempCorreo = `${matricula}@utez.edu.mx`;
@@ -33,50 +36,29 @@ export default function RecuperaCuenta(props) {
                 console.log(`El usuario es empleado`);
                 const nombre = response.data[0].persona.nombre;
                 const apellido = response.data[0].persona.apellido_p;
-                tempCorreo = `${nombre}${apellido}@utez.edu.mx`;
+               tempCorreo = `${nombre}${apellido}@gmail.com`;
               }
-              if(role === "Externo"){
-                tempCorreo = matricula;
-              }
-              console.log(`SetCorreo ${tempCorreo}`);
+              console.warn(`SetCorreo ${tempCorreo}`);
               const asunto = "Recuperación de Cuenta - ADIPA";
               postApi("send-email", {
                 destinatario: tempCorreo, 
                 asunto: asunto
               }).then(
                 (response) => {
+                  console.log(` el estado es: ${response.status}`);
                   if(response.status === "OK"){
+                  console.log(id_usuario);
+                  console.log(matricula);
+                  console.log(role);
+                  console.log( response.data.pin);
                     const pin = response.data.pin;
-                    setTimeout(()=>{
-                      setVisible(false);
-                      setSuccess(!success);
-                    }, 1000)
-                    setTimeout(() => {
-                      setSuccess(false);
-                      navigation.navigate("ValideToken", {id: id_usuario, pin: pin});
-                    }, 3000);
+                    navigation.navigate("ValideToken", {id: id_usuario, pin: pin});
                   }
                 }
-              ).catch(
-                () => {
-                  setTimeout(() => {
-                    setVisible(false);
-                    setError(!error);
-                  }, 1000);
-                }
-              )
-            } else if(response.status === "USER_NOT_FOUND"){
-              setWarning(!warning);
-            }
-        }
-      ).catch(
-        () => {
-          setTimeout(() => {
-            setVisible(false);
-            setError(!error);
-          }, 1000);
-        }
-      )
+              )//fin then postApi
+            } //fin del response.status === OK
+        }//fin arrowFunction de response
+      )//fin del then getUserByMatricula
     } else {
       setShowMessage({ matricula: "Campo obligatorio" });
     }
@@ -85,8 +67,10 @@ export default function RecuperaCuenta(props) {
   return (
     <View style={styles.container}>
       <View style={styles.container2}>
+        <Text style={styles.textoInicial}>Recupera tu cuenta:</Text>
         <Text style={styles.label}>Matricula: </Text>
         <Input
+        value={matricula}
           placeholder="Ingresa tu matricula"
           keyboardType="email-address"
           containerStyle={styles.inputMatricula}

@@ -7,7 +7,7 @@ export default function Cedim() {
   return (
    <WebView
     style={styles.container}
-    source={{uri: 'http://192.168.109.30:5173'}}
+    source={{uri: 'http://192.168.109.30:5173/cedim'}}
    />
   );
 }

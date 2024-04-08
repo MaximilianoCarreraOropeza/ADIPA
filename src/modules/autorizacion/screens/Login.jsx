@@ -24,32 +24,27 @@ export default function Login(props) {
   const login = () => {
     if (!(isEmpty(email) && isEmpty(password))) {
       setVisible(!visible);
-      postApi("auth/signin", {
-        matricula: email,
+      sendLogin({
+        matricula: email.toLowerCase(),
         contrasena: password
       })
         .then((response) => {
-          console.log(response);
           if (response.status === "OK") {
             const session = {
               id: response.data.usuario.id_usuario,
               matricula: response.data.usuario.matricula,
               contrasena: password,
-              name: response.data.usuario.persona.nombre1,
-              name2: response.data.usuario.persona.nombre2,
+              name: response.data.usuario.persona.nombre,
               surname: response.data.usuario.persona.apellido_p,
               lastname: response.data.usuario.persona.apellido_m,
               role: response.data.usuario.tipoUsuario.nombre
             };
+            console.log(session);
             const storeData = async () => {
               try {
                 await AsyncStorage.setItem("session", JSON.stringify(session));
               } catch (e) {
-                setTimeout((e) => {
-                  console.log(e)
-                  setVisible(false);
-                  setError(!error);
-                }, 1000);
+                console.error(e);
               }
             };
             storeData();
@@ -64,20 +59,14 @@ export default function Login(props) {
           } else if (response.status === "BAD_REQUEST") {
             setTimeout(() => {
               setVisible(false);
-              setWarning(!warning);
-            }, 1000);
-          } else if(response.status === "NOT_FOUND"){
-            setTimeout(() => {
-              setVisible(false);
-              setWarning(!warning);
+              setError(!error);
             }, 1000);
           }
         })
         .catch(() => {
-          setTimeout((e) => {
-            console.log(e)
+          setTimeout(() => {
             setVisible(false);
-            setError(!error);
+            setWarning(!warning);
           }, 1000);
         });
     }
@@ -143,6 +132,14 @@ export default function Login(props) {
           titleStyle={styles.titleBtnStyle2}
           errorMessage={showMessage}
         />
+        <Button
+          title="Crear Cuenta"
+          onPress={() => navigation.navigate("Register")}
+          containerStyle={styles.btnContainerStyle2}
+          buttonStyle={styles.btnStyle3}
+          titleStyle={styles.titleBtnStyle3}
+          errorMessage={showMessage}
+        />
       </View>
       <Loading visible={visible} title="Iniciando Sesión" />
       <Message
@@ -161,7 +158,7 @@ export default function Login(props) {
         type={"success"}
         visible={success}
         setVisible={setSuccess}
-        title="Se inicio sesión correctamente"
+        title="Se inició sesión correctamente"
       />
     </View>
   );
@@ -241,5 +238,15 @@ const styles = StyleSheet.create({
   },
   fontSize: {
     fontSize: 16,
+  },
+  btnStyle3: {
+    backgroundColor: "#ffffff",
+    borderColor: "#002E60",
+    borderWidth: 2,
+    borderRadius: 50,
+  },
+  titleBtnStyle3: {
+    fontSize: 18,
+    color: "#002E60",
   },
 });

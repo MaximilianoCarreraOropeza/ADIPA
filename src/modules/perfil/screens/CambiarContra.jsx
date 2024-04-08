@@ -5,6 +5,7 @@ import Loading from "../../../kernel/components/Loading";
 import Message from "../../../kernel/components/Message";
 import { isEmpty } from "lodash";
 import { postChance } from "../../../kernel/config/use_connection";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function CambiarContra(props) {
   const { navigation, route } = props;
@@ -24,31 +25,23 @@ export default function CambiarContra(props) {
   const [warning, setWarning] = useState(false);
   const [success, setSuccess] = useState(false);
   const [idUser, setIdUser] = useState("");
-  const [session, setSession] = useState([]);
   const [contrasena, setContrasena] = useState("");
 
+  var session = {};
   useEffect(() => {
-    setSession(route.params);
-    setContrasena(session.contrasena);
-    setIdUser(session.id);
+    setContrasena(route.params.contrasena);
+    setIdUser(route.params.id);
   });
 
   const API_URL = "usuario/" + idUser;
 
   const CambiarContraseña = async () => {
     if (isEmpty(password) && isEmpty(newPassword) && isEmpty(confirmPassword)) {
-      setShowMessage(
-        { 
-          password: "Campo obligatorio", 
-          newPassword: "Campo obligatorio", 
-          confirmPassword: "Campo obligatorio"
-        }
-      )
+      setShowMessage({ password: "Campo obligatorio", newPassword: "Campo obligatorio", confirmPassword: "Campo obligatorio"})
     } else if(newPassword !== confirmPassword){
       setWarning(!warning);
     }else{
       if(password === contrasena){
-        setVisible(!visible);
           postChance(API_URL, {contrasena: confirmPassword})
           .then(
             (response) => {
@@ -61,35 +54,25 @@ export default function CambiarContra(props) {
                       console.log("La nueva sesión es: ",cambio);
                   await AsyncStorage.setItem("session", cambio);
                  } catch (e) {
-                  setTimeout(()=>{
-                    setVisible(false);
-                    setError(!error);
-                  }, 1000)
-                  console.error(e);
+                   console.error(e);
                  }
-               }; 
+               };
             storeData();
-            setTimeout(()=>{
-              setVisible(false);
-              setSuccess(!success);
-            })
-            setTimeout(() => {
-              setSuccess(false);
-              navigation.goBack();
-            }, 3000);
-            } else {
-              setTimeout(()=>{
-                setVisible(false);
-                setError(!error);
-              }, 1000)
-            }
+                console.log("Cambio de contraseña exitoso");
+            setVisible(false);
+            setSuccess(!success);
+                setTimeout(() => {
+                  setSuccess(false);
+                  navigation.goBack();
+                }, 3000);
+              
+              } else {
+                console.error("Error al cambiar la contraseña");
+              }
             }
             ).catch(
-              () => {
-                setTimeout(()=>{
-                  setVisible(false);
-                  setError(!error);
-                }, 1000)
+              (error) => {
+                console.log(`Ocurrio un error: ${error}`);
               }
             );
       }else{
@@ -97,6 +80,7 @@ export default function CambiarContra(props) {
       }
     }
   };
+
 
   return (
     <View style={styles.container}>
