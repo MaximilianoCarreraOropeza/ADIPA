@@ -45,7 +45,10 @@ export default function Login(props) {
               try {
                 await AsyncStorage.setItem("session", JSON.stringify(session));
               } catch (e) {
-                console.error(e);
+                setTimeout(() => {
+                  setVisible(false);
+                  setError(!error);
+                }, 1000);
               }
             };
             storeData();
@@ -60,14 +63,14 @@ export default function Login(props) {
           } else if (response.status === "BAD_REQUEST") {
             setTimeout(() => {
               setVisible(false);
-              setError(!error);
+              setWarning(!warning);
             }, 1000);
           }
         })
         .catch(() => {
           setTimeout(() => {
             setVisible(false);
-            setWarning(!warning);
+            setError(!error);
           }, 1000);
         });
     }

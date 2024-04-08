@@ -49,23 +49,28 @@ export default function ValideToken(props) {
           .then((response) => {
             console.log(response);
             if (response.status === "OK") {
-              console.log("Cambio de contraseña exitoso");
+              setTimeout(() => {
+                setVisible(false);
+                setSuccess(!success);
+              }, 1000);
+              setTimeout(() => {
+                setSuccess(false);
+                navigation.navigate("Login");
+              }, 3000);
             } else {
-              console.error("Error al cambiar la contraseña");
+              setTimeout(() => {
+                setVisible(false);
+                setError(!error);
+              }, 1000);
             }
             console.log(response.status);
           })
-          .catch((error) => {
-            console.error(error);
+          .catch(() => {
+            setTimeout(() => {
+              setVisible(false);
+              setError(!error);
+            }, 1000);
           });
-        setTimeout(() => {
-          setVisible(false);
-          setSuccess(!success);
-        }, 1000);
-        setTimeout(() => {
-          setSuccess(false);
-          navigation.navigate("Login");
-        }, 3000);
       } else {
         console.error("Excelente, eres un genio");
       }

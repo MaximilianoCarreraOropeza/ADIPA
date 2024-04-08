@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Image } from "@rneui/themed";
 import usuario from "../../../../assets/usuario.png";
 import cambiar from "../../../../assets/contra.png";
+import solicitudes from "../../../../assets/solicitudes.png";
 import cerrar from "../../../../assets/salida.png";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Loading from "../../../kernel/components/Loading";
@@ -15,6 +16,7 @@ export default function Perfil(props) {
   const fotoPerfil = usuario;
   const contra = cambiar;
   const salida = cerrar;
+  const Solicitudes = solicitudes;
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
   const [ask, setAsk] = useState(false);
@@ -28,7 +30,7 @@ export default function Perfil(props) {
   const [lastname, setLastname] = useState("");
   const [matricula, setMatricula] = useState("");
   const [role, setRole] = useState("");
-
+  
   getData = async () => {
     try {
       const value = await AsyncStorage.getItem("session");
@@ -128,7 +130,7 @@ export default function Perfil(props) {
                 navigation.navigate("Solicitudes");
               }}
             >
-              <Image source={contra} style={styles.icono} />
+              <Image source={Solicitudes} style={styles.icono} />
               <Text style={styles.texto}>Solicitudes Pendientes</Text>
             </TouchableOpacity>
           )

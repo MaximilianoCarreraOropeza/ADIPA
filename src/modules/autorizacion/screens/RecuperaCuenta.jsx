@@ -49,18 +49,31 @@ export default function RecuperaCuenta(props) {
                 (response) => {
                   console.log(` el estado es: ${response.status}`);
                   if(response.status === "OK"){
-                  console.log(id_usuario);
-                  console.log(matricula);
-                  console.log(role);
-                  console.log( response.data.pin);
                     const pin = response.data.pin;
-                    navigation.navigate("ValideToken", {id: id_usuario, pin: pin});
+                    setTimeout(() => {
+                      setVisible(false);
+                      setSuccess(!success);
+                    }, 1000);
+                    setTimeout(() => {
+                      setSuccess(false);
+                      navigation.navigate("ValideToken", {id: id_usuario, pin: pin});
+                    }, 3000);
+                  }else{
+                    setTimeout(() => {
+                      setVisible(false);
+                      setWarning(!warning);
+                    }, 1000);
                   }
                 }
               )//fin then postApi
-            } //fin del response.status === OK
+            } else {
+              setTimeout(() => {
+                setVisible(false);
+                setError(!error);
+              }, 1000);
+            }//fin del response.status === OK
         }//fin arrowFunction de response
-      )//fin del then getUserByMatricula
+      )
     } else {
       setShowMessage({ matricula: "Campo obligatorio" });
     }

@@ -7,7 +7,6 @@ import Message from "../../../kernel/components/Message";
 import { useNavigation } from "@react-navigation/native";
 import { postPetition } from "../../../kernel/config/use_connection";
 
-
 export default function CrearCuenta() {
   const navigation = useNavigation();
   const [showPassword1, setShowPassword1] = useState(true);
@@ -113,25 +112,25 @@ export default function CrearCuenta() {
             />
             <Text style={styles.label}>Apellido Paterno:</Text>
             <Input
-            value={surname}
+            value={lastname}
                 placeholder="Ingrese su apellido paterno"
                 placeholderTextColor={"#70BEAE"}
                 inputContainerStyle={styles.textInput}
                 inputStyle={styles.fontSize}
                 containerStyle={styles.input}
-                onChange={({ nativeEvent: { text } }) => setSurname(text)}
+                onChange={({ nativeEvent: { text } }) => setLastname(text)}
                 leftIcon={<Icon type="material-community" name="human-male" />}
                 errorMessage={showMessage.lastname}
             />
             <Text style={styles.label}>Apellido Materno</Text>
             <Input
-            value={lastname}
-                placeholder="Ingrese su materno"
+            value={surname}
+                placeholder="Ingrese su apellido materno"
                 placeholderTextColor={"#70BEAE"}
                 inputContainerStyle={styles.textInput}
                 inputStyle={styles.fontSize}
                 containerStyle={styles.input}
-                onChange={({ nativeEvent: { text } }) => setLastname(text)}
+                onChange={({ nativeEvent: { text } }) => setSurname(text)}
                 leftIcon={<Icon type="material-community" name="human-female" />}
                 errorMessage={showMessage.surname}
             />

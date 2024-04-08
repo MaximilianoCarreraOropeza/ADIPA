@@ -23,6 +23,7 @@ export default function CambiarContra(props) {
   const [visible, setVisible] = useState(false);
   const [error, setError] = useState(false);
   const [warning, setWarning] = useState(false);
+  const [warning2, setWarning2] = useState(false);
   const [success, setSuccess] = useState(false);
   const [idUser, setIdUser] = useState("");
   const [contrasena, setContrasena] = useState("");
@@ -36,10 +37,14 @@ export default function CambiarContra(props) {
   const API_URL = "usuario/" + idUser;
 
   const CambiarContraseña = async () => {
+    setVisible(!visible)
     if (isEmpty(password) && isEmpty(newPassword) && isEmpty(confirmPassword)) {
       setShowMessage({ password: "Campo obligatorio", newPassword: "Campo obligatorio", confirmPassword: "Campo obligatorio"})
     } else if(newPassword !== confirmPassword){
-      setWarning(!warning);
+      setTimeout(() => {
+        setVisible(false);
+        setWarning(!warning);
+      }, 3000);
     }else{
       if(password === contrasena){
           postChance(API_URL, {contrasena: confirmPassword})
@@ -54,29 +59,41 @@ export default function CambiarContra(props) {
                       console.log("La nueva sesión es: ",cambio);
                   await AsyncStorage.setItem("session", cambio);
                  } catch (e) {
-                   console.error(e);
-                 }
+                  setTimeout(() => {
+                    setVisible(false);
+                    setError(!error);
+                  }, 1000);
+                }
                };
             storeData();
-                console.log("Cambio de contraseña exitoso");
-            setVisible(false);
-            setSuccess(!success);
-                setTimeout(() => {
-                  setSuccess(false);
-                  navigation.goBack();
-                }, 3000);
-              
+              setTimeout(() => {
+                setVisible(false);
+                setSuccess(!success);
+              }, 1000);            
+              setTimeout(() => {
+                setSuccess(false);
+                navigation.goBack();
+              }, 3000);
               } else {
-                console.error("Error al cambiar la contraseña");
+                setTimeout(() => {
+                  setVisible(false);
+                  setError(!error);
+                }, 1000);   
               }
             }
             ).catch(
-              (error) => {
-                console.log(`Ocurrio un error: ${error}`);
+              () => {
+                setTimeout(() => {
+                  setVisible(false);
+                  setError(!error);
+                }, 1000);   
               }
             );
       }else{
-        setWarning(!warning)
+        setTimeout(() => {
+          setVisible(false);
+          setWarning2(!warning2);
+        }, 3000);
       }
     }
   };
@@ -171,6 +188,12 @@ export default function CambiarContra(props) {
         visible={warning}
         setVisible={setWarning}
         title="Contraseñas no coinciden"
+      />
+      <Message
+        type={"warning"}
+        visible={warning2}
+        setVisible={setWarning2}
+        title="Tu contraseña es incorrecta"
       />
       <Message
         type={"error"}
